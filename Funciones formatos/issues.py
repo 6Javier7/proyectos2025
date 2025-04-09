@@ -32,3 +32,5 @@ def issues():
             ])
     
     print(f'\n✅ Datos guardados en issuelog.csv ')
+
+issues()

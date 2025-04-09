@@ -35,3 +35,5 @@ def stakeholdereg():
             ])
     
     print(f'\n✅ Datos guardados en stakeholdeReg.csv ')
+
+stakeholdereg()

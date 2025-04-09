@@ -34,3 +34,5 @@ def riskreg():
             ])
     
     print(f'\n✅ Datos guardados en riskreg.csv ')
+
+riskreg()

@@ -32,3 +32,5 @@ def changes():
             ])
     
     print(f'\n✅ Datos guardados en changelog.csv ')
+
+changes()
