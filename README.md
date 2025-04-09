@@ -1,3 +1,3 @@
 # proyectos2025
 
-Hola mundo!
+En este repositorio realizaremos las funciones para automatizar algunas actividades de los proyectos.
