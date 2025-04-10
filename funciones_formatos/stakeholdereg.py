@@ -7,21 +7,32 @@ Created on Tue Apr  8 20:35:57 2025
 """
 
 import csv
+import os
 from datetime import datetime
 
 def stakeholdereg():
     num_riskreg = int(input('¿Cuántas personas involucradas encontraste encontraste hoy? '))
-    
+    # Revisar desde donde empezara a el nuevo id.
+    file_exists = os.path.isfile('stakeholdeReg.csv')
+    if file_exists:
+        with open('stakeholdeReg.csv', 'r', encoding='utf-8') as arch:
+            interx = csv.DictReader(arch)
+            ids_exis = [int(fil['ID']) for fil in interx if fil['ID'].isdigit()]
+            if ids_exis:
+                sig_id = max(ids_exis) + 1
+            else:
+                sig_id = 1
+
     with open('stakeholdeReg.csv', 'a', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
         # Escribe headers si el archivo está vacío
         if csvfile.tell() == 0:
             writer.writerow(["ID", "Fecha de hallazgo", "Nombre", "Cargo", "Rol", "Tipo", "Interes", "Poder", "Tipo"])
-        
-        for count in range(1, num_riskreg + 1):
-            print(f'\n--- Involucrade #{count} ---')
+
+        for counts in range(sig_id, num_riskreg + sig_id):
+            print(f'\n--- Involucrade #{counts} ---')
             writer.writerow([
-                count,
+                counts,
                 datetime.now().strftime('%Y-%m-%d'),
                 input('Nombre de involucrade: '),
                 input('Cargo: '),
