@@ -1,2 +1,3 @@
 ID,Fecha de envio,Solicitado por,Nombre,Descripción,Impacto,Estado,Tipo
-1,2025-04-09,Andrey,Llamar la funcion,llamar la funcion al final del archivo,2,A,S
+1,2025-04-11,Andrey,seguimiento de id's,cambiar la funcion de changes.py para que se autoincrementen los id's,3,P,S
+2,2025-04-11,javier,adicionar cambio de stakeolder.py,Adicionar los cambios de stakeholder.py en las otras funciones a[3~atomisadas,3,P,S
