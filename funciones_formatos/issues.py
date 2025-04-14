@@ -14,6 +14,7 @@ def issues():
     num_issues = int(input('¿Cuántos issuues encontraste hoy? '))
     # Revisar desde donde empezara a el nuevo id.
     file_exists = os.path.isfile('issuelog.csv')
+    sig_id = 1
     if file_exists:
         with open('issuelog.csv', 'r', encoding='utf-8') as arch:
             interx = csv.DictReader(arch)
