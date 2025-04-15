@@ -4,6 +4,7 @@
 Created on Tue Apr  8 20:33:19 2025
 
 @author: javiermontanochiriboga
+@coauthor: andreymch
 """
 
 import csv
