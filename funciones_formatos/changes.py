@@ -4,6 +4,7 @@
 Created on Tue Apr  8 20:31:55 2025
 
 @author: javiermontanochiriboga
+@coauthor: yerdna14
 """
 
 import csv
