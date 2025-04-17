@@ -4,6 +4,7 @@
 Created on Tue Apr  8 20:31:55 2025
 
 @author: javiermontanochiriboga
+@coauthor: yerdna14
 """
 
 import csv
@@ -20,8 +21,8 @@ def changes():
             ids_exis = [int(fil['ID']) for fil in interx if fil['ID'].isdigit()]
             if ids_exis:
                 sig_id = max(ids_exis) + 1
-            else:
-                sig_id = 1
+    else:
+        sig_id = 1
     
     with open('changelog.csv', 'a', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)

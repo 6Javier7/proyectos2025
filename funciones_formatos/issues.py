@@ -4,6 +4,7 @@
 Created on Tue Apr  8 20:33:19 2025
 
 @author: javiermontanochiriboga
+@coauthor: andreymch
 """
 
 import csv
@@ -14,15 +15,14 @@ def issues():
     num_issues = int(input('¿Cuántos issuues encontraste hoy? '))
     # Revisar desde donde empezara a el nuevo id.
     file_exists = os.path.isfile('issuelog.csv')
-    sig_id = 1
     if file_exists:
         with open('issuelog.csv', 'r', encoding='utf-8') as arch:
             interx = csv.DictReader(arch)
             ids_exis = [int(fil['ID']) for fil in interx if fil['ID'].isdigit()]
             if ids_exis:
                 sig_id = max(ids_exis) + 1
-            else:
-                sig_id = 1
+    else:
+        sig_id = 1
     
     with open('issuelog.csv', 'a', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
