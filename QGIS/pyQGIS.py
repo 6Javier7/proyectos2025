@@ -11,37 +11,64 @@ import os
 directorio_actual = os.getcwd()
 print("Directorio de trabajo actual:", directorio_actual)
 
+from qgis.core import QgsVectorLayer, QgsProject
 
-municipios_path = 'Users/javiermontanochiriboga/Documents/Javier/Zona de Influencia/mpio/mpio.shp'
-# munlayer = iface.addVectorLayer(municipios_path, 'municipios', 'ogr')
-munlayer = QgsVectorLayer(municipios_path, 'municipios', 'ogr') #asi no se muestra en la pantalla
+# 1. Cargar el shapefile
 
-consejos_path = 'Users/javiermontanochiriboga/Documents/Javier/Zona de Influencia/Consejos_Comunitarios/COMUNIDAD_NEGRA_TITULADA.shp'
-# comlayer = iface.addVectorLayer(consejos_path, 'consejos', 'ogr')
-comlayer = QgsVectorLayer(consejos_path, 'consejos', 'ogr')
+consejos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
+# consejos_layer = iface.addVectorLayer(consejos_path, 'consejos', 'ogr')
+consejos_layer = QgsVectorLayer(consejos_path, 'consejos', 'ogr')
 # te muestra el archivo de determinada capa
 
-for field in comlayer.fields():
-    print(field)
-    print(field.name())
-    print(field.type())
 
-for f in comlayer.getFeatures():
-    print(f)
+# Verificar carga correcta
+if not consejos_layer.isValid():
+    print("¡Error al cargar el shapefile!")
+else:
+    # 2. Seleccionar features por IDs
+    ids1 = [54, 50, 268, 201, 257, 248, 237, 70]
+    ids = [id - 1 for id in ids1] # Hay que restarle menos 1
 
-for f in comlayer.getFeatures():
-  print('%s, %s, %s' % (f['NOMBRE'], f['TIPO_ACTO_'], f['NUMERO_ACT']))
+    #Se seleccionan los IDs escogidos
+    consejos_layer.selectByIds(ids)
+    
+    # 3. Verificar selección y crear nueva capa
+    if consejos_layer.selectedFeatureCount() > 0:
+        # Crear capa en memoria
+        selection_layer = QgsVectorLayer(
+            f"{consejos_layer.geometryType().name}?crs={consejos_layer.crs().authid()}",
+            "consejos_seleccionados",
+            "memory"
+        )
         
-for f in comlayer.getFeatures():
-  print('%s, %s, %s, %s' % (f['NOMBRE'], f['TIPO_ACTO_'], f['NUMERO_ACT'], f['OBJECTID']))
+        # Copiar estructura
+        provider = selection_layer.dataProvider()
+        provider.addAttributes(consejos_layer.fields())
+        selection_layer.updateFields()
+        
+        # Copiar features
+        provider.addFeatures(consejos_layer.selectedFeatures())
+        
+        # Añadir al proyecto
+        QgsProject.instance().addMapLayer(selection_layer)
+        print(f"¡Capa creada con {consejos_layer.selectedFeatureCount()} features!")
+        
+        # Opcional: Zoom a la selección
+        iface.mapCanvas().zoomToSelected(selection_layer)
+    else:
+        print("No se seleccionaron features")
 
-for f in comlayer.getFeatures():
-  print('%s, %s, %s, %s' % (f['OBJECTID'], f['NOMBRE'], f['TIPO_ACTO_'], f['NUMERO_ACT']))
 
+import processing
 
+output_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_seleccionados.shp'
 
-for f in comlayer.getFeatures():
-  geom = f.geometry()
-  print('%s, %s, %f, %f' % (f['NOMBRE'], f['CODIGO_DAN'],
-         geom.asPoint().y(), geom.asPoint().x()))
+processing.run("native:saveselectedfeatures", {
+    'INPUT': consejos_layer,
+    'OUTPUT': output_path
+})
+
+# Verificar creación
+if os.path.exists(output_path):
+    print("Archivo creado exitosamente!")
 
