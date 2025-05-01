@@ -29,7 +29,7 @@ if not consejos_layer.isValid():
     print("¡Error al cargar el shapefile!")
 else:
     # 2. Seleccionar features por IDs
-    ids1 = [54, 50, 268, 201, 257, 248, 237, 70]
+    ids1 = [54, 50, 268, 201, 257, 248, 237, 70, 62, 256, 245, 242]
     ids = [id - 1 for id in ids1] # Hay que restarle menos 1
 
     #Se seleccionan los IDs escogidos
@@ -189,6 +189,115 @@ else:
 
 
 
+
+# Cortar Coberturas
+##########################################################
+
+# Cortar Consejos
+
+consejos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_seleccionados.shp'
+
+#conlayer = iface.addVectorLayer(consejos_path, 'consejos', 'ogr')
+
+conlayer = QgsVectorLayer(consejos_path, 'consejos', 'ogr') #asi no se muestra en la pantalla
+
+
+coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
+
+namec = 'Coberturas'
+
+# Cargar la capa
+#coverlayer = QgsVectorLayer(f"{coberturas_path}|layername={namec}", namec, "ogr")
+
+coverlayer = QgsVectorLayer(coberturas_path, namec, "ogr")
+
+
+
+# 3. Configurar parámetros para el clip
+params = {
+        'INPUT': coverlayer,    # Capa a cortar (coberturas)
+        'OVERLAY': conlayer,  # Capa de corte (consejos)
+        'OUTPUT': 'memory:'   # Salida en memoria
+    }
+
+
+
+# Ejecutar el algoritmo
+result = processing.run("native:clip", params)
+
+# Añadir resultado al proyecto
+clipped_layer = result['OUTPUT']
+QgsProject.instance().addMapLayer(clipped_layer)
+
+#como hacer que cada poligono se corte en una capa diferente
+
+
+#############################
+
+from qgis.core import QgsVectorLayer, QgsProject, QgsVectorFileWriter
+import processing
+import os
+
+# Configurar rutas
+consejos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_seleccionados.shp'
+coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
+
+# Cargar capas
+conlayer = QgsVectorLayer(consejos_path, 'consejos', 'ogr')
+coverlayer = QgsVectorLayer(coberturas_path, 'Coberturas', 'ogr')
+
+# Verificar carga
+if not conlayer.isValid() or not coverlayer.isValid():
+    print("Error al cargar capas")
+else:
+    # Crear directorio de salida
+    output_dir = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Coberturas_por_Consejo/'
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Procesar cada consejo individualmente
+    for consejo in conlayer.getFeatures():
+        # Crear capa temporal con solo este consejo
+        temp_consejo = QgsVectorLayer("Polygon?crs=" + conlayer.crs().authid(), "temp_consejo", "memory")
+        with edit(temp_consejo):
+            temp_consejo.dataProvider().addAttributes(conlayer.fields())
+            temp_consejo.updateFields()
+            temp_consejo.dataProvider().addFeature(consejo)
+        
+        # Ejecutar clip
+        params = {
+            'INPUT': coverlayer,
+            'OVERLAY': temp_consejo,
+            'OUTPUT': 'memory:'
+        }
+        result = processing.run("native:clip", params)
+        
+        if result['OUTPUT'] and result['OUTPUT'].featureCount() > 0:
+            # Nombre del archivo usando atributos del consejo
+            nombre_archivo = f"Coberturas_{consejo['NOMBRE'].replace(' ', '_')}.gpkg"
+            output_path = os.path.join(output_dir, nombre_archivo)
+            
+            # Guardar resultado en GeoPackage
+            options = QgsVectorFileWriter.SaveVectorOptions()
+            options.driverName = "GPKG"
+            options.fileEncoding = "UTF-8"
+            
+            error = QgsVectorFileWriter.writeAsVectorFormatV2(
+                result['OUTPUT'],
+                output_path,
+                QgsCoordinateTransformContext(),
+                options
+            )
+            
+            if error[0] == QgsVectorFileWriter.NoError:
+                print(f"Creado: {nombre_archivo}")
+                
+                # Opcional: Cargar al proyecto
+                capa_resultado = QgsVectorLayer(output_path, f"Coberturas_{consejo['NOMBRE']}", "ogr")
+                QgsProject.instance().addMapLayer(capa_resultado)
+            else:
+                print(f"Error guardando {nombre_archivo}: {error[1]}")
+
+    print("Proceso completado. Capas guardadas en:", output_dir)
 
 
 
