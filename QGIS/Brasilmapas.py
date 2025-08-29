@@ -3,8 +3,19 @@
 #Floresta Ombrófila Densa das Terras Baixas
 
 
+#Plantilla
 
+#Escala pais
+#187837313
 
+#Escala estados
+#60082899
+
+#Escala municipios
+#6773082
+
+#REGIÕES FITOECOLÓGICAS
+#Classificação da Vegetação
 
 #https://html-color.codes/olive
 
@@ -13,11 +24,11 @@ subregion = 'South America'
 codigos_uf = ['26']
 codigos_inter = ['2601']
 codigomdep = ['26']
-codigos_inme = ['260001', '260002']
-codigos_muni = ['2607604', '2607752', '2606200']
+codigos_inme = ['260001'] #['260001', '260002']
+codigos_muni = ['2607604'] #['2607604', '2607752', '2606200', '2605459']
 
 # Lista de nombres de capas a procesar
-nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'pais', 'estados', 'intermedios', 'estados_seleccionados', 'MunicipiosEsp2', 'inter_seleccionados', 'InmeEsp2', 'muni_seleccionados', 'inmed_seleccionados', 'Municipios', 'Coberturaf', 'Coberturaf', 'Coberturaf', 'Mata Atlântica']
+nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'pais', 'estados', 'intermedios', 'estados_seleccionados', 'MunicipiosEsp2', 'inter_seleccionados', 'InmeEsp2', 'muni_seleccionados', 'inmed_seleccionados', 'Municipios', 'Coberturasf', 'Coberturasl', 'coberturasl2', 'Mata Atlântica']
 oceano_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_ocean/ne_10m_ocean.shp'
 region_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp'
 pais_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/Brasil/BR_Pais_2024/BR_Pais_2024.shp'
@@ -45,54 +56,206 @@ qmll2_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/Brasil/vege_are
 #consejos_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
 #veredas_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Veredas/CRVeredas_2020.shp'
 
-def aplicar_estilo_qml_filtrado(capas, qml_path, campo_categorizacion=None):
-    """
-    Aplica estilo QML a múltiples capas, filtrando categorías inexistentes
-    """
-    capas_estilizadas = 0
-    
-    for item in capas:
-        # Obtener capa
-        if isinstance(item, QgsVectorLayer):
-            capa = item
-        elif isinstance(item, str):
-            found = QgsProject.instance().mapLayersByName(item)
-            if not found:
-                continue
-            capa = found[0]
-        else:
-            continue
-        
-        # Aplicar QML
-        if not capa.loadNamedStyle(qml_path):
-            continue
-        
-        # Filtrar categorías si es categorizado
-        renderer = capa.renderer()
-        if isinstance(renderer, QgsCategorizedSymbolRenderer):
-            # Detectar campo si no se especificó
-            if campo_categorizacion is None:
-                campo_categorizacion = renderer.classAttribute()
-            
-            # Filtrar categorías
-            valores_existentes = {str(feat[campo_categorizacion]) for feat in capa.getFeatures() 
-                                if feat[campo_categorizacion] not in [None, '']}
-            
-            nuevas_categorias = [cat for cat in renderer.categories() 
-                               if str(cat.value()) in valores_existentes]
-            
-            if nuevas_categorias:
-                nuevo_renderer = QgsCategorizedSymbolRenderer(campo_categorizacion, nuevas_categorias)
-                nuevo_renderer.setShowAllSymbols(False)
-                capa.setRenderer(nuevo_renderer)
-                capas_estilizadas += 1
-        
-        capa.triggerRepaint()
-    
-    return capas_estilizadas
+#def aplicar_estilo_qml_filtrado(capas, qml_path, campo_categorizacion=None):
+#    """
+#    Aplica estilo QML a múltiples capas, filtrando categorías inexistentes
+#    """
+#    capas_estilizadas = 0
+#    
+#    for item in capas:
+#        # Obtener capa
+#        if isinstance(item, QgsVectorLayer):
+#            capa = item
+#        elif isinstance(item, str):
+#            found = QgsProject.instance().mapLayersByName(item)
+#            if not found:
+#                continue
+#            capa = found[0]
+#        else:
+#            continue
+#        
+#        # Aplicar QML
+#        if not capa.loadNamedStyle(qml_path):
+#            continue
+#        
+#        # Filtrar categorías si es categorizado
+#        renderer = capa.renderer()
+#        if isinstance(renderer, QgsCategorizedSymbolRenderer):
+#            # Detectar campo si no se especificó
+#            if campo_categorizacion is None:
+#                campo_categorizacion = renderer.classAttribute()
+#            
+#            # Filtrar categorías
+#            valores_existentes = {str(feat[campo_categorizacion]) for feat in capa.getFeatures() 
+#                                if feat[campo_categorizacion] not in [None, '']}
+#            
+#            nuevas_categorias = [cat for cat in renderer.categories() 
+#                               if str(cat.value()) in valores_existentes]
+#            
+#            if nuevas_categorias:
+#                nuevo_renderer = QgsCategorizedSymbolRenderer(campo_categorizacion, nuevas_categorias)
+#                nuevo_renderer.setShowAllSymbols(False)
+#                capa.setRenderer(nuevo_renderer)
+#                capas_estilizadas += 1
+#        
+#        capa.triggerRepaint()
+#    
+#    return capas_estilizadas
 
 # Aplicar a la capa cortada
 
+def aplicar_estilo_comun_a_capas(capas, campo=None, colores_por_valor=None, borde_color='0, 0, 0', grosor_borde=0.2, qml_path=None):
+    """
+    Aplica la misma simbología categorizada a múltiples capas de polígonos.
+    Puede aplicar estilos desde QML o crear categorías programáticamente.
+    
+    Parámetros:
+    - capas: Lista de capas vectoriales (QgsVectorLayer) o nombres de capas
+    - campo: Nombre del campo común para categorizar (opcional si se usa QML)
+    - colores_por_valor: Diccionario {valor: (R,G,B)} con los colores (opcional si se usa QML)
+    - borde_color: Color del borde en formato 'R,G,B' (opcional)
+    - grosor_borde: Grosor del borde en mm (opcional)
+    - qml_path: Ruta al archivo QML para aplicar estilo (opcional)
+    
+    Retorna:
+    - Número de capas a las que se aplicó el estilo correctamente
+    """
+    capas_estilizadas = 0
+    
+    # Convertir nombres de capas a objetos de capa si es necesario
+    layers_to_style = []
+    for item in capas:
+        if isinstance(item, QgsVectorLayer):
+            layers_to_style.append(item)
+        elif isinstance(item, str):
+            found_layers = QgsProject.instance().mapLayersByName(item)
+            if found_layers:
+                layers_to_style.extend(found_layers)
+    
+    for capa in layers_to_style:
+        # Verificar que la capa sea válida y sea de polígonos
+        if not capa.isValid():
+            print(f"Advertencia: Capa '{capa.name()}' no es válida. Saltando...")
+            continue
+        
+        if capa.geometryType() != QgsWkbTypes.PolygonGeometry:
+            print(f"Advertencia: Capa '{capa.name()}' no es de polígonos. Saltando...")
+            continue
+        
+        # OPCIÓN 1: Aplicar estilo desde archivo QML
+        if qml_path:
+            try:
+                # PRIMERO: Cargar el estilo QML
+                success = capa.loadNamedStyle(qml_path)
+                if not success:
+                    print(f"❌ Error al aplicar QML a capa: {capa.name()}")
+                    continue
+                
+                # SEGUNDO: Filtrar categorías para mostrar solo las existentes
+                renderer = capa.renderer()
+                if renderer and renderer.type() == 'categorizedSymbol':
+                    # Obtener valores únicos que existen en la capa cortada
+                    valores_existentes = set()
+                    campo_renderer = renderer.classAttribute()  # Campo usado en el QML
+                    
+                    for feature in capa.getFeatures():
+                        valor = feature[campo_renderer]
+                        if valor is not None and valor != '':
+                            valores_existentes.add(valor)
+                    
+                    print(f"🔍 Valores existentes en {capa.name()}: {valores_existentes}")
+                    
+                    # SOLUCIÓN PARA DIFERENTES VERSIONES DE QGIS
+                    try:
+                        # Método para versiones más recientes de QGIS (3.x+)
+                        renderer.setShowAllCategories(False)
+                    except AttributeError:
+                        try:
+                            # Método para versiones más antiguas
+                            renderer.setShowAllSymbols(False)
+                        except AttributeError:
+                            # Si ambos métodos fallan, crear un nuevo renderizador filtrado
+                            print("⚠️  Creando renderizador filtrado manualmente...")
+                            categories = []
+                            
+                            for cat in renderer.categories():
+                                if cat.value() in valores_existentes:
+                                    categories.append(cat)
+                            
+                            # Crear nuevo renderizador con solo categorías existentes
+                            new_renderer = QgsCategorizedSymbolRenderer(campo_renderer, categories)
+                            capa.setRenderer(new_renderer)
+                
+                # TERCERO: Forzar actualización
+                capa.triggerRepaint()
+                iface.layerTreeView().refreshLayerSymbology(capa.id())
+                
+                capas_estilizadas += 1
+                print(f"✅ Estilo QML aplicado y filtrado a capa: {capa.name()}")
+                
+            except Exception as e:
+                print(f"❌ Error cargando QML para {capa.name()}: {str(e)}")
+                continue
+        
+        # OPCIÓN 2: Crear categorías programáticamente (tu código original)
+        elif campo and colores_por_valor:
+            # Verificar que el campo exista
+            if campo not in [field.name() for field in capa.fields()]:
+                print(f"Advertencia: Campo '{campo}' no encontrado en capa '{capa.name()}'. Saltando...")
+                continue
+
+            # Obtener valores únicos que realmente existen en la capa
+            valores_existentes = set()
+            for feature in capa.getFeatures():
+                valor = feature[campo]
+                if valor is not None and valor != '':
+                    valores_existentes.add(valor)
+
+            print(f"🔍 Valores existentes en {capa.name()}: {len(valores_existentes)}")
+            print(f"🎨 Colores definidos: {len(colores_por_valor)}")
+
+            # Filtrar colores para solo valores existentes
+            colores_filtrados = {k: v for k, v in colores_por_valor.items() if k in valores_existentes}
+            
+            # Crear categorías SOLO para valores existentes
+            categories = []
+            for valor, color_rgb in colores_filtrados.items():
+                # Crear símbolo de relleno
+                symbol = QgsFillSymbol.createSimple({
+                    'color': f'{color_rgb[0]},{color_rgb[1]},{color_rgb[2]}',
+                    'color_border': borde_color,
+                    'width_border': str(grosor_borde)
+                })
+                
+                # Crear categoría
+                category = QgsRendererCategory(valor, symbol, str(valor))
+                categories.append(category)
+            
+            # Crear y asignar renderizador
+            renderer = QgsCategorizedSymbolRenderer(campo, categories)
+            
+            # Manejar diferentes versiones de QGIS
+            try:
+                renderer.setShowAllCategories(False)
+            except AttributeError:
+                try:
+                    renderer.setShowAllSymbols(False)
+                except AttributeError:
+                    pass  # Si no existe el método, continuar igual
+            
+            capa.setRenderer(renderer)
+            capa.triggerRepaint()
+            
+            capas_estilizadas += 1
+            print(f"🎨 Estilo programático aplicado a capa: {capa.name()}")
+        else:
+            print(f"⚠️  No se especificó método de estilización para: {capa.name()}")
+    
+    # Actualizar vista del mapa
+    if capas_estilizadas > 0:
+        iface.mapCanvas().refreshAllLayers()
+    
+    return capas_estilizadas
 
 #Limpiar capas existentes
 ####################################
@@ -668,7 +831,7 @@ coverblayer.triggerRepaint()
 # 3. Configurar parámetros para el clip
 params_coberturas = {
         'INPUT': coverblayer,    # Capa a cortar (ecosistemas)
-        'OVERLAY': 'Municipios',  # Capa de corte (consejos)
+        'OVERLAY': 'muni_seleccionados',  # Capa de corte (consejos)
         'OUTPUT': 'memory:covfito'   # Salida en memoria
     }
 
@@ -681,6 +844,11 @@ successf = clipped_coberturas.loadNamedStyle(qmlf_path)
 
 # Aplicar el mismo QML a múltiples capas
 #aplicar_estilo_qml_filtrado([clipped_coberturas], qmlf_path, 'fito')
+
+aplicar_estilo_comun_a_capas(
+    capas = [clipped_coberturas],
+    qml_path = 'qmlf_path'
+)
 
 #duplicar
 ###
@@ -711,6 +879,12 @@ successl2 = clipped_coberturas.loadNamedStyle(qmll2_path)
 
 # Aplicar el mismo QML a múltiples capas
 #aplicar_estilo_qml_filtrado([capa_duplicada2], qmll2_path, 'legenda2')
+
+aplicar_estilo_comun_a_capas(
+    capas = [capa_duplicada2],
+    qml_path = 'qmll2_path'
+)
+
 
 #Mata Atlântica
 ################################

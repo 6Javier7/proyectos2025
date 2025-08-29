@@ -332,14 +332,14 @@ else:
 # Cortar
 ###############################################################
 
-#Cortar Ecosistemas
+#Cortar Coberturas
 municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionadosp.shp'
 
 #munlayer = iface.addVectorLayer(municipios_path, 'municipios', 'ogr')
 munlayer = QgsVectorLayer(municipios_path, 'municipios', 'ogr') #asi no se muestra en la pantalla
 
 
-coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
+coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas1.gpkg'
 
 namec = 'Coberturas'
 
