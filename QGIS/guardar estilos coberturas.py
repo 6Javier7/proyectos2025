@@ -58,7 +58,7 @@ colores_cov = {
 
 # Aplicar a capas por nombre
 aplicar_estilo_comun_a_capas(
-    capas = todas_capas,
+    capas = selection_layer,
     campo = 'nivel_3',  # Campo común en todas las capas
     colores_por_valor = colores_cov,
     borde_color='0,0,0',    # Borde negro

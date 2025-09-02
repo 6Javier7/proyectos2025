@@ -1,3 +1,7 @@
 ID,Fecha de envio,Prioridad,Asignada,Descripción,Impacto,Estado
 1,2025-04-14,A,Andrey,La apertura de la 1ra convocatoria de OCAD PAZ ,4,A
 2,2025-04-21,M,Andrey,"Los proyectos con Carlos de Parteras se postergan, por falta de comunicacion con los alcaldes o poco interes de los mismos.",3,P
+3,2025-08-30,M,Javier,implementacion de opensource en los proyectos,1,A
+4,2025-08-30,B,Andrey,"Aplicar masecologia, ciencia de materiales en los proyectos",2,A
+5,2025-08-30,M,Automatizar el presupuesto,Automatizar el Presupuesto,2,A
+6,2025-09-01,B,Andrey,Hablar asuntos varios entre ellos la empresa,1,A

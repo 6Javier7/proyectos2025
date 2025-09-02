@@ -1,0 +1,13 @@
+version: '3'
+services:
+  openproject:
+    image: openproject/community:12
+    container_name: openproject
+    restart: unless-stopped
+    ports:
+      - "8080:80"  # Mapea el puerto 80 del contenedor al 8080 de tu máquina
+    environment:
+      - OPENPROJECT_SECRET_KEY_BASE=secret
+    volumes:
+      - ./pgdata:/var/openproject/pgdata
+      - ./static:/var/openproject/assets
