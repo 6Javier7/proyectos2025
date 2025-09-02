@@ -6,7 +6,7 @@ region = 'Latin America & Caribbean'
 subregion = 'South America'
 codigos_dep = ['27']
 codigomdep = ['27']
-codigos_muni = ['27077']
+codigos_muni = ['27250']
 cpais = ['COL']
 codigoc = ['73']
 

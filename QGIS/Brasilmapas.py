@@ -16,6 +16,7 @@
 
 #REGIÕES FITOECOLÓGICAS
 #Classificação da Vegetação
+#Projeção Policônica
 
 #https://html-color.codes/olive
 
@@ -28,7 +29,7 @@ codigos_inme = ['260001'] #['260001', '260002']
 codigos_muni = ['2607604'] #['2607604', '2607752', '2606200', '2605459']
 
 # Lista de nombres de capas a procesar
-nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'pais', 'estados', 'intermedios', 'estados_seleccionados', 'MunicipiosEsp2', 'inter_seleccionados', 'InmeEsp2', 'muni_seleccionados', 'inmed_seleccionados', 'Municipios', 'Coberturasf', 'Coberturasl', 'coberturasl2', 'Mata Atlântica']
+nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'pais', 'estados', 'intermedios', 'estados_seleccionados', 'MunicipiosEsp2', 'inter_seleccionados', 'InmeEsp2', 'muni_seleccionados', 'inmed_seleccionados', 'Municipios', 'Coberturasf', 'coberturasl', 'coberturasl2', 'Coberturaf', 'Cobertural', 'cobertural2', 'Mata Atlântica']
 oceano_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_ocean/ne_10m_ocean.shp'
 region_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp'
 pais_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/Brasil/BR_Pais_2024/BR_Pais_2024.shp'
@@ -816,7 +817,18 @@ else:
         print("No se encontraron municipios con los códigos especificados")
         print("Nombres de campos disponibles:", [field.name() for field in munilayer.fields()])
 
-        #Coberturas y Ecosistemas
+# Obtener el primer feature de la capa de selección
+first_feature = next(selection_layer.getFeatures())
+geometry = first_feature.geometry()
+wkt_string = geometry.asWkt()
+print(wkt_string)  # WKT de solo UN municipio
+for feature in selection_layer.getFeatures():
+    geometry = feature.geometry()
+    wkt_string = geometry.asWkt()  # Convertir geometría a WKT
+    print(wkt_string)
+
+
+#Coberturas y Ecosistemas
 ################
 
 # Cargar la capa

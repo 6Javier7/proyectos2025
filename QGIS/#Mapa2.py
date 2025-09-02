@@ -4,10 +4,12 @@
 
 region = 'Latin America & Caribbean'
 subregion = 'South America'
-codigos_dep = ['76']
-codigomdep = ['76']
-codigos_muni = ['76109']
+codigos_dep = ['27'] #76
+codigomdep = ['27'] #76
+codigos_muni = ['27250'] #76109
 cpais = ['COL']
+
+
 
 # Lista de nombres de capas a procesar
 nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'municipios_seleccionados', 'Ecosis 2024', 'Ecosis 2018', 'Cobertura 2020', 'Cobertura 2018']
@@ -17,6 +19,7 @@ pais_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_c
 departamentos_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/ADMINISTRATIVO/MGN_DPTO_POLITICO.shp'
 municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/MGN_MPIO_POLITICO.shp'
 consejos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
+resguardos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
 coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
 ecosistemas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos.gpkg'
 
@@ -766,6 +769,8 @@ else:
     
     # 3. Verificar selección y crear nueva capa
     if munlayer.selectedFeatureCount() > 0:
+        #print("IDs de features seleccionados:", selected_ids)
+        print("Número de features en selection_layer:", selection_layer.featureCount())
         # Crear capa temporal
         selection_layer = QgsVectorLayer(
             "Polygon?crs={}".format(munlayer.crs().authid()),
@@ -806,6 +811,43 @@ else:
         print("No se encontraron municipios con los códigos especificados")
         print("Nombres de campos disponibles:", [field.name() for field in munlayer.fields()])
 
+
+# Obtener la capa activa
+
+#forma
+######################################
+# Iterar sobre cada feature
+
+# Después de crear selection_layer
+#if selection_layer.featureCount() > 0:
+#    # Obtener el PRIMER feature
+#    first_feature = next(selection_layer.getFeatures())
+#    geometry = first_feature.geometry()
+#    wkt_string = geometry.asWkt()
+#    print("WKT del primer municipio seleccionado:")
+#    print(wkt_string)
+#    
+#    # Opcional: Si quieres trabajar solo con este feature, crea una nueva capa con solo él
+#    single_feature_layer = QgsVectorLayer(
+#        "Polygon?crs={}".format(selection_layer.crs().authid()),
+#        "municipio_unico",
+#        "memory"
+#    )
+#    provider = single_feature_layer.dataProvider()
+#    provider.addAttributes(selection_layer.fields())
+#    single_feature_layer.updateFields()
+#    provider.addFeature(first_feature)
+#    QgsProject.instance().addMapLayer(single_feature_layer)
+
+# Obtener el primer feature de la capa de selección
+first_feature = next(selection_layer.getFeatures())
+geometry = first_feature.geometry()
+wkt_string = geometry.asWkt()
+print(wkt_string)  # WKT de solo UN municipio
+for feature in selection_layer.getFeatures():
+    geometry = feature.geometry()
+    wkt_string = geometry.asWkt()  # Convertir geometría a WKT
+    print(wkt_string)
 
 #Coberturas y Ecosistemas
 ################
@@ -1207,3 +1249,14 @@ aplicar_estilo_comun_a_capas(
 #        })
 
 
+#Guardar estilo
+############################
+
+#guardar estilos
+# saveNamedStyle()
+
+# Ruta donde guardarás el archivo .qml
+# qml_path = 'C:/ruta/a/tu_estilo.qml'  # Usa rutas absolutas
+
+# Guardar el estilo
+# success = layer.saveNamedStyle(qml_path)
