@@ -88,16 +88,16 @@
         <mxCell id="17" value="Apoyo filmico" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
           <mxGeometry x="237" y="545.5" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="18" value="Festivales" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
+        <mxCell id="18" value="Encuentros" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
           <mxGeometry x="237" y="635.5" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="19" value="Servicios" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
+        <mxCell id="19" value="Socializacion" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
           <mxGeometry x="237" y="725.5" width="130" height="60" as="geometry" />
         </mxCell>
         <mxCell id="20" value="Inclusividad" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
           <mxGeometry x="237" y="815.5" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="23" value="Socializacion" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
+        <mxCell id="23" value="Comunidades" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
           <mxGeometry x="237" y="905.4999999999999" width="130" height="60" as="geometry" />
         </mxCell>
         <mxCell id="25" value="Plantulas" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
@@ -151,7 +151,7 @@
         <mxCell id="42" value="Maquinaria" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
           <mxGeometry x="977" y="545.5" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="43" value="Priorizacion" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
+        <mxCell id="43" value="Capacitacion" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
           <mxGeometry x="977" y="635.5" width="130" height="60" as="geometry" />
         </mxCell>
         <mxCell id="44" value="Apoyo S." style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" parent="1" vertex="1">
@@ -568,6 +568,18 @@
         </mxCell>
         <mxCell id="Gh1DEIom1au9MHC6C9t7-135" value="Escuelas" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" vertex="1" parent="1">
           <mxGeometry x="57" y="725.5" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Gh1DEIom1au9MHC6C9t7-137" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;strokeWidth=2;rounded=0" edge="1" parent="1">
+          <mxGeometry x="-23" y="135.5" width="100" height="100" as="geometry">
+            <mxPoint x="977" y="490" as="sourcePoint" />
+            <mxPoint x="977" y="770" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="957" y="589.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Gh1DEIom1au9MHC6C9t7-138" value="Priorizacion" style="rounded=1;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontFamily=Tahoma;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="977" y="735.5" width="130" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
