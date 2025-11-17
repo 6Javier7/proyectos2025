@@ -1,0 +1,26 @@
+version: '3.7'
+
+volumes:
+  taiga-db-data:
+
+services:
+  taiga-db:
+    image: postgres:12.3
+    environment:
+      POSTGRES_DB: taiga
+      POSTGRES_USER: taiga
+      POSTGRES_PASSWORD: taiga-password-123
+    volumes:
+      - taiga-db-data:/var/lib/postgresql/data
+
+  taiga-back:
+    image: taigaio/taiga-back:latest
+    environment:
+      - SECRET_KEY=iQixHd5SxUoOR2iYysIK2DzWD79Q-ffeoE2b7Hf_gQXnHdHwRCmo7sn2xXmpjlfmmYA
+      - DB_NAME=taiga
+      - DB_USER=taiga
+      - DB_PASS=taiga-password-123
+      - DB_HOST=taiga-db
+      - DB_PORT=5432
+    depends_on:
+      - taiga-db

@@ -1,0 +1,81 @@
+project refor "Proyecto Conservacion Especies Nativas" 2025-08-27 +2y
+
+resource geme "Equipo inicial" {
+  resource javi "Javier Montaño" { efficiency 1.0 } // Profesional Biologia
+  resource dito "Andrey Montano" // Profesional Ing. Materiales
+}
+
+task conser "1. Aumentar la producción de material vegetal" {
+  task T1 "Establecimiento Reforestación" { allocate javi 
+                                            effort 3m }
+  task T2 "Mantenimiento Reforestación" { allocate javi
+                                            effort 2m }
+  task T3 "Aislamiento Reforestación" { allocate javi
+                                            depends !T1
+                                            effort 2m }
+  task T4 "Establecimiento Vivero" { allocate javi
+                                            effort 2m }
+  task T5 "Monitoreo y Seguimiento" { allocate javi
+                                            depends !T3, !T2 // Depende de T5 Y T3a 
+                                            effort 2m }
+}
+
+
+
+
+
+task agro "2. Implementar acciones encaminadas al apoyo de prácticas productivas." {
+  task T1f "Establecimiento Agroforestales" { allocate dito
+                                            effort 1m }
+  task T2f "Mantenimiento Agroforestales" { allocate javi
+                                            effort 2m }
+  task T3f "Aislamiento Agroforestales" { allocate dito
+                                            effort 2m }
+  task T4f "Fortalecimiento de cadena de valor por medio de metodologias agiles. SCRUM" { allocate javi
+                      effort 3m }
+}
+
+task tale "3. Desarrollar acciones para aumentar el conocimiento." {
+  task T1t "Talleres de fortalecimiento del tejido social y Extencionismo" { allocate javi
+  effort 1m }
+  task T2t "Reuniones de fortalecimiento institucional." { allocate dito
+                                                              effort 1m }
+  task T3t "Socializacion de proyecto" { allocate javi
+                                            effort 1m }
+  task T4t "Talleres regionales" { allocate dito
+                                    effort 1m }
+}
+
+  taskreport "reporteGantt" {
+    formats html  // ← ¡Esto falta!
+  }
+
+
+  taskreport "reporte1" {
+  formats html  // ← ¡Esto falta!
+  columns bsi { title 'WBS' },
+          name, start, end, effort, cost,
+          revenue, chart  }
+
+// Ejecutar el macro Report
+
+
+macro TaskTip [
+  tooltip istask() -8<-
+    '''Start: ''' <-query attribute='start'->
+    '''End: ''' <-query attribute='end'->
+    ----
+    '''Resources:'''
+
+    <-query attribute='resources'->
+    ----
+    '''Precursors: '''
+
+    <-query attribute='precursors'->
+    ----
+    '''Followers: '''
+
+    <-query attribute='followers'->
+    ->8-
+]
+

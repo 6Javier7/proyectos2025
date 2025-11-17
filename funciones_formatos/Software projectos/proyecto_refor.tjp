@@ -1,0 +1,86 @@
+project refor "Proyecto Conservación Especies Nativas" 2025-08-27 +1y {
+  # Define el tiempo de trabajo por día (opcional pero recomendado)
+  dailyworkinghours 8
+  # Define la semana laboral (lunes a viernes)
+  workinghours mon - fri 9:00 - 17:00
+}
+
+# Macro para generar reportes (se ejecutará al final)
+macro Report {
+  taskreport "reporte.html" {
+    columns name, start, end, effort, completed, chart
+    hideresource 1
+    loadunit short
+  }
+}
+
+/* 
+ * ================================
+ * ESTRUCTURA PRINCIPAL DE TAREAS
+ * ================================
+ */
+
+task conser "1. Aumentar la producción de material vegetal arbóreo para incentivar la restauración y preservación de ecosistemas" {
+  task T1 "Establecimiento Reforestación" { 
+    effort 5m
+  }
+  task T2 "Mantenimiento Reforestación" { 
+    effort 3m
+    depends !T1  # Solo comienza después de T1
+  }
+  task T3 "Aislamiento Reforestación" { 
+    effort 3m
+    depends !T2
+  }
+  task T4 "Establecimiento Vivero" { 
+    effort 3m
+  }
+  task T5 "Monitoreo y Seguimiento" { 
+    effort 3m
+    depends !T3, !T4  # Depende de ambas tareas
+  }
+}
+
+task agro "2. Implementar acciones encaminadas al apoyo de prácticas productivas." {
+  task T1a "Establecimiento Agroforestales" { 
+    effort 5m
+  }
+  task T2a "Mantenimiento Agroforestales" { 
+    effort 3m
+    depends !T1a
+  }
+  task T3a "Aislamiento Agroforestales" { 
+    effort 3m
+    depends !T2a
+  }
+  task T4a "Fortalecimiento de cadena de valor por medio de metodologias ágiles SCRUM" { 
+    effort 3m
+    depends !T1a
+  }
+}
+
+task tale "3. Desarrollar acciones para aumentar el conocimiento de los impactos del cambio climático y la importancia de recuperar el conocimiento tradicional asociado a la biodiversidad." {
+  task T1t "Talleres de fortalecimiento del tejido social y Extencionismo" { 
+    effort 1m
+  }
+  task T2t "Reuniones de fortalecimiento institucional." { 
+    effort 1m
+  }
+  task T3t "Socializacion de proyecto" { 
+    effort 1m
+  }
+  task T4t "Talleres regionales" { 
+    effort 1m
+  }
+}
+
+# Puedes agregar dependencias entre las tareas principales si es necesario
+# task conser, agro, tale  # Ejemplo: si todas pueden ejecutarse en paralelo
+
+/* 
+ * ================================
+ * GENERACIÓN DE REPORTES
+ * ================================
+ */
+# Incluye el macro de reporte
+Report

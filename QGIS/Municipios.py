@@ -36,7 +36,7 @@ ccodigos = [
     '52835',  # Tumaco
     '73168',  # Chaparral
     '70429',  # Majagual
-    '18001',   # Florencia (Caquetá)
+    '18001',  # Florencia (Caquetá)
     '52693',
     '52678',
     '52083',
@@ -67,13 +67,15 @@ ccodigos = [
     '18860',
     '18150',
     '18460',
-    '18753'
+    '18753',
+    '27250',
+    '47745'
 ]
 
 
 
 
-codigos1 = [id - 1 for id in ids1] # Hay que restarle menos 1
+#codigos1 = [id - 1 for id in ids1] # Hay que restarle menos 1
 
 
 # Seleccionar por campo de código ("MPIO_CDPMP")
@@ -198,7 +200,9 @@ codigos2 = [
     '18860',
     '18150',
     '18460',
-    '18753'
+    '18753',
+    '27250',
+    '47745'
 ]
 
 
@@ -263,7 +267,7 @@ import os
 municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionadosp.shp'
 munlayer = QgsVectorLayer(municipios_path, 'municipios', 'ogr')
 
-ecosistemas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos.gpkg'
+ecosistemas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos1.gpkg'
 coverlayer = QgsVectorLayer(ecosistemas_path, 'Ecosistemas', "ogr")
 
 # Verificar que las capas se cargaron correctamente
@@ -332,14 +336,14 @@ else:
 # Cortar
 ###############################################################
 
-#Cortar Ecosistemas
+#Cortar Coberturas
 municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionadosp.shp'
 
 #munlayer = iface.addVectorLayer(municipios_path, 'municipios', 'ogr')
 munlayer = QgsVectorLayer(municipios_path, 'municipios', 'ogr') #asi no se muestra en la pantalla
 
 
-coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
+coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas1.gpkg'
 
 namec = 'Coberturas'
 
@@ -372,13 +376,13 @@ QgsProject.instance().addMapLayer(clipped_layer)
 #########################
 #por municipio opcional
 
-municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionadosp.shp'
+municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionados.gpkg'
 
 #munlayer = iface.addVectorLayer(municipios_path, 'municipios', 'ogr')
 munlayer = QgsVectorLayer(municipios_path, 'municipios', 'ogr') #asi no se muestra en la pantalla
 
 
-ecosistemas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos.gpkg'
+ecosistemas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos1.gpkg'
 
 namee = 'Ecosistemas'
 
@@ -436,13 +440,13 @@ munlayer.removeSelection()
 ###############################################################
 
 #Cortar Ecosistemas
-municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionadosp.shp'
+municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionados.gpkg'
 
 #munlayer = iface.addVectorLayer(municipios_path, 'municipios', 'ogr')
 munlayer = QgsVectorLayer(municipios_path, 'municipios', 'ogr') #asi no se muestra en la pantalla
 
 
-coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
+coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas1.gpkg'
 
 namec = 'Coberturas'
 
@@ -484,7 +488,7 @@ import os
 municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionadosp.shp'
 munlayer = QgsVectorLayer(municipios_path, 'municipios', 'ogr')
 
-ecosistemas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos.gpkg'
+ecosistemas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos1.gpkg'
 coverlayer = QgsVectorLayer(ecosistemas_path, 'Ecosistemas', "ogr")
 
 # Verificar que las capas se cargaron correctamente
@@ -560,7 +564,7 @@ import os
 municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/municipios_seleccionadosp.shp'
 munlayer = QgsVectorLayer(municipios_path, 'municipios', 'ogr')
 
-coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
+coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas1.gpkg'
 coverlayer = QgsVectorLayer(coberturas_path, 'Coberturas', "ogr")
 
 # Verificar que las capas se cargaron correctamente
