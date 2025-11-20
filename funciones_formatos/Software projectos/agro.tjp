@@ -1,0 +1,317 @@
+project agro "Proyecto Agro"  2025-11-16 +18m {
+  # Set the default time zone for the project. If not specified, UTC
+  # is used.
+  timezone "America/Bogota"
+
+  numberformat "-" "" "," "." 1
+  currencyformat "(" ")" "." "," 0
+  
+  # Hide the clock time. Only show the date.
+  timeformat "%Y-%m-%d"
+  
+  # The date that is used to show additional line on a Gannt chart
+  # and can be specified by the user.
+  markdate 2002-08-07-03:00
+  
+  # The currency for all money values is the COP.
+  currency "COP"
+
+  # We want to compare the baseline scenario to one with a slightly
+  # delayed start.
+  scenario plan "Plan" {
+    scenario delayed "Delayed"
+  }
+  extend resource {
+    text Phone "Phone"
+  }
+}
+
+
+
+#cuentas
+account cost "Project Cost" {
+  aggregate resources
+  account teamA "Formuladorxs"
+  account teamB "Jornales"
+}
+
+account productCost "Product Cost" {
+  aggregate tasks
+}
+
+account rev "Payments" {
+  credits 2025-11-17 "First downpayment" 80000000,
+          2025-12-01 "Second downpayment" 200000000
+}
+
+#account rev "Payments" revenue
+#account dev "Development" cost
+
+balance productCost rev
+
+
+#Personas
+
+resource formu1 "Javier" {
+  email "phb@ejemplo.com"
+  Phone "x100"
+  leaves annual 2025-12-01 - 2025-12-05
+  limits { dailymax 6.4h }
+  rate 5000
+}
+
+resource formu2 "Clarisa" {
+  email "phb@ejemplo.com"
+  Phone "x100"
+  rate 5000
+}
+
+resource formu3 "Maura" {
+  email "phb@ejemplo.com"
+  Phone "x100"
+  rate 5000
+}
+
+resource jor1 "Pier" {
+  email "phb@ejemplo.com"
+  Phone "x100"
+  leaves annual 2025-12-01 - 2025-12-05
+  limits { dailymax 6.4h }
+  rate 5000
+}
+
+resource jor2 "Rose" {
+  email "phb@ejemplo.com"
+  Phone "x100"
+  leaves annual 2025-12-01 - 2025-12-05
+  limits { dailymax 6.4h }
+  rate 5000
+}
+
+resource jor3 "Michel" {
+  email "phb@ejemplo.com"
+  Phone "x100"
+  leaves annual 2025-12-01 - 2025-12-05
+  limits { dailymax 6.4h }
+  rate 5000
+}
+
+resource teamA "Formuladorxs" {
+  rate 5000
+  chargeset teamA
+  resource "formu1"
+  resource "formu2"
+  resource "formu3"
+}
+
+resource teamB "Jornales" {
+  rate 100000
+  chargeset teamB
+  resource "jor1"
+  resource "jor2"
+  resource "jor3"
+}
+
+
+macro TaskTip [
+  tooltip istask() -8<-
+    '''Inicio: ''' <-query attribute='start'->
+    '''Final: ''' <-query attribute='end'->
+    ----
+    '''Recursos:'''
+
+    <-query attribute='resources'->
+    ----
+    '''Precursor: '''
+
+    <-query attribute='precursors'->
+    ----
+    '''Siguiente: '''
+
+    <-query attribute='followers'->
+    ->8-
+]
+
+
+#Tareas
+
+
+task t1 "Establecimiento" {
+  chargeset productCost
+  task t1a "Adecuacuacion" {
+      milestone
+      journalentry 2025-12-03 "Para agregar issuues" {
+        author jor1
+        summary -8<-
+          Resumen del issuue.
+        ->8-
+        details -8<-
+          Detalle del issuue.
+        ->8- 
+        }
+    }
+  task t1b "Limpieza del Terreno" {
+      period 2025-11-16 +3w
+      delayed:period 2025-11-28 +4w
+      depends !t1a
+      allocate teamB
+      #warn ~ 5000        
+      charge 120000 onend #aqui ponemos cuanto vale la actividad los materiales
+      # Resource teamB should only work 6 hours per day on this task.
+      limits {
+        weeklymax 4d
+      }
+    }
+
+    task t1c "Repique del Terreno" {
+      effort 3w
+      delayed:effort 7w
+      depends !t1b
+      allocate teamB
+      charge 900000 onend
+      # Resource teamB should only work 6 hours per day on this task.
+      limits {
+        dailymax 6h {
+        }
+      }
+    }  
+
+    task t1d "Trazado y Estaquillado" {
+      duration 3w
+      delayed:duration 7w
+      depends !t1c
+      allocate teamB
+      charge 900000 onstart
+      # Resource teamB should only work 6 hours per day on this task.
+      limits {
+        weeklymax 4d 
+        }
+      }
+    
+
+    task t1e "Control Fitosanitario" {
+      
+      effort 3w
+      delayed:effort 7w
+      depends !t1d
+      allocate teamB
+      charge 600000 onend
+      # Resource teamB should only work 6 hours per day on this task.
+      limits {
+        dailymax 6h
+      }
+    }  
+
+    task t1f "Ahoyado" {
+      
+      duration 3w
+      delayed:duration 7w
+      depends !t1e
+      allocate teamB
+      charge 600000 onstart
+      # Resource teamB should only work 6 hours per day on this task.
+      limits { weeklymax 4d }
+      }
+      
+
+    task t1g "Siembra" {
+      
+      effort 3m
+      delayed:effort 5m
+      depends !t1f
+      allocate teamB
+      charge 600000 onend
+      # Resource teamB should only work 6 hours per day on this task.
+      limits { dailymax 6h
+               }
+      }
+
+    task t1h "Fertilizacion" {
+      
+      effort 2m
+      delayed:effort 4m
+      depends !t1g
+      allocate teamB
+      charge 600000 onstart
+      # Resource teamB should only work 6 hours per day on this task.
+      limits {
+        dailymax 6h {
+          resources jor1
+        }
+      }
+    }
+
+}
+
+
+#Reportes
+
+
+
+taskreport "CronogramaP" {
+  formats html
+    header -8<-
+    === Resumen del Proyecto ===
+
+    Este proyecto se estructura en 3 fases.
+
+    # Establecimiento
+    # Mantenimiento
+
+    === Plan Original del Proyecto ===
+  ->8-
+  headline "Cronograma del Proyecto" 
+  caption "Este es el desglose de actividades"
+  columns bsi {title 'EDA'},
+          name { 
+            title 'Nombre'
+            #fontcolor @ all '#5F9EA0'
+            #cellcolor @ all '#F0FFFF'
+          }, start {title 'Inicio'}, end {title 'Fin'}, effort {title 'Esfuerzo'}, cost {title 'Costo'}, chart { ${TaskTip} }
+  #balance cost rev
+  footer -8<-
+    === Staffing ===
+
+    All project phases are properly staffed. See [[ResourceGraph]] for
+    detailed resource allocations.
+
+    === Current Status ===
+
+    The project started off with a delay of 4 days. This slightly affected
+    the original schedule. See [[Deliveries]] for the impact on the
+    delivery dates.
+  ->8-
+ #sorttasks tree #tree #start.up  #plan.end.down #id.up
+ #fontcolor isvalid(plan.maxend) & (plan.end > plan.maxend)
+
+  }
+
+accountreport "Reporte de Cuentas" {  
+  formats html
+  balance -
+  columns no, name, quarterly { celltext 1 "<-query attribute='turnover'->" }
+}
+
+
+accountreport "PTrimestre" {
+  formats html
+  accountroot cost
+  balance -
+  columns no, name, quarterly { celltext 1 "<-query attribute='turnover'->" }
+}
+
+accountreport "PMensuales" {
+  formats html
+  columns no, name, monthly
+}
+
+accountreport "PSemanas" {
+  formats html
+  timeformat "%d-%m-%y"
+  columns index,
+          name,
+          weekly {
+            celltext 1 "<-query attribute='turnover'->"
+          }
+}
+

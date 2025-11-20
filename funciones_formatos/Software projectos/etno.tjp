@@ -1,0 +1,739 @@
+project etno "Etnodesarrollo"  2026-03-16 +24m {
+
+  # Set the default time zone for the project. If not specified, UTC is used.
+
+  timezone "America/Bogota"
+  
+  # Hide the clock time. Only show the date.
+  
+  timeformat "%d/%m/%Y"
+  
+  # Use US format for numbers
+  
+  numberformat "-" "" "." "," 1
+  
+  # Use US financial format for currency values. Don't show cents.
+  currencyformat "(" ")" "." "," 0
+  
+  # The date that is used to show additional line on a Gannt chart and can be specified by the user.
+  
+  markdate 2026-08-07-03:00
+  
+  # The currency for all money values is the Euro.
+  
+  currency "COP"
+
+  # We want to compare the baseline scenario to one with a slightly delayed start.
+  
+  scenario plan "Plan" {
+    scenario delayed "Delayed"
+  }
+  
+}
+
+macro TaskTip [
+  tooltip istask() -8<-
+    '''Inicio: ''' <-query attribute='start'->
+    '''Final: ''' <-query attribute='end'->
+    ----
+    '''Recursos:'''
+
+    <-query attribute='resources'->
+    ----
+    '''Precursor: '''
+
+    <-query attribute='precursors'->
+    ----
+    '''Siguiente: '''
+
+    <-query attribute='followers'->
+    ->8-
+]
+
+#cuentas
+account cost "Gastos del Personal" {
+  aggregate resources
+  account teamA "Tecnicxs"
+  account teamB "Jornales"
+  account teamC "Profesionales"
+}
+
+
+account productCost "Gastos de las Actividades" {
+  aggregate tasks
+}
+
+
+account rev "Desenbolsos" {
+  credits 2026-03-16 "Primer desenbolso" 977039845,
+          2027-03-16 "Segundo desenbolso" 977039845
+}
+
+
+balance productCost rev
+
+#manager
+#antro1 
+#etno1
+#bio1
+#sig1
+#jur1
+#camp1
+#gest1
+
+
+
+#Personas
+
+resource manager "Cordinacion" {
+  chargeset teamC
+  email "phb1@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource antro1 "Antropologia" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource etno1 "Entoeducacion" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource bio1 "Javier" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 350000 #54688 #7000000
+}
+
+resource sig1 "SIG" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 300000 #46875 #6000000
+}
+
+resource jur1 "Derecho" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 300000 #46875 #6000000
+}
+
+resource camp1 "Tecnicx Campo" {
+  chargeset teamA
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 150000 #23438 #3000000
+}
+
+resource gest1 "Gestion Comunitaria" {
+  chargeset teamA
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 100000 #15625 #2000000
+}
+
+
+
+#allocate manager 
+#allocate antro1 
+#allocate etno1 
+#allocate bio1 
+#allocate sig1 
+#allocate jur1 
+#allocate camp1 
+#allocate gest1 
+#allocate teamB
+
+
+resource teamB "Jornales" {
+  rate 80000
+  chargeset teamB
+  resource "jor1"
+  resource "jor2"
+  resource "jor3"
+}
+
+
+#Tareas
+
+/* 
+ * ================================
+ * PLANES DE ETNODESARROLLO
+ * ================================
+ */
+task t1 "Etnodesarrollo" {
+  chargeset productCost
+  task t1a "Adecuacuacion" {
+      milestone
+      journalentry 2026-03-16 "Para agregar issuues" {
+        summary -8<-
+          Resumen del issuue.
+        ->8-
+        details -8<-
+          Detalle del issuue.
+        ->8- 
+        }
+    }
+
+    task t1b "Sensibilizacion" {
+        effort 1m
+        depends !t1a
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+        task t1c "Diagnostico" {
+        effort 4m
+        depends !t1b
+        allocate manager
+        allocate antro1
+        allocate camp1
+        allocate etno1
+        allocate gest1
+
+        charge 161474869 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+        task t1d "Formulacion" {
+        effort 2m
+        depends !t1c
+        allocate antro1
+        allocate etno1
+        #allocate jur1
+
+        charge 26978773 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+        task t1e "Socializacion" {
+        effort 1m
+        depends !t1c{onstart gapduration 20w}
+        
+        allocate manager
+        allocate antro1
+        allocate etno1
+        allocate gest1
+
+        charge 65927571 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+        task t1f "Documentacion" {
+        effort 2m
+        depends !t1e
+        allocate antro1
+        allocate etno1
+        allocate jur1
+
+        charge 28969908 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+        task t1g "Socializar DF" {
+        effort 1m
+        depends !t1f
+        
+        allocate manager
+        allocate antro1
+        allocate etno1
+        allocate gest1
+
+        charge 45358321 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+        task t1h "Aprobacion DF" {
+        effort 1m
+        depends !t1g
+        
+        allocate manager
+        allocate antro1
+        allocate etno1
+        allocate gest1
+
+        charge 64976571 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+        task t1i "Implementacion y Seguimiento" {
+        effort 2m
+        depends !t1h
+        allocate etno1
+        allocate camp1 
+        allocate gest1
+
+        charge 66921404 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+  }
+
+
+/* 
+ * ================================
+ * PLANES DE MANEJO AMBIENTAL
+ * ================================
+ */
+
+
+task t2 "PMA" {
+  chargeset productCost
+  task t2a "Rutas de Trabajo" {
+        effort 2m
+        depends !!t1.t1a
+        
+        allocate manager
+        allocate bio1
+        allocate gest1
+        allocate camp1
+
+        charge 109931914 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t2b "Recopilar Informacion" {
+        effort 4m
+        depends !t2a
+        
+        allocate bio1
+
+        charge 67695824 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t2c "Levantar Informacion de Campo" {
+        effort 5m
+        depends !t2b {onstart gapduration 8w}
+        
+        allocate bio1
+        allocate camp1
+        allocate teamB
+
+
+        charge 116002103 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t2d "Formular los Planes ambiental" {
+        effort 3m
+        depends !t2c
+        
+        allocate bio1
+        allocate sig1
+        allocate jur1
+
+        charge 26730985 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t2e "Concertar-Triangular" {
+        effort 3m
+        depends !t2d
+        
+        allocate bio1
+        allocate antro1
+        allocate gest1
+
+
+        charge 98219632 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t2f "Documentos definitivos" {
+        effort 2m
+        depends !t2e
+        
+        allocate bio1
+
+
+        charge 14137058 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t2g "Socializar DF PMA" {
+        effort 1m
+        depends !t2f
+        
+        allocate manager
+        allocate antro1
+        allocate bio1
+        allocate gest1
+
+
+        charge 54932388 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+ }
+
+/* 
+ * ================================
+ * CARTOGRAFIA
+ * ================================
+ */
+
+
+task t3 "Cartografia" {
+  chargeset productCost
+  task t3a "Elaborar mapas sociales" {
+        effort 3m
+        depends !!t1.t1e { onstart }
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        charge 102956855 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t3b "Elaborar mapas temáticos" {
+        effort 5m #mirar bien esta para 8m
+        depends !t3a
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        charge 109679654 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t3c "Implementar el SIG" {
+        effort 2m
+        depends !t3b
+        
+        allocate sig1
+
+        charge 41405044 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t3d "Capacitar en SIG" {
+        effort 1m
+        depends !t3c
+        
+        allocate sig1
+
+        charge 47047890 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+ }
+
+/* 
+ * ================================
+ * FORTALECIMIENTO
+ * ================================
+ */
+
+
+
+task t4 "Fortalecimiento" {
+  chargeset productCost
+  task t4a "Formación ley 70" {
+        effort 1m
+        depends !!t1.t1h
+        
+        allocate jur1
+        allocate etno1
+        allocate gest1
+
+        charge 25768918 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t4b "Formación ley 2056 del 2020 - SGR" {
+        effort 1m
+        depends !t4a
+        
+        allocate manager
+        allocate etno1
+        allocate gest1
+
+        charge 25768918 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t4c "Formación en DIH" {
+        effort 1m
+        depends !t4b
+        
+        allocate jur1
+        allocate etno1
+        allocate gest1
+
+        charge 25768918 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+
+  task t4d "Formación en MGA" {
+        effort 1m
+        depends !t4c
+        
+        allocate manager
+        allocate etno1
+        allocate gest1
+
+        charge 25768918 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t4e "Elaborar informe de resultados" {
+        effort 1m
+        depends !t4d
+        
+        allocate jur1
+        allocate etno1
+
+        charge 25768918 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+ }
+
+
+
+/* 
+ * ================================
+ * PROYECTOS ANCLA  
+ * ================================
+ */
+
+
+
+task t5 "Anclas" {
+  chargeset productCost
+  task t5a "Ancla 1" {
+        effort 1m
+        depends !!t1.t1h
+        
+        allocate antro1
+        allocate bio1
+        allocate gest1
+
+        charge 30973120 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+ 
+  task t5b "Ancla 2" {
+        effort 1m
+        depends !t5a
+        
+        allocate bio1
+        allocate antro1
+        allocate gest1
+
+        charge 30973120 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t5c "Ancla 3" {
+        effort 1m
+        depends !t5b
+        
+        allocate antro1
+        allocate bio1
+        allocate gest1
+
+        charge 30973120 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t5d "Ancla 4" {
+        effort 1m
+        depends !t5c
+        
+        allocate antro1
+        allocate bio1
+        allocate gest1
+
+        charge 30973120 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task t5e "Elaborar informe de resultados." {
+        effort 1m
+        depends !t5d
+        
+        allocate manager
+        allocate bio1
+        allocate jur1
+
+        charge 30973120 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+  }
+
+
+
+
+#Reportes
+
+/* 
+ * ================================
+ * GENERACIÓN DE REPORTES
+ * ================================
+ */
+
+taskreport "CronogramaEtno" {
+  formats html
+    header -8<-
+    === Resumen del Proyecto ===
+
+    Este proyecto se estructura en 5 actividades grandes.
+
+    # Planes de Etnodesarrollo
+    # Planes de Manejo Ambiental
+    # Cartografia
+    # Capacitacion
+    # Formulacion de Proyectos Ancla
+
+    === Plan Original del Proyecto ===
+  ->8-
+  headline "Cronograma del Proyecto" 
+  caption "Este es el desglose de actividades"
+  columns bsi {title 'EDA'},
+          name { 
+            title 'Nombre'
+            #fontcolor @ all '#5F9EA0'
+            #cellcolor @ all '#F0FFFF'
+          }, start {title 'Inicio'}, end {title 'Fin'}, effort {title 'Esfuerzo'}, pathcriticalness {width 2}, cost {title 'Costo'}, chart { ${TaskTip} } 
+  #balance cost rev
+  footer -8<-
+    === Curiosidades ===
+    Se esta usando [[Taskjuggler]] para realizar el cronograma
+
+    === Convocatoria OCAD Paz ===
+
+    La convocatoria cierra el 30 de octubre. Se debe tener un claro presupuesto y diligenciar la MGA.
+ 
+  ->8-
+ #sorttasks tree #tree #start.up  #plan.end.down #id.up
+ #fontcolor isvalid(plan.maxend) & (plan.end > plan.maxend)
+
+  }
+
+
+resourcereport "AsignacionesEtno" {
+  formats html
+  headline "Talento Humano"
+  columns name {title 'Nombre'}, rate {title 'Tasa'}, effort {title 'Esfuerzo'}, effortdone {title 'Realizado'}, effortleft  {title 'Falta'}
+}
+
+
+accountreport "PTrimestreEtno" {
+  formats html
+  accountroot cost
+  balance -
+  columns no, name {title 'Nombre'}, quarterly {title 'Cuatrimestre' celltext 1 "<-query attribute='turnover'->" }
+}
+
+accountreport "Reporte de Cuentas Etno" {
+  formats html
+  columns no, name {title 'Nombre'}, monthly
+}
+
+taskreport breakdown "EsfuerzoporActividad" {
+  formats html
+  caption "Este es el desglose de Actividades"
+  headline "Desglose del Proyecto"
+  header -8<-
+  Aqui estan las actividades asi como el esfuerzo requerido por cada persona del equipo para realizarla
+  ----
+  ->8-
+  left "<[report id='frame.r1']>"
+  center "Center"
+  right "<[report id='frame.r2']>"
+  footer -8<-
+  ----
+  Esta herramienta nos permite analizar los momentos de mayor esfuerzo en el proyecto
+  ->8-
+  columns no, name {title 'Nombre'}, start {title 'Inicio'}, end {title 'Final'}, duration {title 'Duracion'}, monthly
+  # Don't hide any resource, meaning show them all.
+  hideresource 0
+}
+
+
+#opciones de columnas
+#'celltext', 'cellcolor', 'end', 'fontcolor', 'halign', 'listitem', 'listtype', 'period', 'scale', 'start', 'timeformat1', 'timeformat2', 'title', 'tooltip', 'width'
+
+#Columnas
+#'activetasks', 'annualleave', 'annualleavebalance', 'annualleavelist', 'alert', 'alertmessages', 'alertsummaries', 'alerttrend', 'balance', 'bsi', 'chart', 'children', 'closedtasks', 'competitorcount', 'competitors', 'complete', 'completed', 'criticalness', 'cost', 'daily', 'directreports', 'duration', 'duties', 'efficiency', 'effort', 'effortdone', 'effortleft', 'email', 'end', 'flags', 'followers', 'freetime', 'freework', 'fte', 'gauge', 'headcount', 'hierarchindex', 'hourly', 'id', 'index', 'inputs', 'journal', 'journal_sub', 'journalmessages', 'journalsummaries', 'line', 'managers', 'maxend', 'maxstart', 'minend', 'minstart', 'monthly', 'no', 'name', 'note', 'opentasks', 'pathcriticalness', 'precursors', 'priority', 'quarterly', 'rate', 'reports', 'resources', 'responsible', 'revenue', 'scenario', 'scheduling', 'seqno', 'sickleave', 'specialleave', 'start', 'status', 'targets', 'turnover', 'wbs', 'unpaidleave', 'weekly', 'yearly'
+
+# precedes Specifies that the tasks with the specified IDs cannot start before this task has been finished.
