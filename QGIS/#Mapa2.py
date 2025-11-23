@@ -999,7 +999,7 @@ autoridadeslayer = QgsVectorLayer(autoridades_path, 'autoridades', "ogr")
 params_autoridades = {
         'INPUT': autoridadeslayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:autoC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1019,7 +1019,7 @@ forestalayer = QgsVectorLayer(forestal_path, 'forestal', "ogr")
 params_forestal = {
         'INPUT': forestalayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:forestalC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1039,7 +1039,7 @@ humedaleslayer = QgsVectorLayer(humedales_path, 'humedales', "ogr")
 params_humedales = {
         'INPUT': humedaleslayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:humedalesC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1073,7 +1073,7 @@ paramoslayer = QgsVectorLayer(paramos_path, 'paramos', "ogr")
 params_paramos = {
         'INPUT': paramoslayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:ParamosC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1108,7 +1108,7 @@ secolayer = QgsVectorLayer(seco_path, 'seco', "ogr")
 params_seco = {
         'INPUT': secolayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:secoC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1141,7 +1141,7 @@ parqueslayer = QgsVectorLayer(parques_path, 'parques', "ogr")
 params_parques = {
         'INPUT': parqueslayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:parquesC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1175,7 +1175,7 @@ prioconlayer = QgsVectorLayer(priocon_path, 'priocon', "ogr")
 params_priocon = {
         'INPUT': prioconlayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:prioC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1216,7 +1216,7 @@ viaslayer = QgsVectorLayer(vias_path, 'vias', "ogr")
 params_vias = {
         'INPUT': viaslayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:viasC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1249,7 +1249,7 @@ viaslayer2 = QgsVectorLayer(vias2_path, 'vias2', "ogr")
 params_vias2 = {
         'INPUT': viaslayer2,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:vias2C'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1283,7 +1283,7 @@ linealayer = QgsVectorLayer(linea_path, 'linea', "ogr")
 params_linea = {
         'INPUT': linealayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:lineaC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1303,7 +1303,7 @@ nomelayer = QgsVectorLayer(nomenclatura_path, 'nomenclatura', "ogr")
 params_nomenclatura = {
         'INPUT': nomelayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:nomeC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1343,7 +1343,7 @@ hipsolayer = QgsVectorLayer(hidro_path, 'hidro', "ogr")
 params_hipso = {
         'INPUT': hipsolayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:hipsoC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1364,7 +1364,7 @@ otrlilayer = QgsVectorLayer(otrli_path, 'hidro', "ogr")
 params_otrli = {
         'INPUT': otrlilayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:otrliC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1384,7 +1384,7 @@ manzanalayer = QgsVectorLayer(manzana_path, 'manzana', "ogr")
 params_manzana = {
         'INPUT': manzanalayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:manzanaC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1404,7 +1404,7 @@ hidrolayer = QgsVectorLayer(hidro_path, 'hidro', "ogr")
 params_hidro = {
         'INPUT': hidrolayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:hidroC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1437,7 +1437,7 @@ ambitoslayer = QgsVectorLayer(ambitos_path, 'ambitos', "ogr")
 params_ambitos = {
         'INPUT': ambitoslayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:ambitosC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1483,7 +1483,7 @@ zoniplayer = QgsVectorLayer(zonip_path, 'zonip', "ogr")
 params_zonip = {
         'INPUT': zoniplayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'memory:zonipC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1622,7 +1622,7 @@ rehalayer = QgsVectorLayer(reha_path, 'reha', "ogr")
 params_reha = {
         'INPUT': rehalayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'TEMPORARY_OUTPUT' #'memory:rehaC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1639,7 +1639,7 @@ symbolreha = QgsFillSymbol.createSimple({
 
 # Aplicar el símbolo a la capa
 rendererreha = QgsSingleSymbolRenderer(symbolreha)
-clipped_reha.setRenderer(rendererrecu)
+clipped_reha.setRenderer(rendererreha)
 
 # Refrescar la capa para ver los cambios
 clipped_reha.triggerRepaint()
@@ -1657,7 +1657,7 @@ reculayer = QgsVectorLayer(recu_path, 'recu', "ogr")
 params_recu = {
         'INPUT': reculayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'TEMPORARY_OUTPUT' #'memory:recuC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
@@ -1691,7 +1691,7 @@ restalayer = QgsVectorLayer(resta_path, 'resta', "ogr")
 params_resta = {
         'INPUT': restalayer,    # Capa a cortar 
         'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+        'OUTPUT': 'TEMPORARY_OUTPUT' #'memory:restaC'   # Salida en memoria
     }
 
 # Añadir resultado al proyecto
