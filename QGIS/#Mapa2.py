@@ -4,9 +4,9 @@
 
 region = 'Latin America & Caribbean'
 subregion = 'South America'
-codigos_dep = ['47'] #76
-codigomdep = ['47'] #76
-codigos_muni = ['47745'] #18753
+codigos_dep = ['76'] #76
+codigomdep = ['76'] #76
+codigos_muni = ['76109'] #18753
 cpais = ['COL']
 
 
@@ -19,18 +19,46 @@ pais_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_c
 departamentos_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/ADMINISTRATIVO/MGN_DPTO_POLITICO.shp'
 municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Municipios/Municipios2/MGN_MPIO_POLITICO.shp'
 consejos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
-resguardos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
+resguardos_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Resguardos/Resguardo_Indigena_Formalizado/Resguardo_Indigena_Formalizado.shp'
+campesinas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/ZPRNRMA_1125_2021/ZPRNRMA_1125_2021.shp'
 coberturas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
 ecosistemas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos.gpkg'
-
 coberturas_path1 = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas1.gpkg'
 ecosistemas_path1 = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos1.gpkg'
 
+vias_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/VIAS/VIAS.shp'
+vias2_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/INVIAS/Invias_Vias.gpkg'
+linea_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_LINEA.shp'
+manzana_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_MANZANA.shp'
+nomenclatura_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_NOMENCLATURA_VIAL.shp'
+cultu_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_CULTU_PUNTO.shp'
+hidro_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_HIDRO_LINEA.shp'
+hipso_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_HIPSO_PUNTO.shp'
+otrli_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_OTRLI_LINEA.shp'
+ambitos_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ambitos_Territoriales_PDET/Ambitos_Territoriales_PDET.shp'
+zonip_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Zonificacion_PDET_agosto_2021/Zonificacion_PDET_agosto_2021.shp'
+autoridades_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Autoridades Ambientales/Lim_AA_25k_2019.shp'
+marinos_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Mapa_de_Ecosistemas_MEC_100K/Mapa_de_Ecosistemas_MEC_100K.shp'
+coral_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/FormacionesCoralinas_Oceanico/FormacionesCoralinas_Oceanico.shp'
+rocoso_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Litoral_Rocoso/litoralrocoso_litoralrocoso.shp'
+prioc_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Sitios_Prioritarios_Conservación_Caribe/Sitios_Prioritarios_Conservación_Caribe.shp'
+priop_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Sitios_Prioritarios_Conservación_Pacífico/Sitios_Prioritarios_Conservación_Pacífico.shp'
+forestal_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Gobernanza_Forestal/Gobernanza_Forestal.shp'
+humedales_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Humedal_version3/Humedal_version3.shp'
+paramos_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Paramos_Delimitados_Junio_2020/Paramos_Delimitados_Junio_2020.shp'
+seco_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/BosqueSecoTropical_100K/geo_export_1c851a13-97b1-4163-9ea1-d300bad45e9e.shp'
+parques_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Parque Nacionales/runap_-_Registro_Unico_Nacional_AP/runap_-_Registro_Unico_Nacional_AP.shp'
+priocon_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Prioridad_Conpes/PCN_CONPES.shp'
+recu_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Recuperacion/Recuperacion Corregidos.gpkg'
+reha_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Rehabilitacion/Rehabilitacion corregido.gpkg'
+resta_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Restauracion/Corregidos Restauracion.gpkg'
 
 #veredas_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Veredas/CRVeredas_2020.shp'
 
 # Lista de nombres de capas a procesar pc Andrey
 #nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'municipios_seleccionados', 'Consejos2', 'veredas_en_consejos']
+# Lista de nombres de capas a procesar
+nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'municipios_seleccionados', 'Consejos2', 'Ecosis 2024', 'Ecosis 2018', 'Cobertura 2020', 'Cobertura 2018', 'hipso', 'hidro', 'otrli', 'vias2', 'parques', 'seco', 'humedales', 'paramos', 'forestal', 'zonip', 'ambitos', 'procon', 'autoridades', 'coral', 'priop', 'prioc', 'coral', 'marinos', 'rocoso']
 
 #oceano_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Mundo/ne_10m_ocean/ne_10m_ocean.shp'
 #region_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp'
@@ -960,123 +988,734 @@ aplicar_estilo_comun_a_capas(
     grosor_borde = 0.3        # 0.3 mm de grosor
 )
 
+#Corporaciones
+################
 
+# Cargar la capa
+autoridadeslayer = QgsVectorLayer(autoridades_path, 'autoridades', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_autoridades = {
+        'INPUT': autoridadeslayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_autoridades = processing.run("native:clip", params_autoridades)
+clipped_autoridades = result_autoridades['OUTPUT']
+clipped_autoridades.setName("autoridades")
+QgsProject.instance().addMapLayer(clipped_autoridades)
+
+#Forestal
+################
+
+# Cargar la capa
+forestalayer = QgsVectorLayer(forestal_path, 'forestal', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_forestal = {
+        'INPUT': forestalayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_forestal = processing.run("native:clip", params_forestal)
+clipped_forestal = result_forestal['OUTPUT']
+clipped_forestal.setName("forestal")
+QgsProject.instance().addMapLayer(clipped_forestal)
+
+#Humedales
+################
+
+# Cargar la capa
+humedaleslayer = QgsVectorLayer(humedales_path, 'humedales', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_humedales = {
+        'INPUT': humedaleslayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_humedales = processing.run("native:clip", params_humedales)
+clipped_humedales = result_humedales['OUTPUT']
+clipped_humedales.setName("humedales")
+QgsProject.instance().addMapLayer(clipped_humedales)
+
+symbolh = QgsFillSymbol.createSimple({
+        'color': '0, 166, 147',  # '25, 100, 180' azul
+        'color_border': '1, 121, 111',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+rendererh = QgsSingleSymbolRenderer(symbolh)
+clipped_humedales.setRenderer(rendererh)
+
+# Refrescar la capa para ver los cambios
+clipped_humedales.triggerRepaint()
+
+
+#Paramos
+################
+
+# Cargar la capa
+paramoslayer = QgsVectorLayer(paramos_path, 'paramos', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_paramos = {
+        'INPUT': paramoslayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_paramos = processing.run("native:clip", params_paramos)
+clipped_paramos = result_paramos['OUTPUT']
+clipped_paramos.setName("paramos")
+QgsProject.instance().addMapLayer(clipped_paramos)
+
+symbolp = QgsFillSymbol.createSimple({
+        'color': '178, 132, 190',  # '25, 100, 180' azul
+        'color_border': '153, 102, 204',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+rendererp = QgsSingleSymbolRenderer(symbolp)
+clipped_paramos.setRenderer(rendererp)
+
+# Refrescar la capa para ver los cambios
+clipped_paramos.triggerRepaint()
+
+
+
+#Seco
+################
+
+# Cargar la capa
+secolayer = QgsVectorLayer(seco_path, 'seco', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_seco = {
+        'INPUT': secolayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_seco = processing.run("native:clip", params_seco)
+clipped_seco = result_seco['OUTPUT']
+clipped_seco.setName("seco")
+QgsProject.instance().addMapLayer(clipped_seco)
+
+symbols = QgsFillSymbol.createSimple({
+        'color': '186, 135, 89',  # '25, 100, 180' azul
+        'color_border': '160, 120, 90',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+renderers = QgsSingleSymbolRenderer(symbols)
+clipped_seco.setRenderer(renderers)
+
+# Refrescar la capa para ver los cambios
+clipped_seco.triggerRepaint()
+
+#Parques
+################
+
+# Cargar la capa
+parqueslayer = QgsVectorLayer(parques_path, 'parques', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_parques = {
+        'INPUT': parqueslayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_parques = processing.run("native:clip", params_parques)
+clipped_parques = result_parques['OUTPUT']
+clipped_parques.setName("parques")
+QgsProject.instance().addMapLayer(clipped_parques)
+
+symbolpar = QgsFillSymbol.createSimple({
+        'color': '0, 168, 107',  # '25, 100, 180' azul
+        'color_border': '0, 117, 94',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+rendererpar = QgsSingleSymbolRenderer(symbolpar)
+clipped_parques.setRenderer(rendererpar)
+
+# Refrescar la capa para ver los cambios
+clipped_parques.triggerRepaint()
+
+
+#Pirorizados
+################
+
+# Cargar la capa
+prioconlayer = QgsVectorLayer(priocon_path, 'priocon', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_priocon = {
+        'INPUT': prioconlayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_priocon = processing.run("native:clip", params_priocon)
+clipped_priocon = result_priocon['OUTPUT']
+clipped_priocon.setName("priocon")
+QgsProject.instance().addMapLayer(clipped_priocon)
+
+colores_priocon = {
+            'a': (212, 0, 0),
+            'b': (249, 77, 0),
+            'c': (255, 130, 67),
+            'd': (255, 179, 0),
+            'e': (255, 196, 12),
+            'f': (255, 216, 0),
+            'g': (255, 246, 0),
+            'h': (255, 255, 0),
+            }
+
+# Aplicar a capas por nombre
+aplicar_estilo_comun_a_capas(
+    capas = [clipped_priocon],
+    campo = 'PRIORIDAD',  # Campo común en todas las capas
+    colores_por_valor = colores_priocon,
+    borde_color = '0, 0, 0',    # Borde negro
+    grosor_borde = 0.3        # 0.3 mm de grosor
+)
+
+
+#Vias
+################
+
+# Cargar la capa
+viaslayer = QgsVectorLayer(vias_path, 'vias', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_vias = {
+        'INPUT': viaslayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_vias = processing.run("native:clip", params_vias)
+clipped_vias = result_vias['OUTPUT']
+clipped_vias.setName("vias")
+QgsProject.instance().addMapLayer(clipped_vias)
+
+symbolv = QgsFillSymbol.createSimple({
+        'color': '192, 192, 192',  # '25, 100, 180' azul
+        'color_border': '128, 128, 128',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+rendererv = QgsSingleSymbolRenderer(symbolv)
+clipped_vias.setRenderer(rendererv)
+
+# Refrescar la capa para ver los cambios
+clipped_vias.triggerRepaint()
+
+#Vias2
+################
+
+# Cargar la capa
+viaslayer2 = QgsVectorLayer(vias2_path, 'vias2', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_vias2 = {
+        'INPUT': viaslayer2,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_vias2 = processing.run("native:clip", params_vias2)
+clipped_vias2 = result_vias2['OUTPUT']
+clipped_vias2.setName("vias2")
+QgsProject.instance().addMapLayer(clipped_vias2)
+
+symbolv2 = QgsFillSymbol.createSimple({
+        'color': '192, 192, 192',  # '25, 100, 180' azul
+        'color_border': '128, 128, 128',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+rendererv2 = QgsSingleSymbolRenderer(symbolv2)
+clipped_vias2.setRenderer(rendererv2)
+
+# Refrescar la capa para ver los cambios
+clipped_vias2.triggerRepaint()
+
+
+#Linea
+################
+
+# Cargar la capa
+linealayer = QgsVectorLayer(linea_path, 'linea', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_linea = {
+        'INPUT': linealayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_linea = processing.run("native:clip", params_linea)
+clipped_linea = result_linea['OUTPUT']
+clipped_linea.setName("linea")
+QgsProject.instance().addMapLayer(clipped_linea)
+
+#Nomenclatura
+################
+
+# Cargar la capa
+nomelayer = QgsVectorLayer(nomenclatura_path, 'nomenclatura', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_nomenclatura = {
+        'INPUT': nomelayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_nomenclatura = processing.run("native:clip", params_nomenclatura)
+clipped_nomenclatura = result_nomenclatura['OUTPUT']
+clipped_nomenclatura.setName("nomenclatura")
+QgsProject.instance().addMapLayer(clipped_nomenclatura)
+
+#Cultu
+################
+
+# Cargar la capa
+cultulayer = QgsVectorLayer(cultu_path, 'cultu', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_cultu = {
+        'INPUT': cultulayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'memory:cultuC'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_cultu = processing.run("native:clip", params_cultu)
+clipped_cultu = result_cultu['OUTPUT']
+clipped_cultu.setName("cultu")
+QgsProject.instance().addMapLayer(clipped_cultu)
+
+#Hipso
+################
+
+# Cargar la capa
+hipsolayer = QgsVectorLayer(hidro_path, 'hidro', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_hipso = {
+        'INPUT': hipsolayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_hipso = processing.run("native:clip", params_hipso)
+clipped_hipso = result_hipso['OUTPUT']
+clipped_hipso.setName("hipso")
+QgsProject.instance().addMapLayer(clipped_hipso)
+
+
+#OTRLI
+################
+
+# Cargar la capa
+otrlilayer = QgsVectorLayer(otrli_path, 'hidro', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_otrli = {
+        'INPUT': otrlilayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_otrli = processing.run("native:clip", params_otrli)
+clipped_otrli = result_otrli['OUTPUT']
+clipped_otrli.setName("otrli")
+QgsProject.instance().addMapLayer(clipped_otrli)
+
+#Manzana
+################
+
+# Cargar la capa
+manzanalayer = QgsVectorLayer(manzana_path, 'manzana', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_manzana = {
+        'INPUT': manzanalayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_manzana = processing.run("native:clip", params_manzana)
+clipped_manzana = result_manzana['OUTPUT']
+clipped_manzana.setName("manzana")
+QgsProject.instance().addMapLayer(clipped_manzana)
+
+#Hidro
+################
+
+# Cargar la capa
+hidrolayer = QgsVectorLayer(hidro_path, 'hidro', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_hidro = {
+        'INPUT': hidrolayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_hidro = processing.run("native:clip", params_hidro)
+clipped_hidro = result_hidro['OUTPUT']
+clipped_hidro.setName("hidro")
+QgsProject.instance().addMapLayer(clipped_hidro)
+
+symbol = QgsLineSymbol.createSimple({
+    'color': '147, 204, 234',  # '25, 100, 180' azul
+#   'color_border': '176, 208, 248',  # Color del borde
+    'width': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+renderer = QgsSingleSymbolRenderer(symbol)
+clipped_hidro.setRenderer(renderer)
+
+# Refrescar la capa para ver los cambios
+clipped_hidro.triggerRepaint()
+
+#AmbitosPDET
+################
+
+# Cargar la capa
+ambitoslayer = QgsVectorLayer(ambitos_path, 'ambitos', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_ambitos = {
+        'INPUT': ambitoslayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_ambitos = processing.run("native:clip", params_ambitos)
+clipped_ambitos = result_ambitos['OUTPUT']
+clipped_ambitos.setName("ambitos")
+QgsProject.instance().addMapLayer(clipped_ambitos)
+
+# 1. Listar campos disponibles
+print("📋 Campos disponibles:")
+for field in clipped_ambitos.fields():
+    print(f"   '{field.name()}'")
+    
+# 2. Verificar valores únicos en el campo de categoría
+campo_buscado = 'categotia_'  # Ajusta este nombre si es necesario
+valores_encontrados = set()
+
+
+colores_ambitos = {
+            'AEIA': (42, 128, 0),
+            'Franja Estabilización': (150, 111, 214),
+            'Frontera Agrícola': (255, 215, 0),
+       }
+
+
+# Aplicar a capas por nombre
+aplicar_estilo_comun_a_capas(
+    capas = [clipped_ambitos],
+    campo = 'categoria_',  # Campo común en todas las capas
+    colores_por_valor = colores_ambitos,
+    borde_color = '0, 0, 0',    # Borde negro
+    grosor_borde = 0.3        # 0.3 mm de grosor
+)
+
+#ZonificacionPDET
+################
+
+# Cargar la capa
+zoniplayer = QgsVectorLayer(zonip_path, 'zonip', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_zonip = {
+        'INPUT': zoniplayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_zonip = processing.run("native:clip", params_zonip)
+clipped_zonip = result_zonip['OUTPUT']
+clipped_zonip.setName("zonip")
+QgsProject.instance().addMapLayer(clipped_zonip)
+
+colores_zonip = {
+            'Preservación': (0, 102, 0),
+            'Protección con uso sostenible': (208, 255, 20),
+            'Protección por Alta Oferta de SSEE': (154, 78, 150),
+            'Restauración': (128, 218, 235),
+            'Uso productivo': (210, 105, 30),
+            'Uso productivo con protección': (150, 165, 60),
+            'Uso productivo con reconversión': (251, 236, 93),
+            'Uso sostenible para el aprovechamiento de la biodiversidad': (250, 128, 114),
+            'Uso sostenible para el desarrollo': (255, 127, 80),
+            }
+
+# Aplicar a capas por nombre
+aplicar_estilo_comun_a_capas(
+    capas = [clipped_zonip],
+    campo = 'categoria',  # Campo común en todas las capas
+    colores_por_valor = colores_zonip,
+    borde_color = '0, 0, 0',    # Borde negro
+    grosor_borde = 0.3        # 0.3 mm de grosor
+)
+
+
+# Cargar ecosistemas Marinos
+############################################
+
+#Cargar marinos
+
+iface.addVectorLayer(marinos_path, 'marinos', 'ogr')
+iface.addVectorLayer(coral_path, 'coral', 'ogr')
+iface.addVectorLayer(rocoso_path, 'rocoso', 'ogr')
+iface.addVectorLayer(prioc_path, 'prioc', 'ogr')
+iface.addVectorLayer(priop_path, 'priop', 'ogr')
+iface.addVectorLayer(campesinas_path, 'campesinas', 'ogr')
+
+
+# 1b. Cargar la capa de resguardos
+####################################################################
+
+# Versión simplificada
+resglayer = QgsVectorLayer(resguardos_path, 'resguardos', 'ogr')
+
+if resglayer.isValid():
+    # Seleccionar por códigos de municipio
+    expression = "MUNICIPIO IN ({})".format(','.join(["'{}'".format(c) for c in codigos_muni]))
+    resglayer.selectByExpression(expression)
+    
+    if resglayer.selectedFeatureCount() > 0:
+        # Crear nueva capa con la selección
+        selection_layer = QgsVectorLayer(
+            "Polygon?crs={}".format(resglayer.crs().authid()),
+            "resguardos_seleccionados", 
+            "memory"
+        )
+        
+        # Copiar TODOS los campos y TODAS las features
+        provider = selection_layer.dataProvider()
+        provider.addAttributes(resglayer.fields())
+        selection_layer.updateFields()
+        provider.addFeatures(resglayer.selectedFeatures())
+        selection_layer.updateExtents()
+        
+        # Añadir al proyecto
+        QgsProject.instance().addMapLayer(selection_layer)
+        print(f"✅ Capa creada con {resglayer.selectedFeatureCount()} resguardos")
+        
+        # Estilo y zoom
+        symbol = symbol = QgsFillSymbol.createSimple({
+            'color': '253, 188, 180',  # Sunglow
+            'color_border': '255, 135, 141',  # Indigo
+            'width_border': '0.5'     # Grosor del borde
+        })
+        selection_layer.renderer().setSymbol(symbol)
+        iface.mapCanvas().setExtent(selection_layer.extent())
+        
+    else:
+        print("❌ No se encontraron resguardos")
 
 # 1b. Cargar la capa de consejos
 ####################################################################
-#
-#conlayer = QgsVectorLayer(consejos_path, 'consejos', 'ogr')
-#
-#
-#
-## Verificar carga correcta
-#if not conlayer.isValid():
-#    print("¡Error al cargar el shapefile!")
-#else:
-#    # Definir códigos de departamento
-#    codigos_con = codigoc  # Reemplaza con tus códigos reales
-#    
-#    # Construir expresión de selección
-#    expression = "OBJECTID IN ({})".format(','.join(["'{}'".format(c) for c in codigos_con]))
-#    conlayer.selectByExpression(expression)
-#    
-#    # Verificar selección y crear nueva capa
-#    if conlayer.selectedFeatureCount() > 0:
-#        # Crear capa temporal
-#        selection_layer = QgsVectorLayer(
-#            "Polygon?crs={}".format(conlayer.crs().authid()),
-#            "Consejos2",
-#            "memory"
-#        )
-#
-#        # Copiar estructura de campos
-#        provider = selection_layer.dataProvider()
-#        provider.addAttributes(conlayer.fields())
-#        selection_layer.updateFields()
-#        
-#        # Copiar features seleccionadas
-#        features = conlayer.selectedFeatures()
-#        provider.addFeatures(features)
-#        selection_layer.updateExtents()
-#        selection_layer.setOpacity(0.9)
-#        
-#        # Añadir al proyecto
-#        QgsProject.instance().addMapLayer(selection_layer)
-#        print(f"¡Se seleccionaron {len(features)} municipio(s) de los departamentos especificados!")
-#
-#        # Aplicar estilo a la capa recién creada
-#        symbol = QgsFillSymbol.createSimple({
-#            'color': '255, 204, 51',  # Sunglow
-#            'color_border': '218, 165, 32',  # Indigo
-#            'width_border': '0.5'     # Grosor del borde
-#        })
-#        selection_layer.renderer().setSymbol(symbol)
-#        selection_layer.triggerRepaint()
-#        conlayer.setOpacity(0.9)
-#
-#        # Zoom a la selección
-#        iface.mapCanvas().setExtent(selection_layer.extent())
-#        iface.mapCanvas().refresh()
-#    else:
-#        print("No se encontraron municipios con los códigos de departamento especificados")
-#        print("Nombres de campos disponibles:", [field.name() for field in conlayer.fields()])
-#
-#
-#
-#
-## Verificar carga correcta
-#if not conlayer.isValid():
-#    print("¡Error al cargar el shapefile!")
-#else:
-#    # 2. Seleccionar features por código DANE
-#    codigos_dane = codigos_muni
-#    
-#    # Construir expresión de selección
-#    expression = "MPIO_CDPMP IN ({})".format(','.join(["'{}'".format(c) for c in codigos_dane]))
-#
-#    conlayer.selectByExpression(expression)
-#    
-#    # 3. Verificar selección y crear nueva capa
-#    if conlayer.selectedFeatureCount() > 0:
-#        # Crear capa temporal
-#        selection_layer = QgsVectorLayer(
-#            "Polygon?crs={}".format(conlayer.crs().authid()),
-#            "consejos_seleccionados",
-#            "memory"
-#        )
-#    
-#        # Copiar estructura de campos
-#        provider = selection_layer.dataProvider()
-#        provider.addAttributes(conlayer.fields())
-#        selection_layer.updateFields()
-#        
-#        # Copiar features seleccionadas
-#        features = conlayer.selectedFeatures()
-#        provider.addFeatures(features)
-#        selection_layer.updateExtents()
-#        selection_layer.setOpacity(0.9)
-#        
-#        # Añadir al proyecto
-#        QgsProject.instance().addMapLayer(selection_layer)
-#        print(f"¡Se seleccionaron {len(features)} municipio(s)!")
-#
-#        # Aplicar estilo a la capa recién creada
-#        symbol = QgsFillSymbol.createSimple({
-#            'color': '154, 185, 115',  # Oliva
-#            'color_border': '0, 100, 0',  # Dark green
-#            'width_border': '0.4'     # Grosor del borde
-#        })
-#        selection_layer.renderer().setSymbol(symbol)
-#        selection_layer.triggerRepaint()
-#        
-#        selection_layer.setOpacity(0.9)
-#
-#        # Zoom a la selección
-#        iface.mapCanvas().zoomToSelected(conlayer)
-#        iface.mapCanvas().refresh()
-#    else:
-#        print("No se encontraron municipios con los códigos especificados")
-#        print("Nombres de campos disponibles:", [field.name() for field in conlayer.fields()])
+
+# Versión simplificada
+resglayer = QgsVectorLayer(consejos_path, 'consejos', 'ogr')
+
+if resglayer.isValid():
+    # Seleccionar por códigos de municipio
+    expression = "MUNICIPIO IN ({})".format(','.join(["'{}'".format(c) for c in codigos_muni]))
+    resglayer.selectByExpression(expression)
+    
+    if resglayer.selectedFeatureCount() > 0:
+        # Crear nueva capa con la selección
+        selection_layer = QgsVectorLayer(
+            "Polygon?crs={}".format(resglayer.crs().authid()),
+            "consejos_seleccionados", 
+            "memory"
+        )
+        
+        # Copiar TODOS los campos y TODAS las features
+        provider = selection_layer.dataProvider()
+        provider.addAttributes(resglayer.fields())
+        selection_layer.updateFields()
+        provider.addFeatures(resglayer.selectedFeatures())
+        selection_layer.updateExtents()
+        
+        # Añadir al proyecto
+        QgsProject.instance().addMapLayer(selection_layer)
+        print(f"✅ Capa creada con {resglayer.selectedFeatureCount()} consejos")
+        
+        # Estilo y zoom
+        symbol = symbol = QgsFillSymbol.createSimple({
+            'color': '220, 220, 220',  # Sunglow
+            'color_border': '128, 128, 128',  # Indigo
+            'width_border': '0.5'     # Grosor del borde
+        })
+        selection_layer.renderer().setSymbol(symbol)
+        iface.mapCanvas().setExtent(selection_layer.extent())
+        
+    else:
+        print("❌ No se encontraron consejos")
+
+#Rehabilitacion
+################
+
+# Cargar la capa
+rehalayer = QgsVectorLayer(reha_path, 'reha', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_reha = {
+        'INPUT': rehalayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+#result_reha = processing.run("native:clip", params_reha)
+clipped_reha = result_reha['OUTPUT']
+clipped_reha.setName("reha")
+QgsProject.instance().addMapLayer(clipped_reha)
+
+symbolreha = QgsFillSymbol.createSimple({
+        'color': '255, 36, 0',  # '25, 100, 180' azul
+        'color_border': '178, 34, 34',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+rendererreha = QgsSingleSymbolRenderer(symbolreha)
+clipped_reha.setRenderer(rendererrecu)
+
+# Refrescar la capa para ver los cambios
+clipped_reha.triggerRepaint()
+
+
+
+#Recuperacion
+################
+
+# Cargar la capa
+reculayer = QgsVectorLayer(recu_path, 'recu', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_recu = {
+        'INPUT': reculayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_recu = processing.run("native:clip", params_recu)
+clipped_recu = result_recu['OUTPUT']
+clipped_recu.setName("recu")
+QgsProject.instance().addMapLayer(clipped_recu)
+
+symbolrecu = QgsFillSymbol.createSimple({
+        'color': '255, 117, 24',  # '25, 100, 180' azul
+        'color_border': '249, 77, 0',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+rendererrecu = QgsSingleSymbolRenderer(symbolrecu)
+clipped_recu.setRenderer(rendererrecu)
+
+# Refrescar la capa para ver los cambios
+clipped_recu.triggerRepaint()
+
+
+#Restauracion
+################
+
+# Cargar la capa
+restalayer = QgsVectorLayer(resta_path, 'resta', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_resta = {
+        'INPUT': restalayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_resta = processing.run("native:clip", params_resta)
+clipped_resta = result_resta['OUTPUT']
+clipped_resta.setName("resta")
+QgsProject.instance().addMapLayer(clipped_resta)
+
+
+symbolresta = QgsFillSymbol.createSimple({
+        'color': '228, 208, 10',  # '25, 100, 180' azul
+        'color_border': '218, 165, 32',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+
+# Aplicar el símbolo a la capa
+rendererresta = QgsSingleSymbolRenderer(symbolresta)
+clipped_resta.setRenderer(rendererresta)
+
+# Refrescar la capa para ver los cambios
+clipped_resta.triggerRepaint()
+
+
 
  # 2. Cargar capa de veredas
 #        vlayer = QgsVectorLayer(veredas_path, 'veredas', 'ogr')
@@ -1247,16 +1886,3 @@ aplicar_estilo_comun_a_capas(
 #            'color_border': '205, 133, 63',  # Peru
 #            'width_border': '0.5'     # Grosor del borde
 #        })
-
-
-#Guardar estilo
-############################
-
-#guardar estilos
-# saveNamedStyle()
-
-# Ruta donde guardarás el archivo .qml
-# qml_path = 'C:/ruta/a/tu_estilo.qml'  # Usa rutas absolutas
-
-# Guardar el estilo
-# success = layer.saveNamedStyle(qml_path)
