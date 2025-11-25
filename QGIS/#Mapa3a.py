@@ -4,9 +4,9 @@
 
 region = 'Latin America & Caribbean'
 subregion = 'South America'
-codigos_dep = ['47']
-codigomdep = ['47']
-codigos_muni = ['47745']
+codigos_dep = ['70'] #76
+codigomdep = ['70'] #76
+codigos_muni = ['70420'] #18753, 76109
 cpais = ['COL']
 
 
@@ -22,38 +22,38 @@ consejos_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=d
 coberturas_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas.gpkg'
 ecosistemas_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos.gpkg'
 
-resguardos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
+resguardos_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
 
 coberturas_path1 = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Coberturas Vegetales/Corregidas Coberturas1.gpkg'
 ecosistemas_path1 = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos1.gpkg'
 
-campesinas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/ZPRNRMA_1125_2021/ZPRNRMA_1125_2021.shp'
-vias_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/VIAS/VIAS.shp'
-vias2_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/INVIAS/Invias_Vias.gpkg'
-linea_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_LINEA.shp'
-manzana_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_MANZANA.shp'
-nomenclatura_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_NOMENCLATURA_VIAL.shp'
-cultu_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_CULTU_PUNTO.shp'
-hidro_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_HIDRO_LINEA.shp'
-hipso_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_HIPSO_PUNTO.shp'
-otrli_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_OTRLI_LINEA.shp'
-ambitos_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ambitos_Territoriales_PDET/Ambitos_Territoriales_PDET.shp'
-zonip_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Zonificacion_PDET_agosto_2021/Zonificacion_PDET_agosto_2021.shp'
-autoridades_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Autoridades Ambientales/Lim_AA_25k_2019.shp'
-marinos_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Mapa_de_Ecosistemas_MEC_100K/Mapa_de_Ecosistemas_MEC_100K.shp'
-coral_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/FormacionesCoralinas_Oceanico/FormacionesCoralinas_Oceanico.shp'
-rocoso_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Litoral_Rocoso/litoralrocoso_litoralrocoso.shp'
-prioc_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Sitios_Prioritarios_Conservación_Caribe/Sitios_Prioritarios_Conservación_Caribe.shp'
-priop_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Sitios_Prioritarios_Conservación_Pacífico/Sitios_Prioritarios_Conservación_Pacífico.shp'
-forestal_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Gobernanza_Forestal/Gobernanza_Forestal.shp'
-humedales_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Humedal_version3/Humedal_version3.shp'
-paramos_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Paramos_Delimitados_Junio_2020/Paramos_Delimitados_Junio_2020.shp'
-seco_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/BosqueSecoTropical_100K/geo_export_1c851a13-97b1-4163-9ea1-d300bad45e9e.shp'
-parques_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Parque Nacionales/runap_-_Registro_Unico_Nacional_AP/runap_-_Registro_Unico_Nacional_AP.shp'
-priocon_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Prioridad_Conpes/PCN_CONPES.shp'
-recu_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Recuperacion/Recuperacion Corregidos.gpkg'
-reha_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Rehabilitacion/Rehabilitacion corregido.gpkg'
-resta_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Restauracion/Corregidos Restauracion.gpkg'
+campesinas_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/ZPRNRMA_1125_2021/ZPRNRMA_1125_2021.shp'
+vias_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Colombia Dane/VIAS/VIAS.shp'
+vias2_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/INVIAS/Invias_Vias.gpkg'
+linea_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_LINEA.shp'
+manzana_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_MANZANA.shp'
+nomenclatura_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_NOMENCLATURA_VIAL.shp'
+cultu_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_CULTU_PUNTO.shp'
+hidro_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_HIDRO_LINEA.shp'
+hipso_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_HIPSO_PUNTO.shp'
+otrli_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Colombia Dane/RURAL/CBD_RUR_OTRLI_LINEA.shp'
+ambitos_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Ambitos_Territoriales_PDET/Ambitos_Territoriales_PDET.shp'
+zonip_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Zonificacion_PDET_agosto_2021/Zonificacion_PDET_agosto_2021.shp'
+autoridades_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Autoridades Ambientales/Lim_AA_25k_2019.shp'
+marinos_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Mapa_de_Ecosistemas_MEC_100K/Mapa_de_Ecosistemas_MEC_100K.shp'
+coral_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/FormacionesCoralinas_Oceanico/FormacionesCoralinas_Oceanico.shp'
+rocoso_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Litoral_Rocoso/litoralrocoso_litoralrocoso.shp'
+prioc_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Sitios_Prioritarios_Conservación_Caribe/Sitios_Prioritarios_Conservación_Caribe.shp'
+priop_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Sitios_Prioritarios_Conservación_Pacífico/Sitios_Prioritarios_Conservación_Pacífico.shp'
+forestal_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Gobernanza_Forestal/Gobernanza_Forestal.shp'
+humedales_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Humedal_version3/Humedal_version3.shp'
+paramos_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Paramos_Delimitados_Junio_2020/Paramos_Delimitados_Junio_2020.shp'
+seco_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/BosqueSecoTropical_100K/geo_export_1c851a13-97b1-4163-9ea1-d300bad45e9e.shp'
+parques_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Parque Nacionales/runap_-_Registro_Unico_Nacional_AP/runap_-_Registro_Unico_Nacional_AP.shp'
+priocon_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Prioridad_Conpes/PCN_CONPES.shp'
+recu_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Recuperacion/Recuperacion Corregidos.gpkg'
+reha_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Rehabilitacion/Rehabilitacion corregido.gpkg'
+resta_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Ecosistemas y comunidades/Restauracion/Corregidos Restauracion.gpkg'
 
 #veredas_path = '/run/user/1000/gvfs/smb-share:server=pc-de-javier.local,share=disco%20j/Mapas/Zonificacion Colombia/Veredas/CRVeredas_2020.shp'
 
@@ -1501,15 +1501,37 @@ iface.addVectorLayer(campesinas_path, 'campesinas', 'ogr')
 rehalayer = QgsVectorLayer(reha_path, 'reha', "ogr")
 
 
-# 3. Configurar parámetros para el clip
-params_reha = {
-        'INPUT': rehalayer,    # Capa a cortar 
-        'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'TEMPORARY_OUTPUT'   # Salida en memoria
-    }
+# Desactivar renderizado durante el proceso
+QgsSettings().setValue('/qgis/enable_render', False)
 
+try:
+    # Procesamiento rápido sin refrescos de pantalla
+    result_reha = processing.run("native:clip", {
+        'INPUT': rehalayer,
+        'OVERLAY': selection_layer,
+        'OUTPUT': 'memory:'
+    })
+    
+    clipped_reha = result_reha['OUTPUT']
+    clipped_reha.setName("reha")
+    
+    # Aplicar símbolo SIN triggerRepaint inicialmente
+    symbolreha = QgsFillSymbol.createSimple({
+        'color': '255, 36, 0',
+        'color_border': '178, 34, 34',
+        'width_border': '0.3'
+    })
+    
+    clipped_reha.renderer().setSymbol(symbolreha)
+    
+finally:
+    # Reactivar renderizado
+    QgsSettings().setValue('/qgis/enable_render', True)
+
+# Solo UN refresco al final
+QgsProject.instance().addMapLayer(clipped_reha)
 # Añadir resultado al proyecto
-#result_reha = processing.run("native:clip", params_reha)
+#result_reha = processing.run("native:difference", params_reha)
 clipped_reha = result_reha['OUTPUT']
 clipped_reha.setName("reha")
 QgsProject.instance().addMapLayer(clipped_reha)
@@ -1544,7 +1566,7 @@ params_recu = {
     }
 
 # Añadir resultado al proyecto
-result_recu = processing.run("native:clip", params_recu)
+result_recu = processing.run("native:difference", params_recu)
 clipped_recu = result_recu['OUTPUT']
 clipped_recu.setName("recu")
 QgsProject.instance().addMapLayer(clipped_recu)
@@ -1578,7 +1600,7 @@ params_resta = {
     }
 
 # Añadir resultado al proyecto
-result_resta = processing.run("native:clip", params_resta)
+result_resta = processing.run("native:difference", params_resta)
 clipped_resta = result_resta['OUTPUT']
 clipped_resta.setName("resta")
 QgsProject.instance().addMapLayer(clipped_resta)
