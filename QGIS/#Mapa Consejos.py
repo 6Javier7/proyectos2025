@@ -4,9 +4,9 @@
 
 region = 'Latin America & Caribbean'
 subregion = 'South America'
-codigos_dep = ['52'] #27
+codigos_dep = ['52'] #76, 27
 codigomdep = ['52']
-codigos_muni = ['52427'] #27250
+codigos_muni = ['52427'] #76109, 27250
 cpais = ['COL']
 codigoc = ['154', '115', '60', '32'] #73
 
@@ -25,7 +25,7 @@ coberturas_path1 = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Coberturas 
 ecosistemas_path1 = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecositemas/corregidos1.gpkg'
 
 campesinas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/ZPRNRMA_1125_2021/ZPRNRMA_1125_2021.shp'
-resguardos_path = '/Volumes/Disco J/Mapas/Consejo_Comunitario_Titulado/Consejo_Comunitario_Titulado.shp'
+resguardos_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Resguardos/Resguardo_Indigena_Formalizado/Resguardo_Indigena_Formalizado.shp'
 vias_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/VIAS/VIAS.shp'
 vias2_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/INVIAS/Invias_Vias.gpkg'
 linea_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Colombia Dane/URBANO/MGN_URB_LINEA.shp'
@@ -44,14 +44,33 @@ rocoso_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Mari
 prioc_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Sitios_Prioritarios_Conservación_Caribe/Sitios_Prioritarios_Conservación_Caribe.shp'
 priop_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Ecosistemas Marinos/Sitios_Prioritarios_Conservación_Pacífico/Sitios_Prioritarios_Conservación_Pacífico.shp'
 forestal_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Gobernanza_Forestal/Gobernanza_Forestal.shp'
-humedales_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Humedal_version3/Humedal_version3.shp'
+humedales_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Humedal_version3/Humedal_version3.gpkg'
 paramos_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Paramos_Delimitados_Junio_2020/Paramos_Delimitados_Junio_2020.shp'
 seco_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/BosqueSecoTropical_100K/geo_export_1c851a13-97b1-4163-9ea1-d300bad45e9e.shp'
 parques_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Parque Nacionales/runap_-_Registro_Unico_Nacional_AP/runap_-_Registro_Unico_Nacional_AP.shp'
-priocon_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Prioridad_Conpes/PCN_CONPES.shp'
+priocon_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Prioridad_Conpes/PCN_CONPES.gpkg'
 recu_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Recuperacion/Recuperacion Corregidos.gpkg'
 reha_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Rehabilitacion/Rehabilitacion corregido.gpkg'
 resta_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Restauracion/Corregidos Restauracion.gpkg'
+
+
+cienaga_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/Cienaga_grande_SM.shp'
+cinturon_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/Cinturon_Andino.shp'
+tuparro_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/El_Tuparro.shp'
+ramsar_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/HumedalesRAMSAR.shp'
+pomcas_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/POMCAS_MADS.shp'
+ley2_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/ReservasForestalesLEY2.gpkg'
+sierra_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/SCSierraNevadaSantaM.shp'
+seaflower_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/Seaflower.shp'
+nsm_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/AreasdeImportanciaEspecial_shp/SierraNSM.shp'
+
+manglares_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/MANGLARES_COLOMBIA/MANGLARES_COLOMBIA.gpkg'
+zoniparques_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Archivo_Zonificacion_PNNC_PM_Oficial_13122023/Archivo_Zonificacion_PNNC_PM_Oficial_13122023.shp'
+biosfera_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/RESERVA_BIOSFERA_20240808/RESERVA_BIOSFERA_20240808.shp'
+paz_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/Bosques_Paz_septiembre_2022/Bosques_Paz_septiembre_2022.shp'
+usos_path = '/Volumes/Disco J/Mapas/Ecosistemas y comunidades/usus_rurales/ZonificacionUsosRurales.shp'
+
+
 
 #veredas_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Veredas/CRVeredas_2020.shp'
 
@@ -877,110 +896,85 @@ if resglayer.isValid():
         print("❌ No se encontraron resguardos")
 
 
-
 # 1b. Cargar la capa de consejos
 ####################################################################
 
-conlayer = QgsVectorLayer(consejos_path, 'consejos', 'ogr')
+# Versión simplificada
+resglayer = QgsVectorLayer(consejos_path, 'consejos', 'ogr')
 
-
-
-# Verificar carga correcta
-if not conlayer.isValid():
-    print("¡Error al cargar el shapefile!")
-else:
-    # Definir códigos de departamento
-    codigos_con = codigoc  # Reemplaza con tus códigos reales
+if resglayer.isValid():
+    # Seleccionar por códigos de municipio
+    expression = "MUNICIPIO IN ({})".format(','.join(["'{}'".format(c) for c in codigos_muni]))
+    resglayer.selectByExpression(expression)
     
-    # Construir expresión de selección
-    expression = "OBJECTID IN ({})".format(','.join(["'{}'".format(c) for c in codigos_con]))
-    conlayer.selectByExpression(expression)
-    
-    # Verificar selección y crear nueva capa
-    if conlayer.selectedFeatureCount() > 0:
-        # Crear capa temporal
+    if resglayer.selectedFeatureCount() > 0:
+        # Crear nueva capa con la selección
         selection_layer = QgsVectorLayer(
-            "Polygon?crs={}".format(conlayer.crs().authid()),
-            "Consejos2",
+            "Polygon?crs={}".format(resglayer.crs().authid()),
+            "consejos", 
             "memory"
         )
-
-        # Copiar estructura de campos
-        provider = selection_layer.dataProvider()
-        provider.addAttributes(conlayer.fields())
-        selection_layer.updateFields()
         
-        # Copiar features seleccionadas
-        features = conlayer.selectedFeatures()
-        provider.addFeatures(features)
+        # Copiar TODOS los campos y TODAS las features
+        provider = selection_layer.dataProvider()
+        provider.addAttributes(resglayer.fields())
+        selection_layer.updateFields()
+        provider.addFeatures(resglayer.selectedFeatures())
         selection_layer.updateExtents()
-        selection_layer.setOpacity(0.9)
         
         # Añadir al proyecto
         QgsProject.instance().addMapLayer(selection_layer)
-        print(f"¡Se seleccionaron {len(features)} municipio(s) de los departamentos especificados!")
+        print(f"✅ Capa creada con {resglayer.selectedFeatureCount()} consejos")
+        
+        # Estilo y zoom
+        symbol = symbol = QgsFillSymbol.createSimple({
+            'color': '220, 220, 220',  # Sunglow
+            'color_border': '128, 128, 128',  # Indigo
+            'width_border': '0.5'     # Grosor del borde
+        })
+        selection_layer.renderer().setSymbol(symbol)
+        iface.mapCanvas().setExtent(selection_layer.extent())
+        
+    else:
+        print("❌ No se encontraron consejos")
 
+# 1b. Cargar la capa de consejo seleccionado
+####################################################################
+
+# Versión simplificada
+conlayer = QgsVectorLayer(consejos_path, 'consejos', 'ogr')
+
+codigos_con = codigoc
+
+if resglayer.isValid():
+    # Seleccionar por códigos de municipio
+    expression = "OBJECTID IN ({})".format(','.join(["'{}'".format(c) for c in codigos_con]))
+    resglayer.selectByExpression(expression)
+    
+    if resglayer.selectedFeatureCount() > 0:
+        # Crear nueva capa con la selección
+        selection_layer = QgsVectorLayer(
+            "Polygon?crs={}".format(resglayer.crs().authid()),
+            "consejos_seleccionados", 
+            "memory"
+        )
+        
+        # Copiar TODOS los campos y TODAS las features
+        provider = selection_layer.dataProvider()
+        provider.addAttributes(resglayer.fields())
+        selection_layer.updateFields()
+        provider.addFeatures(resglayer.selectedFeatures())
+        selection_layer.updateExtents()
+        
+        # Añadir al proyecto
+        QgsProject.instance().addMapLayer(selection_layer)
+        print(f"✅ Capa creada con {resglayer.selectedFeatureCount()} consejos")
+        
         # Aplicar estilo a la capa recién creada
         symbol = QgsFillSymbol.createSimple({
             'color': '255, 204, 51',  # Sunglow
             'color_border': '218, 165, 32',  # Indigo
             'width_border': '0.5'     # Grosor del borde
-        })
-        selection_layer.renderer().setSymbol(symbol)
-        selection_layer.triggerRepaint()
-        conlayer.setOpacity(0.9)
-
-        # Zoom a la selección
-        iface.mapCanvas().setExtent(selection_layer.extent())
-        iface.mapCanvas().refresh()
-    else:
-        print("No se encontraron municipios con los códigos de departamento especificados")
-        print("Nombres de campos disponibles:", [field.name() for field in conlayer.fields()])
-
-
-
-
-# Verificar carga correcta
-if not conlayer.isValid():
-    print("¡Error al cargar el shapefile!")
-else:
-    # 2. Seleccionar features por código DANE
-    codigos_dane = codigos_muni
-    
-    # Construir expresión de selección
-    expression = "MPIO_CDPMP IN ({})".format(','.join(["'{}'".format(c) for c in codigos_dane]))
-
-    conlayer.selectByExpression(expression)
-    
-    # 3. Verificar selección y crear nueva capa
-    if conlayer.selectedFeatureCount() > 0:
-        # Crear capa temporal
-        selection_layer = QgsVectorLayer(
-            "Polygon?crs={}".format(conlayer.crs().authid()),
-            "consejos_seleccionados",
-            "memory"
-        )
-    
-        # Copiar estructura de campos
-        provider = selection_layer.dataProvider()
-        provider.addAttributes(conlayer.fields())
-        selection_layer.updateFields()
-        
-        # Copiar features seleccionadas
-        features = conlayer.selectedFeatures()
-        provider.addFeatures(features)
-        selection_layer.updateExtents()
-        selection_layer.setOpacity(0.9)
-        
-        # Añadir al proyecto
-        QgsProject.instance().addMapLayer(selection_layer)
-        print(f"¡Se seleccionaron {len(features)} municipio(s)!")
-
-        # Aplicar estilo a la capa recién creada
-        symbol = QgsFillSymbol.createSimple({
-            'color': '154, 185, 115',  # Oliva
-            'color_border': '0, 100, 0',  # Dark green
-            'width_border': '0.4'     # Grosor del borde
         })
         selection_layer.renderer().setSymbol(symbol)
         selection_layer.triggerRepaint()
@@ -1247,81 +1241,6 @@ clipped_seco.setRenderer(renderers)
 # Refrescar la capa para ver los cambios
 clipped_seco.triggerRepaint()
 
-#Parques
-################
-
-# Cargar la capa
-parqueslayer = QgsVectorLayer(parques_path, 'parques', "ogr")
-
-
-# 3. Configurar parámetros para el clip
-params_parques = {
-        'INPUT': parqueslayer,    # Capa a cortar 
-        'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'memory:parquesC'   # Salida en memoria
-    }
-
-# Añadir resultado al proyecto
-result_parques = processing.run("native:clip", params_parques)
-clipped_parques = result_parques['OUTPUT']
-clipped_parques.setName("parques")
-QgsProject.instance().addMapLayer(clipped_parques)
-
-symbolpar = QgsFillSymbol.createSimple({
-        'color': '0, 168, 107',  # '25, 100, 180' azul
-        'color_border': '0, 117, 94',  # Color del borde
-        'width_border': '0.3'  # Grosor del borde en mm
-})
-
-# Aplicar el símbolo a la capa
-rendererpar = QgsSingleSymbolRenderer(symbolpar)
-clipped_parques.setRenderer(rendererpar)
-
-# Refrescar la capa para ver los cambios
-clipped_parques.triggerRepaint()
-
-
-#Pirorizados
-################
-
-# Cargar la capa
-prioconlayer = QgsVectorLayer(priocon_path, 'priocon', "ogr")
-
-
-# 3. Configurar parámetros para el clip
-params_priocon = {
-        'INPUT': prioconlayer,    # Capa a cortar 
-        'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'memory:prioC'   # Salida en memoria
-    }
-
-# Añadir resultado al proyecto
-result_priocon = processing.run("native:clip", params_priocon)
-clipped_priocon = result_priocon['OUTPUT']
-clipped_priocon.setName("priocon")
-QgsProject.instance().addMapLayer(clipped_priocon)
-
-colores_priocon = {
-            'a': (212, 0, 0),
-            'b': (249, 77, 0),
-            'c': (255, 130, 67),
-            'd': (255, 179, 0),
-            'e': (255, 196, 12),
-            'f': (255, 216, 0),
-            'g': (255, 246, 0),
-            'h': (255, 255, 0),
-            }
-
-# Aplicar a capas por nombre
-aplicar_estilo_comun_a_capas(
-    capas = [clipped_priocon],
-    campo = 'PRIORIDAD',  # Campo común en todas las capas
-    colores_por_valor = colores_priocon,
-    borde_color = '0, 0, 0',    # Borde negro
-    grosor_borde = 0.3        # 0.3 mm de grosor
-)
-
-
 #Hipso
 ################
 
@@ -1342,93 +1261,6 @@ clipped_hipso = result_hipso['OUTPUT']
 clipped_hipso.setName("hipso")
 QgsProject.instance().addMapLayer(clipped_hipso)
 
-
-#AmbitosPDET
-################
-
-# Cargar la capa
-ambitoslayer = QgsVectorLayer(ambitos_path, 'ambitos', "ogr")
-
-
-# 3. Configurar parámetros para el clip
-params_ambitos = {
-        'INPUT': ambitoslayer,    # Capa a cortar 
-        'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'memory:ambitosC'   # Salida en memoria
-    }
-
-# Añadir resultado al proyecto
-result_ambitos = processing.run("native:clip", params_ambitos)
-clipped_ambitos = result_ambitos['OUTPUT']
-clipped_ambitos.setName("ambitos")
-QgsProject.instance().addMapLayer(clipped_ambitos)
-
-# 1. Listar campos disponibles
-print("📋 Campos disponibles:")
-for field in clipped_ambitos.fields():
-    print(f"   '{field.name()}'")
-    
-# 2. Verificar valores únicos en el campo de categoría
-campo_buscado = 'categotia_'  # Ajusta este nombre si es necesario
-valores_encontrados = set()
-
-
-colores_ambitos = {
-            'AEIA': (42, 128, 0),
-            'Franja Estabilización': (150, 111, 214),
-            'Frontera Agrícola': (255, 215, 0),
-       }
-
-
-# Aplicar a capas por nombre
-aplicar_estilo_comun_a_capas(
-    capas = [clipped_ambitos],
-    campo = 'categoria_',  # Campo común en todas las capas
-    colores_por_valor = colores_ambitos,
-    borde_color = '0, 0, 0',    # Borde negro
-    grosor_borde = 0.3        # 0.3 mm de grosor
-)
-
-#ZonificacionPDET
-################
-
-# Cargar la capa
-zoniplayer = QgsVectorLayer(zonip_path, 'zonip', "ogr")
-
-
-# 3. Configurar parámetros para el clip
-params_zonip = {
-        'INPUT': zoniplayer,    # Capa a cortar 
-        'OVERLAY': selection_layer,  # Capa de corte
-        'OUTPUT': 'memory:zonipC'   # Salida en memoria
-    }
-
-# Añadir resultado al proyecto
-result_zonip = processing.run("native:clip", params_zonip)
-clipped_zonip = result_zonip['OUTPUT']
-clipped_zonip.setName("zonip")
-QgsProject.instance().addMapLayer(clipped_zonip)
-
-colores_zonip = {
-            'Preservación': (0, 102, 0),
-            'Protección con uso sostenible': (208, 255, 20),
-            'Protección por Alta Oferta de SSEE': (154, 78, 150),
-            'Restauración': (128, 218, 235),
-            'Uso productivo': (210, 105, 30),
-            'Uso productivo con protección': (150, 165, 60),
-            'Uso productivo con reconversión': (251, 236, 93),
-            'Uso sostenible para el aprovechamiento de la biodiversidad': (250, 128, 114),
-            'Uso sostenible para el desarrollo': (255, 127, 80),
-            }
-
-# Aplicar a capas por nombre
-aplicar_estilo_comun_a_capas(
-    capas = [clipped_zonip],
-    campo = 'categoria',  # Campo común en todas las capas
-    colores_por_valor = colores_zonip,
-    borde_color = '0, 0, 0',    # Borde negro
-    grosor_borde = 0.3        # 0.3 mm de grosor
-)
 
 #Vias
 ################
@@ -1645,6 +1477,784 @@ iface.addVectorLayer(rocoso_path, 'rocoso', 'ogr')
 iface.addVectorLayer(prioc_path, 'prioc', 'ogr')
 iface.addVectorLayer(priop_path, 'priop', 'ogr')
 iface.addVectorLayer(campesinas_path, 'campesinas', 'ogr')
+iface.addVectorLayer(cienaga_path, 'cienaga', 'ogr')
+iface.addVectorLayer(cinturon_path, 'cinturon', 'ogr')
+iface.addVectorLayer(tuparro_path, 'tuparro', 'ogr')
+iface.addVectorLayer(sierra_path, 'sierra', 'ogr')
+iface.addVectorLayer(seaflower_path, 'seaflower', 'ogr')
+iface.addVectorLayer(nsm_path, 'nsm', 'ogr')
+
+
+
+#Parques
+################
+
+# Cargar la capa
+parqueslayer = QgsVectorLayer(parques_path, 'parques', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_parques = {
+        'INPUT': parqueslayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'memory:parquesC'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_parques = processing.run("native:clip", params_parques)
+clipped_parques = result_parques['OUTPUT']
+clipped_parques.setName("parques")
+QgsProject.instance().addMapLayer(clipped_parques)
+
+symbolpar = QgsFillSymbol.createSimple({
+        'color': '0, 168, 107',  # '25, 100, 180' azul
+        'color_border': '0, 117, 94',  # Color del borde
+        'width_border': '0.3'  # Grosor del borde en mm
+})
+
+# Aplicar el símbolo a la capa
+rendererpar = QgsSingleSymbolRenderer(symbolpar)
+clipped_parques.setRenderer(rendererpar)
+
+# Refrescar la capa para ver los cambios
+clipped_parques.triggerRepaint()
+
+
+#Pirorizados
+################
+
+# Cargar la capa
+prioconlayer = QgsVectorLayer(priocon_path, 'priocon', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_priocon = {
+        'INPUT': prioconlayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'memory:prioC'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_priocon = processing.run("native:clip", params_priocon)
+clipped_priocon = result_priocon['OUTPUT']
+clipped_priocon.setName("priocon")
+QgsProject.instance().addMapLayer(clipped_priocon)
+
+colores_priocon = {
+            'a': (212, 0, 0),
+            'b': (249, 77, 0),
+            'c': (255, 130, 67),
+            'd': (255, 179, 0),
+            'e': (255, 196, 12),
+            'f': (255, 216, 0),
+            'g': (255, 246, 0),
+            'h': (255, 255, 0),
+            }
+
+# Aplicar a capas por nombre
+aplicar_estilo_comun_a_capas(
+    capas = [clipped_priocon],
+    campo = 'PRIORIDAD',  # Campo común en todas las capas
+    colores_por_valor = colores_priocon,
+    borde_color = '0, 0, 0',    # Borde negro
+    grosor_borde = 0.3        # 0.3 mm de grosor
+)
+
+
+#AmbitosPDET
+################
+
+# Cargar la capa
+ambitoslayer = QgsVectorLayer(ambitos_path, 'ambitos', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_ambitos = {
+        'INPUT': ambitoslayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'memory:ambitosC'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_ambitos = processing.run("native:clip", params_ambitos)
+clipped_ambitos = result_ambitos['OUTPUT']
+clipped_ambitos.setName("ambitos")
+QgsProject.instance().addMapLayer(clipped_ambitos)
+
+# 1. Listar campos disponibles
+print("📋 Campos disponibles:")
+for field in clipped_ambitos.fields():
+    print(f"   '{field.name()}'")
+    
+# 2. Verificar valores únicos en el campo de categoría
+campo_buscado = 'categotia_'  # Ajusta este nombre si es necesario
+valores_encontrados = set()
+
+
+colores_ambitos = {
+            'AEIA': (42, 128, 0),
+            'Franja Estabilización': (150, 111, 214),
+            'Frontera Agrícola': (255, 215, 0),
+       }
+
+
+# Aplicar a capas por nombre
+aplicar_estilo_comun_a_capas(
+    capas = [clipped_ambitos],
+    campo = 'categoria_',  # Campo común en todas las capas
+    colores_por_valor = colores_ambitos,
+    borde_color = '0, 0, 0',    # Borde negro
+    grosor_borde = 0.3        # 0.3 mm de grosor
+)
+
+#ZonificacionPDET
+################
+
+# Cargar la capa
+zoniplayer = QgsVectorLayer(zonip_path, 'zonip', "ogr")
+
+
+# 3. Configurar parámetros para el clip
+params_zonip = {
+        'INPUT': zoniplayer,    # Capa a cortar 
+        'OVERLAY': selection_layer,  # Capa de corte
+        'OUTPUT': 'memory:zonipC'   # Salida en memoria
+    }
+
+# Añadir resultado al proyecto
+result_zonip = processing.run("native:clip", params_zonip)
+clipped_zonip = result_zonip['OUTPUT']
+clipped_zonip.setName("zonip")
+QgsProject.instance().addMapLayer(clipped_zonip)
+
+colores_zonip = {
+            'Preservación': (0, 102, 0),
+            'Protección con uso sostenible': (208, 255, 20),
+            'Protección por Alta Oferta de SSEE': (154, 78, 150),
+            'Restauración': (128, 218, 235),
+            'Uso productivo': (210, 105, 30),
+            'Uso productivo con protección': (150, 165, 60),
+            'Uso productivo con reconversión': (251, 236, 93),
+            'Uso sostenible para el aprovechamiento de la biodiversidad': (250, 128, 114),
+            'Uso sostenible para el desarrollo': (255, 127, 80),
+            }
+
+# Aplicar a capas por nombre
+aplicar_estilo_comun_a_capas(
+    capas = [clipped_zonip],
+    campo = 'categoria',  # Campo común en todas las capas
+    colores_por_valor = colores_zonip,
+    borde_color = '0, 0, 0',    # Borde negro
+    grosor_borde = 0.3        # 0.3 mm de grosor
+)
+
+
+#TEMAS
+####################################################################
+
+project = QgsProject.instance()
+theme_manager = project.mapThemeCollection()
+root = project.layerTreeRoot()
+
+
+###Pais
+
+tema = 'Pais'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, tema)
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+
+###Departamento
+
+tema = 'Departamento'
+capas = ['paises_seleccionados', 'departamentos', 'departamentos_seleccionados']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, tema)
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+##Municipios
+tema = 'Municipio'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'municipios_seleccionados']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, tema)
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+##Reservas
+tema = 'Reservas'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'parques', 'zoniparques', 'forestal', 'autoridades', 'paz', 'biosfera', 'municipios_seleccionados']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+##Ecosistemas
+tema = 'Ecosistemas'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'Ecosis 2024']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+##Coberturas
+tema = 'Coberturas'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'Cobertura 2020']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+
+tema = 'Ambitos'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'ambitos', 'municipios_seleccionados']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+###Zonificacion
+
+tema = 'Zonificacion'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'zonip', 'municipios_seleccionados']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+
+##Priorizados
+
+tema = 'Priorizados'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'procon', 'priop', 'prioc', 'hidro', 'ramsar', 'pomcas', 'ley2', 'municipios_seleccionados']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+
+###Importancia
+
+tema = 'Importancia'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'seco', 'humedales', 'manglares', 'cienaga', 'cinturon', 'tuparro', 'sierra', 'seaflower', 'nsm', 'coral', 'hidro', 'marinos', 'rocoso', 'municipios_seleccionados']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+##Comunidades
+
+tema = 'Comunidades'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'resguardos_seleccionados', 'consejos_seleccionados', 'campesinas']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+###Urbano
+
+tema = 'Urbano'
+capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'municipios_seleccionados', 'nomenclatura', 'manzana', 'vias', 'vias2', 'linea', 'otrli', 'cultu']
+
+# PASO 1: Guardar el estado actual de TODAS las capas
+estado_original = {}
+for layer in project.mapLayers().values():
+    # Buscar el nodo en el árbol de capas
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        estado_original[layer.id()] = {
+            'visible': layer_tree_node.isVisible(),
+            'expanded': layer_tree_node.isExpanded() if hasattr(layer_tree_node, 'isExpanded') else True
+        }
+
+print(estado_original)
+
+
+
+capas_procesadas = []
+for layer in project.mapLayers().values():
+    layer_tree_node = root.findLayer(layer.id())
+    if layer_tree_node:
+        # Verificar si esta capa está en nuestra lista
+        if layer.name() in capas:
+            # Mostrar esta capa
+            layer_tree_node.setItemVisibilityChecked(True)
+            if hasattr(layer_tree_node, 'setExpanded'):
+                layer_tree_node.setExpanded(True)
+            capas_procesadas.append(layer.name())
+            print(f"   ✅ Mostrando: {layer.name()}")
+        else:
+            # Ocultar esta capa
+            layer_tree_node.setItemVisibilityChecked(False)
+            print(f"   🔘 Ocultando: {layer.name()}")
+
+
+# PASO 3: Crear el tema desde el estado actual
+theme_collection = project.mapThemeCollection()
+#theme_collection.createThemeFromCurrentState(root, 'tema')
+
+#Set themes for each group
+mapThemesCollection = QgsProject.instance().mapThemeCollection()
+mapThemeRecord = QgsMapThemeCollection.createThemeFromCurrentState(
+QgsProject.instance().layerTreeRoot(),
+iface.layerTreeView().layerTreeModel())
+
+mapThemesCollection.insert(tema, mapThemeRecord)
+
+
 
 
 
