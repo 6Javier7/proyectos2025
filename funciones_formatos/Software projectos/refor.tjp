@@ -1,0 +1,1017 @@
+project refor "Rehabilitación Multifuncional"  2026-03-16 +36m {
+
+  # Set the default time zone for the project. If not specified, UTC is used.
+
+  timezone "America/Bogota"
+  
+  # Hide the clock time. Only show the date.
+  
+  timeformat "%d/%m/%Y"
+  
+  # Use US format for numbers
+  
+  numberformat "-" "" "." "," 1
+  
+  # Use US financial format for currency values. Don't show cents.
+  currencyformat "(" ")" "." "," 0
+  
+  # The date that is used to show additional line on a Gannt chart and can be specified by the user.
+  
+  markdate 2026-08-07-03:00
+  
+  # The currency for all money values is the Euro.
+  
+  currency "COP"
+
+  # We want to compare the baseline scenario to one with a slightly delayed start.
+  
+  scenario plan "Plan" {
+    scenario delayed "Delayed"
+  }
+  
+}
+
+macro TaskTip [
+  tooltip istask() -8<-
+    '''Inicio: ''' <-query attribute='start'->
+    '''Final: ''' <-query attribute='end'->
+    ----
+    '''Recursos:'''
+
+    <-query attribute='resources'->
+    ----
+    '''Precursor: '''
+
+    <-query attribute='precursors'->
+    ----
+    '''Siguiente: '''
+
+    <-query attribute='followers'->
+    ->8-
+]
+
+#cuentas
+account cost "Gastos del Personal" {
+  aggregate resources
+  account teamA "Tecnicxs"
+  account teamB "Jornales"
+  account teamC "Profesionales"
+}
+
+
+account productCost "Gastos de las Actividades" {
+  aggregate tasks
+}
+
+
+account rev "Desenbolsos" {
+  credits 2026-03-16 "Primer desenbolso" 977039845,
+          2027-03-16 "Segundo desenbolso" 977039845
+}
+
+
+balance productCost rev
+
+#manager
+#antro1 
+#Refor1
+#bio1
+#sig1
+#jur1
+#camp1
+#gest1
+
+
+
+#Personas
+
+resource manager "Cordinacion" {
+  chargeset teamC
+  email "phb1@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource antro1 "Antropologia" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource Refor1 "Entoeducacion" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource bio1 "Javier" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 350000 #54688 #7000000
+}
+
+resource sig1 "SIG" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 300000 #46875 #6000000
+}
+
+resource jur1 "Derecho" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 300000 #46875 #6000000
+}
+
+resource camp1 "Tecnicx Campo" {
+  chargeset teamA
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 150000 #23438 #3000000
+}
+
+resource gest1 "Gestion Comunitaria" {
+  chargeset teamA
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 100000 #15625 #2000000
+}
+
+
+
+#allocate manager 
+#allocate antro1 
+#allocate Refor1 
+#allocate bio1 
+#allocate sig1 
+#allocate jur1 
+#allocate camp1 
+#allocate gest1 
+#allocate teamB
+
+
+resource teamB "Jornales" {
+  rate 80000
+  chargeset teamB
+  resource "jor1"
+  resource "jor2"
+  resource "jor3"
+}
+
+
+#Tareas
+
+/* 
+ * ================================
+ * RESTAURACION PARTICIPATIVA
+ * ================================
+ */
+task trp "Restauración Participativa" {
+  chargeset productCost
+
+  task ti "Inicio de Actividades Rehabilitación Multifuncional" {
+      milestone
+      journalentry 2026-03-16 "Para agregar issuues" {
+        summary -8<-
+          Resumen del issuue.
+        ->8-
+        details -8<-
+          Detalle del issuue.
+        ->8- 
+        }
+    }
+
+
+/* 
+ * ================================
+ * PLAN BASICO SOCIO-ECOSISTEMICO
+ * ================================
+ */
+
+task t1 "Plan Basico Socio-Ecosistemico" {
+    task t1a "Socializacion" {
+        effort 1m
+        #depends !trp.ti
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+    task t1b "Sensibilizacion" {
+        effort 1m
+        depends !t1a
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+    task t1c "Construcción de plan de trabajo" {
+        effort 1m
+        depends !t1a
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+        task t1d "Diagnóstico y caracterización" {
+        effort 4m
+        depends !t1c
+        allocate manager
+        allocate antro1
+        allocate camp1
+        allocate Refor1
+        allocate gest1
+
+        #charge 161474869 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+        task t1e "Levantar la información" {
+        effort 4m
+        depends !t1c
+        allocate manager
+        allocate antro1
+        allocate camp1
+        allocate Refor1
+        allocate gest1
+
+        #charge 161474869 onstart 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+    }
+
+  
+
+/* 
+ * ================================
+ * REHABILITACIóN FORETAL
+ * ================================
+ */
+
+task t2 "Linea 1. Rehabilitación forestal" {
+    task t2a "Reintroducción de material vegetal arbóreo y arbustivo(Nucleación)" {
+        effort 3m
+        depends !!t1.t1c
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+
+    task t2b "Establecimiento de Vivero" {
+        effort 1m
+        depends !!t1.t1c
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+
+    task t2c "Mantenimiento Forestal" {
+        effort 6m
+        depends !t2a
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+  
+
+      task t2d "Monitoreo" {
+        effort 6m
+        depends !t2b
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+    }
+
+/* 
+ * ================================
+ * REHABILITACIóN PRODCUTIVA
+ * ================================
+ */
+
+task t3 "Linea 2. Rehabilitación productiva" {
+    task t3a "Establecimiento de Parcelas Agroforestales" {
+        effort 3m
+        depends !!t1.t1c
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+    task t3b "Mantenimiento de Parcelas Agroforestales" {
+        effort 6m
+        depends !t3a
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+    task t3c "Avicultura" {
+        effort 3m
+        depends !t3a
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+    task t3d "Porcicultura" {
+        effort 3m
+        depends !t3a
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+    task t3e "Piscicultura" {
+        effort 3m
+        depends !t3a
+        #depende xx {'gapduration', 'gaplength', 'onend', 'onstart'}
+        allocate antro1
+        allocate gest1
+
+        #allocate manager {'alternative', 'limits', 'select', 'persistent', 'mandatory', 'shift', 'shifts'}
+        #warn ~ 5000        
+        #charge 61740860 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+     }
+   }
+
+
+
+/* 
+ * ===================================================================
+ * PAGO POR SERVICIOS AMBIENTALES Y OTROS INCENTIVOS A LA CONSERVACIÓN
+ * ===================================================================
+ */
+
+
+task tpsa "Linea 3. PSA y OIC" {
+  chargeset productCost
+  task tpsa1 "Suscribir  acuerdos voluntarios" {
+        effort 4m
+        depends !!trp.t1.t1c
+        
+        allocate manager
+        allocate bio1
+        allocate gest1
+        allocate camp1
+
+        #charge 109931914 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task tpsa2 "Monitoreo PSA" {
+        effort 4m
+        depends !tpsa1
+        
+        allocate bio1
+
+        #charge 67695824 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+ # task t2e "Concertar-Triangular" {
+ #       effort 3m
+ #       depends !t2d
+ #       
+ #       allocate bio1
+ #       allocate antro1
+ #       allocate gest1
+#
+#
+ #       #charge 98219632 onstart #onend 
+ #       limits {
+ #         weeklymax 4d
+ #       }
+ #     }
+
+ }
+
+
+/* 
+ * ================================
+ * GOBERNANZA AMBIENTAL
+ * ================================
+ */
+
+task tgb "Gobernanza ambiental" {
+chargeset productCost
+depends !trp.t1.t1c {onstart}
+
+/* 
+ * ================================
+ * EDUCACIÓN AMBIENTAL
+ * ================================
+ */
+
+
+task tea "Educación ambiental" {
+
+task ttl "Taller Infancias: Línea Temática 1: Conocimientos" {
+         
+task ttl1 "Fase I. Dibujos" {
+
+        effort 3m
+        #depends trp.t1.t1c {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task ttl2 "Fase II. Fotovoz" {
+
+        effort 3m
+        depends !ttl1 {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task ttl3 "Fase III: Mapas vivos: una cartografía propia" {
+
+        effort 3m
+        depends !ttl2 {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+  }
+
+task tjda "Juegos del agua" {
+
+task tjda1 "Primer juego" {
+
+        effort 2m
+        depends !!ttl.ttl1 {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tjda2 "Segundo juego" {
+
+        effort 2m
+        depends !tjda1 {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+  }
+
+/* 
+ * ================================
+ * CAPACITACIONES
+ * ================================
+ */
+
+task tcap "Capacitaciones" {
+
+task tcap1 "1ro Segmento" {
+
+task tcap1a "Establecimiento de vivero" {
+
+        effort 1m
+        #depends !!ttl.ttl1 {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap1b "Establecimiento de sistemas agroforestales" {
+
+        effort 1m
+        depends !tcap1a {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap1c "Mantenimiento de huertas agroecologicas" {
+
+        effort 1m
+        depends !tcap1b {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap1d "Alimentación circular" {
+
+        effort 1m
+        depends !tcap1c {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap1e "Capacitacion en Scrum" {
+
+        effort 1m
+        depends !tcap1d {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+    }
+task tcap2 "2do Segmento" {
+
+task tcap2a "Formación en Resiliencia frente al cambio climático" {
+
+        effort 1m
+        #depends !!ttl.ttl1 {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap2b "Formacion planes de manejo ambiental" {
+
+        effort 1m
+        depends !tcap2a {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap2c "Formacion Tratado Escazu y Opinión consultiva #32 CIDH" {
+
+        effort 1m
+        depends !tcap2b {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap2d "Formación en Consulta previa" {
+
+        effort 1m
+        depends !tcap2c {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap2e "Sistema Nacional de cuidado" {
+
+        effort 1m
+        depends !tcap2d {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap2f "Campesinado en colombia" {
+
+        effort 1m
+        depends !tcap2e {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+task tcap2g "Formación ley 70, 69" {
+
+        effort 1m
+        depends !tcap2f {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+        weeklymax 4d}
+     }
+
+    }
+
+
+  }
+
+
+}
+ 
+/* 
+ * ================================
+ * EXTENCIONISMO
+ * ================================
+ */
+
+
+task tex "Extencionismo" {
+  task tex1 "Alimentación" {
+        
+  task tex1a "Establecimento de Mosca soldado negro" {
+
+        effort 3m
+        #depends !!!!trp.t1.t1c {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 102956855 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task tex1b "Establecimento de cultivo de algas" {
+        effort 3m #mirar bien esta para 8m
+        #depends !!trp.t1c {onstart}
+        
+        allocate sig1
+        allocate antro1
+        allocate camp1
+
+        #charge 109679654 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+    }
+
+  task tex2 "Fortalecimiento de cadena de valor por medio de metodologías ágiles. SCRUM" {
+
+  task tex2a "1mer SCRUM: Transformación" {
+        effort 1m
+        #depends !!trp.t1c {onstart}
+        
+        allocate sig1
+
+        #charge 41405044 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task tex2b "2do SCRUM: Cadena inicial" {
+        effort 1m
+        depends !tex2a
+        
+        allocate sig1
+
+        #charge 47047890 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task tex2c "3cer SCRUM: producto terminado" {
+        effort 1m
+        depends !tex2b
+        
+        allocate sig1
+
+        #charge 47047890 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+  task tex2d "4to SCRUM:  Cadena final" {
+        effort 1m
+        depends !tex2c
+        
+        allocate sig1
+
+        #charge 47047890 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+
+   }
+
+task tex3 "Aprovechamiento de Residuos Agricolas" {
+
+        effort 1m
+        depends !tex2.tex2a
+        
+        allocate sig1
+
+        #charge 47047890 onstart #onend 
+        limits {
+          weeklymax 4d
+        }
+      }
+  
+
+/* 
+ * ================================
+ * VEEDURIA CIUDADANA
+ * ================================
+ */
+
+task tver "Veeduria Ciudadana" {
+
+task tver1 "Enfoque agil" {
+
+        effort 8m
+        #depends !tex2.tex2a
+        
+        allocate sig1
+
+        #charge 47047890 onstart #onend 
+        limits {
+          weeklymax 4d}
+          }
+
+task tver2 "Enfoque tradicional" {
+
+        effort 8m
+        #depends !tex2.tex2a
+        
+        allocate sig1
+
+        #charge 47047890 onstart #onend 
+        limits {
+          weeklymax 4d
+          }
+       }
+     }
+   }
+
+ }
+
+
+
+
+
+#Reportes
+
+/* 
+ * ================================
+ * GENERACIÓN DE REPORTES
+ * ================================
+ */
+
+taskreport "CronogramaRefor" {
+  formats html
+    header -8<-
+    === Resumen del Proyecto ===
+
+    Este proyecto se estructura en 3 actividades grandes.
+
+    # Restauració Participativa
+    # Pago por servicios ambientales y otros incentivos a la conservación
+    # Gobernanza ambiental
+
+    === Plan Original del Proyecto ===
+  ->8-
+  headline "Cronograma del Proyecto" 
+  caption "Este es el desglose de actividades"
+  columns bsi {title 'EDA'},
+          name { 
+            title 'Nombre'
+            #fontcolor @ all '#5F9EA0'
+            #cellcolor @ all '#F0FFFF'
+          }, start {title 'Inicio'}, end {title 'Fin'}, effort {title 'Esfuerzo'}, pathcriticalness {width 2}, cost {title 'Costo'}, chart { ${TaskTip} } 
+  #balance cost rev
+  footer -8<-
+    === Curiosidades ===
+    Se esta usando [[Taskjuggler]] para realizar el cronograma
+
+    === Convocatoria Ambiental ===
+
+    La convocatoria cierra el 18 de febrero. Se debe tener un claro presupuesto y diligenciar la MGA.
+ 
+  ->8-
+ #sorttasks tree #tree #start.up  #plan.end.down #id.up
+ #fontcolor isvalid(plan.maxend) & (plan.end > plan.maxend)
+
+  }
+
+
+resourcereport "AsignacionesRefor" {
+  formats html
+  headline "Talento Humano"
+  columns name {title 'Nombre'}, rate {title 'Tasa'}, effort {title 'Esfuerzo'}, effortdone {title 'Realizado'}, effortleft  {title 'Falta'}
+}
+
+
+accountreport "PTrimestreRefor" {
+  formats html
+  accountroot cost
+  balance -
+  columns no, name {title 'Nombre'}, quarterly {title 'Cuatrimestre' celltext 1 "<-query attribute='turnover'->" }
+}
+
+accountreport "Reporte de Cuentas Refor" {
+  formats html
+  columns no, name {title 'Nombre'}, monthly
+}
+
+taskreport breakdown "EsfuerzoporActividad" {
+  formats html
+  caption "Este es el desglose de Actividades"
+  headline "Desglose del Proyecto"
+  header -8<-
+  Aqui estan las actividades asi como el esfuerzo requerido por cada persona del equipo para realizarla
+  ----
+  ->8-
+  left "<[report id='frame.r1']>"
+  center "Center"
+  right "<[report id='frame.r2']>"
+  footer -8<-
+  ----
+  Esta herramienta nos permite analizar los momentos de mayor esfuerzo en el proyecto
+  ->8-
+  columns no, name {title 'Nombre'}, start {title 'Inicio'}, end {title 'Final'}, duration {title 'Duracion'}, monthly
+  # Don't hide any resource, meaning show them all.
+  hideresource 0
+}
+
+
+#opciones de columnas
+#'celltext', 'cellcolor', 'end', 'fontcolor', 'halign', 'listitem', 'listtype', 'period', 'scale', 'start', 'timeformat1', 'timeformat2', 'title', 'tooltip', 'width'
+
+#Columnas
+#'activetasks', 'annualleave', 'annualleavebalance', 'annualleavelist', 'alert', 'alertmessages', 'alertsummaries', 'alerttrend', 'balance', 'bsi', 'chart', 'children', 'closedtasks', 'competitorcount', 'competitors', 'complete', 'completed', 'criticalness', 'cost', 'daily', 'directreports', 'duration', 'duties', 'efficiency', 'effort', 'effortdone', 'effortleft', 'email', 'end', 'flags', 'followers', 'freetime', 'freework', 'fte', 'gauge', 'headcount', 'hierarchindex', 'hourly', 'id', 'index', 'inputs', 'journal', 'journal_sub', 'journalmessages', 'journalsummaries', 'line', 'managers', 'maxend', 'maxstart', 'minend', 'minstart', 'monthly', 'no', 'name', 'note', 'opentasks', 'pathcriticalness', 'precursors', 'priority', 'quarterly', 'rate', 'reports', 'resources', 'responsible', 'revenue', 'scenario', 'scheduling', 'seqno', 'sickleave', 'specialleave', 'start', 'status', 'targets', 'turnover', 'wbs', 'unpaidleave', 'weekly', 'yearly'
+
+# precedes Specifies that the tasks with the specified IDs cannot start before this task has been finished.
