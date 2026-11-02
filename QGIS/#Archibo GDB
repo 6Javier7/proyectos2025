@@ -1,0 +1,48 @@
+#Archibo GDB
+
+pomcajorg1_path = '/Users/javiermontanochiriboga/Downloads/Nuevos mapas/POMCAS/POMCA San Jorge/San Jorge/Base_100k.gdb'
+pomcajorg2_path = '/Users/javiermontanochiriboga/Downloads/Nuevos mapas/POMCAS/POMCA San Jorge/San Jorge/Base_100k_Cuenca2502-01.gdb'
+pomcajorg3_path = '/Users/javiermontanochiriboga/Downloads/Nuevos mapas/POMCAS/POMCA San Jorge/San Jorge/Base_100k.gdb'
+
+
+#Que capas tiene sin cargarlo
+#################################
+
+from osgeo import ogr
+
+gdb_path = "/ruta/a/tu_datos.gdb"
+driver = ogr.GetDriverByName("OpenFileGDB")
+ds = driver.Open(pomcajorg1_path, 0)
+
+print(f"📋 Capas en {gdb_path}:")
+for i in range(ds.GetLayerCount()):
+    layer = ds.GetLayer(i)
+    name = layer.GetName()
+    geom_type = layer.GetGeomType()
+    features = layer.GetFeatureCount()
+    print(f"   {i+1}. {name} - {features} features - Tipo: {geom_type}")
+
+ds = None
+
+#Cargar una capa especifica
+###########################
+
+from qgis.core import QgsVectorLayer, QgsProject
+
+# Ruta a la carpeta .gdb
+gdb_path = "/Volumes/Compartidx/proyectos/tu_carpeta.gdb"
+
+# Nombre exacto de la capa dentro de la GDB
+nombre_capa = "nombre_de_la_capa"  # Ej: "limites", "rios", "poligonos"
+
+# Construir la URI correcta
+uri = f"{gdb_path}|layername={nombre_capa}"
+
+# Cargar la capa
+capa = QgsVectorLayer(uri, nombre_capa, "ogr")
+
+if capa.isValid():
+    QgsProject.instance().addMapLayer(capa)
+    print(f"✅ Capa '{nombre_capa}' cargada exitosamente")
+else:
+    print(f"❌ Error al cargar la capa. Verifica el nombre exacto")

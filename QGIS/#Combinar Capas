@@ -1,0 +1,171 @@
+from qgis import processing
+from qgis.core import QgsProject, QgsVectorLayer
+
+# ============================================
+# PASO 1: CARGAR CAPAS Y VERIFICAR TIPO DE GEOMETRÍA
+# ============================================
+
+rutas = {
+    'Ciénaga Zapatosa': '/Users/javiermontanochiriboga/Documents/Javier/Proyectos/Ambiente/POMCAS/POMCAS Zonificacion/Faltantes/Cienaga Zapatosa Cesar/ZonificacionAmbiental.shp',
+    'Mocoa': '/Users/javiermontanochiriboga/Documents/Javier/Proyectos/Ambiente/POMCAS/POMCAS Zonificacion/Faltantes/Mocoa/ZonificacionAmbiental.shp',
+    'Río Amazonas': '/Users/javiermontanochiriboga/Documents/Javier/Proyectos/Ambiente/POMCAS/POMCAS Zonificacion/Faltantes/Rio Amazonas/ZonificacionAmbiental.shp',
+    'Río Tapias': '/Users/javiermontanochiriboga/Documents/Javier/Proyectos/Ambiente/POMCAS/POMCAS Zonificacion/Faltantes/Rio Tapias Guajira/ZonificacionAmbiental.shp',
+    'Río Sucio': '/Users/javiermontanochiriboga/Documents/Javier/Proyectos/Ambiente/POMCAS/POMCAS Zonificacion/Faltantes/Zonificacion_Ambiental_POMCAS_Sucio_Alto/Zonificacion_Ambiental_POMCAS_Sucio_Alto.shp',
+    'ZonificacionAmbiental': '/Users/javiermontanochiriboga/Documents/Javier/Proyectos/Ambiente/POMCAS/POMCAS Zonificacion/Faltantes/ZonificacionAmbiental/ZonificacionAmbiental.shp',
+    'POMCA Octubre': '/Users/javiermontanochiriboga/Documents/Javier/Proyectos/Ambiente/POMCAS/POMCAS Zonificacion/Faltantes/zonificacion_POMCA_Octubre_2021/zonificacion_POMCA_Octubre_2021.shp'
+}
+
+output_path = '/Users/javiermontanochiriboga/Documents/Javier/Proyectos/Ambiente/POMCAS/POMCAS Zonificacion/Faltantes/ZonificacionPomcas.gpkg'
+
+# Lista para almacenar capas válidas
+capas_validas = []
+
+print("="*60)
+print("🔍 VERIFICANDO CAPAS")
+print("="*60)
+
+for nombre, ruta in rutas.items():
+    print(f"\n📂 {nombre}:")
+    print(f"   {ruta}")
+    
+    # Cargar capa
+    capa = QgsVectorLayer(ruta, nombre, "ogr")
+    
+    if not capa.isValid():
+        print(f"   ❌ No se pudo cargar la capa")
+        continue
+    
+    # Verificar tipo de geometría
+    geom_type = capa.geometryType()
+    wkb_type = capa.wkbType()
+    
+    print(f"   ✅ Features: {capa.featureCount()}")
+    print(f"   📐 WKB Type: {wkb_type}")
+    
+    # 0=Punto, 1=Línea, 2=Polígono
+    if geom_type == 2:
+        print(f"   ✅ GEOMETRÍA CORRECTA: Polígonos")
+        capas_validas.append(capa)
+        QgsProject.instance().addMapLayer(capa)
+    elif geom_type == 1:
+        print(f"   ❌ ERROR: Es una capa de LÍNEAS, se necesitan POLÍGONOS")
+    elif geom_type == 0:
+        print(f"   ❌ ERROR: Es una capa de PUNTOS, se necesitan POLÍGONOS")
+    else:
+        print(f"   ❌ ERROR: Tipo de geometría desconocido o inválido")
+        
+        # Intentar reparar geometría
+        print(f"   🔧 Intentando reparar geometría...")
+        try:
+            reparada = processing.run("native:fixgeometries", {
+                'INPUT': capa,
+                'OUTPUT': 'memory:'
+            })['OUTPUT']
+            
+            if reparada.geometryType() == 2:
+                print(f"      ✅ Reparada exitosamente - Ahora es polígono")
+                capas_validas.append(reparada)
+                QgsProject.instance().addMapLayer(reparada)
+            else:
+                print(f"      ❌ No se pudo reparar")
+        except Exception as e:
+            print(f"      ❌ Error reparando: {e}")
+
+print("\n" + "="*60)
+print(f"📊 CAPAS VÁLIDAS PARA COMBINAR: {len(capas_validas)} de {len(rutas)}")
+print("="*60)
+
+# ============================================
+# PASO 2: COMBINAR SOLO CAPAS VÁLIDAS
+# ============================================
+
+if len(capas_validas) >= 2:
+    print(f"\n🔄 Combinando {len(capas_validas)} capas...")
+    
+    try:
+        params = {
+            'LAYERS': capas_validas,
+            'CRS': capas_validas[0].crs(),
+            'OUTPUT': output_path
+        }
+        
+        resultado = processing.run("qgis:mergevectorlayers", params)
+        capa_unica = resultado['OUTPUT']
+        capa_unica.setName('POMCAS_Combinadas')
+        QgsProject.instance().addMapLayer(capa_unica)
+        
+        print(f"\n✅ ¡COMBINACIÓN COMPLETADA!")
+        print(f"   📁 Guardado en: {output_path}")
+        print(f"   🗺️ Capa: {capa_unica.name()}")
+        print(f"   📊 Features totales: {capa_unica.featureCount()}")
+        
+        # Zoom
+        iface.mapCanvas().setExtent(capa_unica.extent())
+        iface.mapCanvas().refresh()
+        
+    except Exception as e:
+        print(f"\n❌ Error combinando: {e}")
+else:
+    print("\n❌ No hay suficientes capas válidas para combinar")
+
+
+# ============================================
+# VERSIÓN SIMPLIFICADA - SOLO NOMBRES
+# ============================================
+
+capa = QgsProject.instance().mapLayersByName('ZonificacionPomcas')[0]
+
+print(f"\n📋 CAMPOS EN '{capa.name()}':")
+print("-"*40)
+
+for field in capa.fields():
+    print(f"   • {field.name()}")
+
+print(f"\n✅ Total: {len(capa.fields())} campos")
+
+
+#############
+
+from qgis.core import QgsProject, QgsVectorLayer, QgsFeature
+
+# ============================================
+# CAMBIAR VALORES USANDO EXPRESIONES
+# ============================================
+
+capa = QgsProject.instance().mapLayersByName('ZonificacionPomcas')[0]
+
+# DICCIONARIO DE REEMPLAZOS
+# Formato: 'valor_actual': 'nuevo_valor'
+reemplazos = {
+    '01': 'Áreas del SINAP',
+    '02': 'Áreas complementarias a la conservación',
+    '03': 'Áreas de importancia ambiental',
+    '04': 'Áreas con reglamentación especial',
+    '05': 'Áreas de amenazas naturales',
+    '06': 'Áreas de restauración ecológica',
+    '07': 'Áreas de rehabilitación',
+    '08': 'Áreas de recuperación para el uso múltiple',
+    '09': 'Áreas agrícolas',
+    '10': 'Áreas agrosilvopastoriles',
+    '11': 'Áreas urbanas municipales y distritales',
+    '12': 'Áreas objeto de ajuste cartográfico',
+    '13': 'Otras subzonas de uso y manejo'
+}
+
+print("🔄 Reemplazando valores en campo 'szon_uso_m'...")
+
+capa.startEditing()
+contador = 0
+
+for feature in capa.getFeatures():
+    valor_actual = str(feature['szon_uso_m'])
+    
+    if valor_actual in reemplazos:
+        nuevo_valor = reemplazos[valor_actual]
+        feature['szon_uso_m'] = nuevo_valor
+        capa.updateFeature(feature)
+        contador += 1
+        print(f"   ✓ {valor_actual} → {nuevo_valor}")
+
+capa.commitChanges()
+print(f"\n✅ {contador} valores reemplazados exitosamente")

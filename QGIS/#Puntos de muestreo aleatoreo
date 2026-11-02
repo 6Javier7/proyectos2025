@@ -1,0 +1,181 @@
+import processing
+import random
+from qgis.core import QgsVectorLayer, QgsProject, QgsWkbTypes, QgsCoordinateReferenceSystem
+from qgis.PyQt.QtCore import QVariant
+
+# ============================================================
+# PARÁMETROS DE ENTRADA
+# ============================================================
+
+# --- Capa y área del conglomerado ---
+nombre_capa = "consejo_seleccionado"  # Cambia por tu capa
+area_conglomerado_ha = 707 / 1e4      # 0.0707 ha (707 m²)
+
+# --- Parámetros estadísticos ---
+cv = 86          # Coeficiente de variación esperado (en %)
+e = 15           # Error relativo tolerable (en %)
+confianza = 0.975  # Para intervalo de confianza del 95% (t student)
+grados_libertad = 9  # Grados de libertad para t (puedes ajustar)
+
+# ============================================================
+# CÁLCULO DEL TAMAÑO DE MUESTRA (n)
+# ============================================================
+
+# Obtener capa y calcular área en hectáreas
+polylayer = QgsProject.instance().mapLayersByName(nombre_capa)[0]
+if not polylayer or polylayer.geometryType() != QgsWkbTypes.PolygonGeometry:
+    raise Exception("Capa no válida o no es polígono")
+
+# Reprojectar a EPSG:9377 si es necesario para obtener área en metros
+if polylayer.crs().isGeographic():
+    crs_destino = QgsCoordinateReferenceSystem("EPSG:9377")
+    capa_trabajo = processing.run("native:reprojectlayer",
+        {'INPUT': polylayer, 'TARGET_CRS': crs_destino, 'OUTPUT': 'memory:'})['OUTPUT']
+else:
+    capa_trabajo = polylayer
+
+# Calcular área total en m² y hectáreas
+area_m2 = capa_trabajo.geometry().combine(capa_trabajo.geometry()).area()  # Alternativa: sumar áreas
+# Mejor usar la extensión o área real:
+area_total_m2 = sum([f.geometry().area() for f in capa_trabajo.getFeatures()])
+area_total_ha = area_total_m2 / 10000
+
+# N total de conglomerados posibles
+N = area_total_ha / area_conglomerado_ha
+N = int(N)  # Número entero
+
+# Valor t de Student
+t = abs(QgsProject.instance().getQgsSettings().value("qgis") )  # No, mejor usar scipy o tabla
+# Usamos la función qt de R, pero en PyQGIS podemos usar scipy.stats si está instalado
+# Si no, podemos aproximar con 1.96 para grandes muestras.
+# Como tenemos grados_libertad = 9, calculamos t con scipy si está disponible.
+try:
+    from scipy.stats import t
+    t_val = t.ppf(confianza, grados_libertad)
+except ImportError:
+    # Si scipy no está, usar valor t tabulado para 95% y 9 gl ≈ 2.262
+    t_val = 2.262  # Aproximación
+
+# Calcular n usando fórmula para población finita (corrección)
+# n = (N * t^2 * cv^2) / (N * e^2 + t^2 * cv^2)
+# Convertir cv y e a proporciones
+cv_prop = cv / 100
+e_prop = e / 100
+
+numerador = N * (t_val**2) * (cv_prop**2)
+denominador = N * (e_prop**2) + (t_val**2) * (cv_prop**2)
+n = numerador / denominador
+n = int(round(n, 0))  # Redondear a entero
+
+# Asegurar que n no sea mayor que N
+if n > N:
+    n = N
+
+print(f"\n📊 RESULTADOS DEL MUESTREO:")
+print(f"   Área total: {area_total_ha:.2f} ha")
+print(f"   Área del conglomerado: {area_conglomerado_ha:.4f} ha")
+print(f"   N (total conglomerados): {N}")
+print(f"   t de Student (gl={grados_libertad}): {t_val:.4f}")
+print(f"   CV: {cv}%")
+print(f"   Error: {e}%")
+print(f"   n (tamaño de muestra calculado): {n}")
+
+# ============================================================
+# GENERAR PUNTOS DE MUESTREO
+# ============================================================
+
+# Espaciado de la cuadrícula (lado del conglomerado)
+lado_km = (area_conglomerado_ha * 10000) ** 0.5 / 1000  # en km
+lado_m = lado_km * 1000
+
+print(f"\n📐 Generando puntos potenciales con cuadrícula de {lado_km:.3f} km...")
+
+# Obtener extensión
+extent = capa_trabajo.extent()
+xmin, xmax, ymin, ymax = extent.xMinimum(), extent.xMaximum(), extent.yMinimum(), extent.yMaximum()
+extent_string = f"{xmin},{xmax},{ymin},{ymax} [{capa_trabajo.crs().authid()}]"
+
+# Crear cuadrícula
+grid_result = processing.run(
+    "native:creategrid",
+    {
+        'TYPE': 2,
+        'EXTENT': extent_string,
+        'HSPACING': lado_m,
+        'VSPACING': lado_m,
+        'HOVERLAY': 0,
+        'VOVERLAY': 0,
+        'CRS': capa_trabajo.crs(),
+        'OUTPUT': 'memory:'
+    }
+)
+grid_layer = grid_result['OUTPUT']
+
+# Calcular centroides
+centroids_result = processing.run(
+    "native:centroids",
+    {
+        'INPUT': grid_layer,
+        'ALL_PARTS': False,
+        'OUTPUT': 'memory:'
+    }
+)
+centroids_layer = centroids_result['OUTPUT']
+
+# Filtrar puntos dentro del polígono
+clipped_result = processing.run(
+    "native:extractbylocation",
+    {
+        'INPUT': centroids_layer,
+        'PREDICATE': [0],
+        'INTERSECT': capa_trabajo,
+        'OUTPUT': 'memory:'
+    }
+)
+puntos_potenciales = clipped_result['OUTPUT']
+total_potenciales = puntos_potenciales.featureCount()
+print(f"   Puntos potenciales dentro del polígono: {total_potenciales}")
+
+# Selección aleatoria de n puntos
+if total_potenciales == 0:
+    raise Exception("No hay puntos dentro del polígono. Revisa el espaciado.")
+if n > total_potenciales:
+    print(f"⚠️ n ({n}) es mayor que puntos potenciales ({total_potenciales}). Usando todos.")
+    n = total_potenciales
+
+# Obtener IDs de todos los features y seleccionar n aleatorios
+ids = [f.id() for f in puntos_potenciales.getFeatures()]
+if n < total_potenciales:
+    selected_ids = random.sample(ids, n)
+else:
+    selected_ids = ids
+
+# Crear nueva capa con solo los puntos seleccionados
+from qgis.core import QgsFeature
+final_points = QgsVectorLayer("Point?crs=" + capa_trabajo.crs().authid(), f"Puntos_Muestreo_{n}", "memory")
+provider = final_points.dataProvider()
+provider.addAttributes([QgsField('id', QVariant.Int)])
+final_points.updateFields()
+
+for fid in selected_ids:
+    feature = puntos_potenciales.getFeature(fid)
+    new_feat = QgsFeature()
+    new_feat.setGeometry(feature.geometry())
+    new_feat.setAttributes([fid])
+    provider.addFeature(new_feat)
+
+final_points.updateExtents()
+QgsProject.instance().addMapLayer(final_points)
+
+# ============================================================
+# RESUMEN FINAL
+# ============================================================
+print("\n" + "="*60)
+print("✅ ¡MUESTREO COMPLETADO!")
+print("="*60)
+print(f"📌 Capa original: {nombre_capa}")
+print(f"📌 CRS: {capa_trabajo.crs().authid()}")
+print(f"📌 Tamaño de muestra (n): {n}")
+print(f"📌 Puntos generados: {final_points.featureCount()}")
+print(f"📌 Capa añadida: {final_points.name()}")
+print("="*60)

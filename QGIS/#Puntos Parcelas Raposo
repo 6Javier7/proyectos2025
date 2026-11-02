@@ -1,0 +1,76 @@
+#puntos Parcelas Raposo
+
+from qgis.core import QgsProject, QgsVectorLayer, QgsFeature, QgsGeometry, QgsPointXY, QgsField
+from PyQt5.QtCore import QVariant
+
+# Datos de coordenadas
+datos = [
+    ["Raposo", "Las Cruces", "10-1", 3.685489, -77.144661],
+    ["Raposo", "Las Cruces", "10-2", 3.686576, -77.144123],
+    ["Raposo", "Las Cruces", "9-1", 3.68796, -77.144128],
+    ["Raposo", "Las Cruces", "9-2", 3.687961, -77.144184],
+    ["Raposo", "Las Cruces", "8-1", 3.6881, -77.142932],
+    ["Raposo", "Las Cruces", "8-2", 3.688, -77.142861],
+    ["Raposo", "Las Cruces", "7-1", 3.688245, -77.142013],
+    ["Raposo", "Las Cruces", "7-2", 3.688263, -77.141952],
+    ["Raposo", "Las Cruces", "6-1", 3.694935, -77.138652],
+    ["Raposo", "Las Cruces", "6-2", 3.694934, -77.138643],
+    ["Raposo", "Las Cruces", "5-1", 3.693342, -77.140188],
+    ["Raposo", "Las Cruces", "4-1", 3.693331, -77.140146],
+    ["Raposo", "Las Cruces", "4-2", 3.692492, -77.140827],
+    ["Raposo", "Las Cruces", "3-1", 3.691563, -77.141505],
+    ["Raposo", "Las Cruces", "3-2", 3.691549, -77.141465],
+    ["Raposo", "Las Cruces", "2-1", 3.69056, -77.141733],
+    ["Raposo", "Las Cruces", "2-2", 3.690565, -77.141662],
+    ["Raposo", "Las Cruces", "1-1", 3.689465, -77.141758],
+    ["Raposo", "Las Cruces", "1-2", 3.689379, -77.141693],
+    ["Raposo", "Piñalito", "10", 3.691305, -77.180163],
+    ["Raposo", "Piñalito", "9", 3.691295, -77.179919],
+    ["Raposo", "Piñalito", "6", 3.690552, -77.179926],
+    ["Raposo", "Piñalito", "4", 3.693612, -77.181106],
+    ["Raposo", "Piñalito", "3", 3.695383, -77.1811833],
+    ["Raposo", "Piñalito", "2", 3.697222, -77.182511],
+    ["Yurumangui", "", "", 3.377352, -77.378033],
+    ["Yurumangui", "", "", 3.37748, -77.378297]
+]
+
+# Crear capa de puntos en memoria (EPSG:4326 - WGS84)
+capa = QgsVectorLayer("Point?crs=EPSG:4326", "Parcelas Raposo y Yurumangui", "memory")
+proveedor = capa.dataProvider()
+
+# Agregar campos/atributos
+proveedor.addAttributes([
+    QgsField("Consejo", QVariant.String),
+    QgsField("Vereda", QVariant.String),
+    QgsField("Parcela", QVariant.String),
+    QgsField("Latitud", QVariant.Double),
+    QgsField("Longitud", QVariant.Double)
+])
+capa.updateFields()
+
+# Crear features y agregarlos
+features = []
+for dato in datos:
+    feature = QgsFeature()
+    # Crear geometría de punto (Longitud, Latitud)
+    punto = QgsPointXY(dato[4], dato[3])
+    feature.setGeometry(QgsGeometry.fromPointXY(punto))
+    # Agregar atributos
+    feature.setAttributes([
+        dato[0],  # Consejo
+        dato[1],  # Vereda
+        dato[2],  # Parcela
+        dato[3],  # Latitud
+        dato[4]   # Longitud
+    ])
+    features.append(feature)
+
+# Agregar features a la capa
+proveedor.addFeatures(features)
+capa.updateExtents()
+
+# Agregar al proyecto
+QgsProject.instance().addMapLayer(capa)
+
+print(f"✅ Se agregaron {len(features)} puntos exitosamente")
+print(f"📍 Capa: {capa.name()}")

@@ -1,0 +1,642 @@
+/* ============================================
+   TASKJUGGLER MODERN THEME 2024
+   ============================================ */
+
+/* CSS Variables para fácil personalización */
+:root {
+  /* Paleta de colores principal */
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #64748b;
+  --accent: #f59e0b;
+  
+  /* Fondos */
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-header: #f1f5f9;
+  
+  /* Texto */
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  
+  /* Bordes y sombras */
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  
+  /* Estados de tareas */
+  --busy: #ef4444;
+  --busy-light: #fca5a5;
+  --free: #22c55e;
+  --free-light: #86efac;
+  --offduty: #cbd5e1;
+  
+  /* Espaciado */
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+/* ============================================
+   BASE & TYPOGRAPHY
+   ============================================ */
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+h1 { 
+  font-size: 1.75rem; 
+  color: var(--text-primary);
+}
+
+h2 { 
+  font-size: 1.25rem; 
+  color: var(--text-secondary);
+}
+
+h3 { 
+  font-size: 1rem; 
+  color: var(--text-secondary);
+}
+
+p {
+  font-size: 14px;
+  margin: 0 0 1rem 0;
+}
+
+/* ============================================
+   LAYOUT PRINCIPAL
+   ============================================ */
+
+.tj_page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Grid layout moderno para reportes */
+.tj_text_page {
+  display: grid;
+  grid-template-columns: 250px 1fr 250px;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .tj_text_page {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tj_column_left,
+.tj_column_center,
+.tj_column_right {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* ============================================
+   TABLAS PRINCIPALES (REPORTES)
+   ============================================ */
+
+.tj_table_frame {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+}
+
+.tj_table_headline {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--bg-header) 0%, #e2e8f0 100%);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.tj_table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+}
+
+/* Header de tabla */
+.tj_table_header_cell {
+  background: var(--bg-header);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+/* Celdas de datos */
+.tj_table_cell {
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  transition: background-color 0.15s ease;
+}
+
+.tj_table tr:hover .tj_table_cell {
+  background-color: #f8fafc;
+}
+
+/* Iconos en celdas */
+.tj_table_cell_icon {
+  width: 24px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.tj_table_cell_label {
+  font-weight: 500;
+}
+
+/* Tooltips modernos */
+.tj_table_cell_tooltip {
+  color: var(--text-muted);
+  cursor: help;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.tj_table_cell_tooltip:hover {
+  opacity: 1;
+}
+
+.tj_tooltip_box {
+  position: fixed;
+  background: var(--text-primary);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  display: none;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   CELDAS ESPECÍFICAS POR TIPO
+   ============================================ */
+
+/* Tareas */
+.taskcell1, .taskcell2 {
+  background: transparent;
+  padding: 0.875rem 1rem;
+}
+
+.taskcell1 {
+  background: #eff6ff;
+  border-left: 3px solid var(--primary);
+}
+
+/* Recursos */
+.resourcecell1, .resourcecell2 {
+  padding: 0.875rem 1rem;
+}
+
+.resourcecell1 {
+  background: #fef3c7;
+  border-left: 3px solid var(--accent);
+}
+
+/* Cuentas */
+.accountcell1, .accountcell2,
+.costaccountcell1, .costaccountcell2,
+.revenueaccountcell1, .revenueaccountcell2 {
+  padding: 0.875rem 1rem;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.8125rem;
+}
+
+.costaccountcell1 {
+  background: #fef2f2;
+  border-left: 3px solid var(--busy);
+}
+
+.revenueaccountcell1 {
+  background: #f0fdf4;
+  border-left: 3px solid var(--free);
+}
+
+/* Alternancia de filas sutiles */
+tr:nth-child(even) .tj_table_cell {
+  background: rgba(248, 250, 252, 0.5);
+}
+
+/* ============================================
+   GANTT CHART & TIMELINE
+   ============================================ */
+
+/* Contenedor del Gantt */
+.tj_gantt_frame {
+  position: relative;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Barras de tareas modernas */
+.taskbarframe {
+  background: transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.taskbar {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.taskbar:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+/* Barra de progreso */
+.progressbar {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+/* Milestones como diamantes modernos */
+.milestone {
+  background: var(--accent);
+  transform: rotate(45deg);
+  border-radius: 2px;
+  box-shadow: var(--shadow);
+}
+
+/* Contenedores (summary tasks) */
+.containerbar {
+  background: var(--text-secondary);
+  border-radius: var(--radius);
+  opacity: 0.9;
+}
+
+/* Líneas de dependencia */
+.depline {
+  background: var(--text-muted);
+  height: 2px;
+  border-radius: 1px;
+}
+
+.depline::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid var(--text-muted);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+/* Línea de "ahora" */
+.nowline {
+  background: var(--busy);
+  width: 2px;
+  box-shadow: 0 0 8px var(--busy);
+}
+
+/* ============================================
+   LOAD CHART (RECURSOS)
+   ============================================ */
+
+.loadstackframe {
+  background: transparent;
+  border-radius: var(--radius);
+}
+
+/* Estados de carga con gradientes suaves */
+.busy1 { 
+  background: linear-gradient(135deg, var(--busy) 0%, #dc2626 100%);
+  border-radius: 2px;
+}
+
+.busy2 { 
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border-radius: 2px;
+}
+
+.loaded1 { 
+  background: var(--busy-light);
+  border-radius: 2px;
+}
+
+.loaded2 { 
+  background: #f87171;
+  border-radius: 2px;
+}
+
+.free1 { 
+  background: linear-gradient(135deg, var(--free) 0%, #16a34a 100%);
+  border-radius: 2px;
+}
+
+.free2 { 
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  border-radius: 2px;
+}
+
+.offduty1, .offduty2 { 
+  background: var(--offduty);
+  border-radius: 2px;
+}
+
+/* ============================================
+   CALENDARIO
+   ============================================ */
+
+/* Cabeceras de días */
+.tabhead {
+  background: var(--bg-header);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.tabhead_offduty {
+  background: #f1f5f9;
+  color: var(--text-muted);
+}
+
+/* Celdas del calendario */
+.celldiv {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Tareas en calendario */
+.caltask1 {
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius);
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.caltask2 {
+  background: var(--primary-dark);
+  color: white;
+  border-radius: var(--radius);
+}
+
+/* ============================================
+   NAVEGACIÓN (Navbar)
+   ============================================ */
+
+.navbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar_current {
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.navbar_other {
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.navbar_other:hover {
+  background: var(--bg-header);
+  color: var(--text-primary);
+}
+
+/* Rulers de navegación */
+.navbar_topruler,
+.navbar_midruler,
+.navbar_bottomruler {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* ============================================
+   LEYENDA
+   ============================================ */
+
+.tj_table_legend_frame {
+  background: var(--bg-header);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  margin-top: 1rem;
+}
+
+.tj_table_legend {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tj_legend_row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tj_legend_symbol {
+  width: 32px;
+  height: 16px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.tj_legend_label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ============================================
+   JOURNAL / LOGS
+   ============================================ */
+
+.tj_journal {
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+h1.tj_journal {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+h2.tj_journal {
+  font-size: 1rem;
+  color: var(--secondary);
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+h3.tj_journal {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 1rem 0 0.5rem 0;
+}
+
+p.tj_journal {
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+}
+
+/* ============================================
+   ELEMENTOS DIVERSOS
+   ============================================ */
+
+/* Caption de tablas */
+.tj_table_caption {
+  background: #f8fafc;
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  font-style: italic;
+}
+
+/* Copyright */
+.copyright {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2rem;
+}
+
+/* Secciones de código */
+div[codesection] {
+  background: #1e293b;
+  border-radius: var(--radius-lg);
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+pre[codesection] {
+  padding: 1.5rem;
+  color: #e2e8f0;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin: 0;
+}
+
+/* Formas geométricas para Gantt */
+.tj_gantt_jag {
+  border-top-color: var(--text-muted);
+}
+
+.tj_diamond_top {
+  border-bottom-color: var(--accent);
+}
+
+.tj_diamond_bottom {
+  border-top-color: var(--accent);
+}
+
+.tj_arrow_head {
+  border-left-color: var(--text-muted);
+}
+
+/* Utilidades */
+.white {
+  background: white;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tj_table_frame {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Hover effects en barras */
+.taskbar, .containerbar, .milestone {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrollbar moderno */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-header);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}

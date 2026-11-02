@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Tooltip Moderno</title>
+    <link rel="stylesheet" href="modern-theme.css">
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Demo Tooltip Moderno</h1>
+    
+    <div class="demo-section">
+        <h2>Básico</h2>
+        <button onmouseover="Tip('¡Hola! Tooltip moderno')" onmouseout="UnTip()">
+            Hover me
+        </button>
+    </div>
+
+    <div class="demo-section">
+        <h2>Con opciones</h2>
+        <button onmouseover="Tip('Con color custom', DELAY, 200, BGCOLOR, '#7c3aed', FADEIN, 300)" 
+                onmouseout="UnTip()">
+            Color morado
+        </button>
+        
+        <button onmouseover="Tip('Arriba del mouse', ABOVE, true, DELAY, 100)" 
+                onmouseout="UnTip()">
+            Posición arriba
+        </button>
+    </div>
+
+    <div class="demo-section">
+        <h2>TagToTip (HTML complejo)</h2>
+        <div id="contenido-html" hidden>
+            <h3>🎉 Contenido HTML</h3>
+            <p>Esto es un <strong>tooltip</strong> con <em>formato</em>!</p>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>
+        </div>
+        <button onmouseover="TagToTip('contenido-html', DELAY, 200)" 
+                onmouseout="UnTip()">
+            Ver HTML
+        </button>
+    </div>
+
+    <script src="tooltip_moderno.js"></script>
+</body>
+</html>

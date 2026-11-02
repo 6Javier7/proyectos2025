@@ -4,7 +4,7 @@
  * be overwritten whenever the stylesheet that comes with TaskJuggler
  * has been modified. */
 body {
-  font-family:Bitstream Vera Sans, Tahoma, sans-serif;
+  font-family:Ancizar Sans, GMX, sans-serif;
   font-size:15px;
 }
 h1, h2, table, tr, td, div, span {
@@ -83,7 +83,7 @@ p.tj_journal {
   margin-left:auto;
   margin-right:auto;
   text-align:center;
-  background-color:#9a9a9a;
+  background-color:#9F2241;
   margin-top:15px;
   margin-bottom:15px;
   border-spacing:1px;
@@ -98,12 +98,12 @@ p.tj_journal {
   padding:5px;
   margin:1px;
   text-align:center;
-  color:#000000;
-  background-color:#d4dde6; 
+  color:#E1E1E1;
+  background-color:#003C58; 
 }
 
 .tj_table {
-  background-color:#9a9a9a;
+  background-color:#9F2241;
   margin:0px;
   border-spacing:1px;
 }
@@ -113,7 +113,7 @@ p.tj_journal {
   padding:1px 3px 1px 3px;
   white-space:nowrap;
   border-spacing:0px;
-  color:#ffffff;
+  color:#F6EAD0;
   overflow:hidden;
 }
 
@@ -268,14 +268,14 @@ p.tj_journal {
 }
 
 .tabback {
-  background-color:#9a9a9a;
+  background-color:#9F2241;
   overflow:visible;
 }
 .tabfront { background-color:#d4dde6; }
 .tabhead {
   white-space:nowrap;
   background-color:#7a7a7a;
-  color:#ffffff;
+  color:#F6EAD0;
   text-align:center;
 }
 .tabhead_offduty {
@@ -285,8 +285,8 @@ p.tj_journal {
 }
 .tabfooter {
   white-space:nowrap;
-  background-color:#9a9a9a;
-  color:#ffffff;
+  background-color:#9F2241;
+  color:#F6EAD0;
   text-align:center;
 }
 .headercelldiv {
@@ -376,7 +376,7 @@ p.tj_journal {
 .todo2 { background-color:#aa9999; }
 
 .tabvline {
-  background-color:#9a9a9a;
+  background-color:#9F2241;
   position:absolute;
 }
 .tj_gantt_frame {
@@ -393,11 +393,11 @@ p.tj_journal {
   position:absolute;
 }
 .taskbar {
-  background-color:#2f57ea;
+  background-color:#FFAA16;
   position:absolute;
 }
 .progressbar {
-  background-color:#36363f;
+  background-color:#FFAA16;
   position:absolute;
 }
 .milestone {
@@ -438,7 +438,7 @@ p.tj_journal {
   position:absolute;
 }
 .white {
-  background-color:#FFFFFF;
+  background-color:#F6EAD0;
   position:absolute;
 }
 
@@ -456,10 +456,10 @@ p.tj_journal {
   font-size:13px;
   font-weight:bold;
   padding:5px;
-  color:#FFFFFF;
+  color:#F6EAD0;
 }
 .navbar_other {
-  background-color:#FFFFFF;
+  background-color:#F6EAD0;
   font-size:13px;
   font-weight:bold;
   padding:2px;

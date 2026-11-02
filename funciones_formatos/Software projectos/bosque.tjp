@@ -1,0 +1,628 @@
+project bosque1 "Mejoramiento de la cobertura boscosa"  2026-09-20 +24m {
+
+  # Set the default time zone for the project. If not specified, UTC is used.
+
+  timezone "America/Bogota"
+  
+  # Hide the clock time. Only show the date.
+  
+  timeformat "%d/%m/%Y"
+  
+  # Use US format for numbers
+  
+  numberformat "-" "" "." "," 1
+  
+  # Use US financial format for currency values. Don't show cents.
+  currencyformat "(" ")" "." "," 0
+  
+  # The date that is used to show additional line on a Gannt chart and can be specified by the user.
+  
+  markdate 2027-08-07-03:00
+  
+  # The currency for all money values is the Euro.
+  
+  currency "COP"
+
+  # We want to compare the baseline scenario to one with a slightly delayed start.
+  
+  scenario plan "Plan" {
+    scenario delayed "Delayed"
+  }
+  
+}
+
+macro TaskTip [
+  tooltip istask() -8<-
+    '''Inicio: ''' <-query attribute='start'->
+    '''Final: ''' <-query attribute='end'->
+    ----
+    '''Recursos:'''
+
+    <-query attribute='resources'->
+    ----
+    '''Precursor: '''
+
+    <-query attribute='precursors'->
+    ----
+    '''Siguiente: '''
+
+    <-query attribute='followers'->
+    ->8-
+]
+
+#cuentas
+account cost "Gastos del Personal" {
+  aggregate resources
+  account teamA "Tecnicxs"
+  account teamB "Jornales"
+  account teamC "Profesionales"
+}
+
+
+account productCost "Gastos de las Actividades" {
+  aggregate tasks
+}
+
+
+account rev "Desenbolsos" {
+  credits 2026-10-16 "Primer desenbolso" 300039845,
+          2027-03-16 "Segundo desenbolso" 300039845
+}
+
+
+balance productCost rev
+
+#manager
+#antro1 
+#etno1
+#bio1
+#sig1
+#jur1
+#camp1
+#gest1
+
+
+
+#Personas
+
+resource manager "Cordinacion" {
+  chargeset teamC
+  email "phb1@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource antro1 "Antropologia" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource etno1 "Entoeducacion" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 425000 #66407 #8500000
+}
+
+resource bio1 "Javier" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 350000 #54688 #7000000
+}
+
+resource sig1 "SIG" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 300000 #46875 #6000000
+}
+
+resource jur1 "Derecho" {
+  chargeset teamC
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 300000 #46875 #6000000
+}
+
+resource camp1 "Tecnicx Campo" {
+  chargeset teamA
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 150000 #23438 #3000000
+}
+
+resource gest1 "Gestion Comunitaria" {
+  chargeset teamA
+  email "phb2@ejemplo.com"
+  leaves annual 2026-03-29 - 2026-04-05
+  limits { dailymax 6.4h }
+  rate 100000 #15625 #2000000
+}
+
+
+
+#allocate manager 
+#allocate antro1 
+#allocate etno1 
+#allocate bio1 
+#allocate sig1 
+#allocate jur1 
+#allocate camp1 
+#allocate gest1 
+#allocate teamB
+
+
+resource teamB "Jornales" {
+  rate 80000
+  chargeset teamB
+  resource "jor1"
+  resource "jor2"
+  resource "jor3"
+}
+
+
+#Tareas
+/* 
+ * ================================
+ * PRECONTRACTUAL
+ * ================================
+ */
+
+task t0 "Contratacion " {
+  chargeset productCost
+  task t0a "Pliegos SECOP II" {
+      length 2m
+      journalentry %{${now} + 2w} "Convocatoria Publica y Seleccion" {
+        summary -8<-
+          Resumen del issuue.
+        ->8-
+        details -8<-
+          Detalle del issuue.
+        ->8- 
+        }
+      }
+  task t0a1 "Acta de Inicio" {
+      milestone
+      depends !t0a
+      journalentry %{${now} + 2m} "Convocatoria Publica y Seleccion" {
+        summary -8<-
+          Resumen del issuue.
+        ->8-
+        details -8<-
+          Detalle del issuue.
+        ->8- 
+        }
+
+    }
+  }
+
+
+
+/* 
+ * ================================
+ * Objetivo 1. IMPLEMENTAR SISTEMAS PARA EL MANEJO SOSTENIBLE DE LOS ECOSISTEMAS FORESTALES 
+ * ================================
+ */
+task t1 "Sistemas de Manejo Forestal " {
+  chargeset productCost
+
+/* 
+ * ================================
+ * Objetivo 1a. Gestion Ecositemica
+ * ================================
+ */
+
+
+
+  task t1a "Manejo de Paisaje" {
+      depends t0.t0a1
+      #milestone  
+ 
+    task t1c "Capacitacion" {
+              #depends !t1a
+              effort 2m
+              allocate antro1
+
+    }
+
+    task t1a1 "Establecimiento" {
+            effort 2m
+            depends !t1c
+            allocate bio1
+            charge 61740860 onstart #onend 
+             limits {
+                   weeklymax 4d
+                      }
+           }
+    
+    task t1a2 "Mantenimiento" {
+      depends !t1a1
+       task t1a21 "Primer Mantenimiento"{
+                  #depends !t1a2 {gapduration 3m}
+                 ##minstar %{${now} + 5m}
+                  effort 1m
+                  allocate camp1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                      }
+
+       task t1a22 "Segundo Mantenimiento"{
+                  depends !t1a21 {gapduration 3m}
+                # #minstar %{${now} + 8m}
+                  effort 1m
+                  allocate camp1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                       }
+                
+                 task t1a23 "Tercer Mantenimiento"{
+                  depends !t1a22 {gapduration 3m}
+                 # #minstar %{${now} + 12m}
+                  effort 1m
+                  allocate camp1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                       }
+              }
+
+    task t1a3 "Seguimiento" {
+       depends !t1a1 #{gapduration 3m}
+       task t1a31 "Primer Seguimiento"{
+                  #depends !t1a1 {gapduration 3m}
+                  #minstar %{${now} + 5m}
+                  effort 1m
+                  allocate bio1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                      }
+
+       task t1a32 "Segundo Seguimiento"{
+                  depends !t1a31 {gapduration 3m}
+                  effort 1m
+                  #minstar %{${now} + 8m}
+                  allocate bio1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                       }
+                 
+                 task t1a33 "Tercer Seguimiento"{
+                  depends !t1a32 {gapduration 3m}
+                  effort 1m
+                  #minstar %{${now} + 12m}
+                  allocate bio1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                       }
+             }
+    
+
+/* 
+ * ================================
+ * Objetivo 1b. Agricultura
+ * ================================
+ */
+
+  task t1b "Sistemas Agroecologicos Multifuncionales" {
+      #depends !t1a
+     # milestone  
+    
+    task t1b1 "Establecimiento" {
+            effort 2m
+            #depends !t1a
+            allocate etno1
+            charge 61740860 onstart #onend 
+             limits {
+                   weeklymax 4d
+                      }
+           }
+    
+    task t1b2 "Mantenimiento" {
+      depends !t1b1 {gapduration 3m}
+       task t1b21 "Primer Mantenimiento"{
+                  #depends {gapduration 3m} #{minstar %{${now} + 5m}}
+                  effort 1m
+                  allocate camp1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                      }
+
+       task t1b22 "Segundo Mantenimiento"{
+                  depends !t1b21 {gapduration 3m}
+                  #minstar %{${now} + 8m}
+                  effort 1m
+                  allocate camp1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                       }
+                
+                 task t1b23 "Tercer Mantenimiento"{
+                  depends !t1b22 {gapduration 3m}
+                  #minstar %{${now} + 12m}
+                  effort 1m
+                  allocate camp1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                       }
+              }
+
+    task t1b3 "Seguimiento" {
+       depends !t1b1
+       
+       task t1b31 "Primer Seguimiento"{
+                  #depends !t1b1 {gapduration 3m}
+                  #minstar %{${now} + 5m}
+                  effort 1m
+                  allocate etno1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                      }
+
+       task t1b32 "Segundo Seguimiento"{
+                  depends !t1b31 {gapduration 3m}
+                  #minstar %{${now} + 8m}
+                  effort 1m
+                  allocate etno1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                       }
+                 
+                 task t1b33 "Tercer Seguimiento"{
+                  depends !t1b32 {gapduration 3m}
+                  #minstar %{${now} + 12m}
+                  effort 1m
+                  allocate etno1
+                  charge 6174086 onstart #onend 
+                   limits {
+                         weeklymax 4d
+                            }
+                       }
+             }
+      }
+   
+/* 
+ * ================================
+ * Objetivo 1d. Monitoreo
+ * ================================
+ */
+
+   task t1d "Monitoreo" {
+                  depends !t1c {gapduration 3m}
+                  task t1d1 "Primer Monitoreo"{
+                       #depends !t1c 
+                       #minstar %{${now} + 2m}
+                       effort 1m
+                       allocate bio1
+                       charge 6174086 onstart #onend 
+                        limits {
+                              weeklymax 4d
+                                 }                  
+                  }
+   
+
+                  task t1d2 "Segundo Monitoreo"{
+                       depends !t1d1{gapduration 3m} #!t1a1, !t1b1 
+                       #minstar %{${now} + 5m}
+                       effort 1m
+                       allocate bio1
+                       charge 6174086 onstart #onend 
+                        limits {
+                              weeklymax 4d
+                                 }                  
+                  }
+
+                  task t1d3 "Tercer Monitoreo"{
+                       depends !t1d2{gapduration 3m} #!t1a2, !t1b2 
+                       #minstar %{${now} + 8m}
+                       effort 1m
+                       allocate bio1
+                       charge 6174086 onstart #onend 
+                        limits {
+                              weeklymax 4d
+                                 }                  
+                  }
+
+                  task t1d4 "Cuarto Monitoreo"{
+                       depends !t1d3{gapduration 3m} #!t1a3, !t1b3 
+                       #minstar %{${now} + 12m}
+                       effort 1m
+                       allocate bio1
+                       charge 6174086 onstart #onend 
+                        limits {
+                              weeklymax 4d
+                                 }                  
+                  }
+          }
+
+/* 
+ * ================================
+ * Objetivo 1e. Asistencia Tecnica
+ * ================================
+ */
+
+   task t1e "Asistencia Tecnica" {
+                  depends !t1c {gapduration 3m}
+                  task t1e1 "Primera Asistencia Tecnica"{
+                       #depends !t1c 
+                       #minstar %{${now} + 2m}
+                       effort 1m
+                       allocate etno1
+                       charge 6174086 onstart #onend 
+                        limits {
+                              weeklymax 4d
+                                 }                  
+                  }
+   
+
+                  task t1e2 "Segunda Asistencia Tecnic"{
+                       depends !t1e1 {gapduration 3m}#!t1a1, !t1b1 
+                       #minstar %{${now} + 5m}
+                       effort 1m
+                       allocate etno1
+                       charge 6174086 onstart #onend 
+                        limits {
+                              weeklymax 4d
+                                 }                  
+                  }
+
+                  task t1e3 "Tercera Asistencia Tecnica"{
+                       depends !t1e2 {gapduration 3m} #!t1a2, !t1b2 
+                       #minstar %{${now} + 8m}
+                       effort 1m
+                       allocate etno1
+                       charge 6174086 onstart #onend 
+                        limits {
+                              weeklymax 4d
+                                 }                  
+                  }
+
+                  task t1e4 "Cuarta Asistencia Tecnica"{
+                       depends !t1e3 {gapduration 3m} #!t1a3, !t1b3 
+                       #minstar %{${now} + 12m}
+                       effort 1m
+                       allocate etno1
+                       charge 6174086 onstart #onend 
+                        limits {
+                              weeklymax 4d
+                                 }                  
+                  }
+          }
+   }
+}
+/* 
+ * ================================
+ * GENERACIÓN DE REPORTES
+ * ================================
+ */
+
+taskreport "Cronogramabosque1" {
+  formats html
+    header -8<-
+    === Resumen del Proyecto ===
+
+    Este proyecto se estructura en 3 actividades grandes.
+
+    # Implementar sistemas para el manejo sostenible de los ecosistemas forestales 
+    # Promover actividades turísticas que protejan las coberturas naturales
+    # Fortalecer la gobernanza ambiental frente al uso y manejo de las coberturas naturales
+
+    === Plan Original del Proyecto ===
+  ->8-
+  headline "Cronograma del Proyecto" 
+  caption "Este es el desglose de actividades"
+  columns bsi {title 'EDA'},
+          name { 
+            title 'Nombre'
+            fontcolor @ all '#5F9EA0'
+            cellcolor @ all '#F0FFFF'
+          }, start {title 'Inicio'}, end {title 'Fin'}, effort {title 'Esfuerzo'}, pathcriticalness {width 2}, cost {title 'Costo'}, chart { ${TaskTip} }
+          sorttasks tree #plan.start.up #tree
+  #balance cost rev
+  footer -8<-
+    === Curiosidades ===
+    Se esta usando [[Taskjuggler]] para realizar el cronograma
+
+    === Convocatoria Ambiental ===
+
+    Se debe tener un claro el calendario, el presupuesto y el uso de la plataforma del GESPROY.
+ 
+  ->8-
+ #sorttasks tree #tree #start.up  #plan.end.down #id.up
+ #fontcolor isvalid(plan.maxend) & (plan.end > plan.maxend)
+
+  }
+
+
+resourcereport "Asignacionesbosque1" {
+  formats html
+  headline "Talento Humano"
+  columns name {title 'Nombre'}, rate {title 'Tasa'}, effort {title 'Esfuerzo'}, effortdone {title 'Realizado'}, effortleft  {title 'Falta'}
+}
+
+
+accountreport "PTrimestrebosque1" {
+  formats html
+  accountroot cost
+  balance -
+  columns no, name {title 'Nombre'}, quarterly {title 'Cuatrimestre' celltext 1 "<-query attribute='turnover'->" }
+}
+
+
+accountreport "Reporte de Cuentas bosque1" {
+  formats html
+  columns no, name {title 'Nombre'}, monthly
+}
+
+tracereport "TraceReportbosque" {
+  columns end { title "<-name->" }
+  hidetask 0
+}
+
+textreport frame "textreportbosque" {
+  taskreport r1 ""
+  taskreport r2 ""
+
+  formats html
+  header -8<-
+  This is the header
+  ----
+  ->8-
+  left "<[report id='frame.r1']>"
+  center "Center"
+  right "<[report id='frame.r2']>"
+  footer -8<-
+  ----
+  This is the footer
+  ->8-
+}
+
+taskreport breakdown "EsfuerzoporActividad" {
+  formats html
+  caption "Este es el desglose de Actividades"
+  headline "Desglose del Proyecto"
+  header -8<-
+  Aqui estan las actividades asi como el esfuerzo requerido por cada persona del equipo para realizarla
+  ----
+  ->8-
+  left "<[report id='frame.r1']>"
+  center "Center"
+  right "<[report id='frame.r2']>"
+  footer -8<-
+  ----
+  Esta herramienta nos permite analizar los momentos de mayor esfuerzo en el proyecto
+  ->8-
+  columns no, name {title 'Nombre'}, start {title 'Inicio'}, end {title 'Final'}, duration {title 'Duracion'}, monthly
+  # Don't hide any resource, meaning show them all.
+  hideresource 0
+}

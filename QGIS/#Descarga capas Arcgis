@@ -1,0 +1,470 @@
+# Función general para descargar vectores de ArcGIS
+
+nombre = 'CAR'
+
+url1 = 'https://services6.arcgis.com/hxAwRYAu9QHliJ8T/arcgis/rest/services/Limites_Autoridades_Ambientales/FeatureServer'
+
+capa = 0
+
+
+
+def descargar_capa_arcgis(url_servicio, id_capa=None, nombre_personalizado=None, token=None):
+    """
+    Descarga y añade una capa de ArcGIS Feature Server a QGIS
+    
+    Parámetros:
+    id_capa : int, opcional
+        ID de la capa. Si es None, se usará la capa 0
+    
+    nombre_personalizado : str, opcional
+        Nombre personalizado para la capa en QGIS
+    
+    token : str, opcional
+        Token de autenticación si el servicio lo requiere
+    
+    Retorna:
+    
+    """
+    
+    print("=" * 70)
+    print("🌍 DESCARGADOR DE VECTORES ARCGIS")
+    print("=" * 70)
+    
+    # Configurar valores por defecto
+    if id_capa is None:
+        id_capa = 0
+        print(f"ℹ️  Usando capa ID por defecto: {id_capa}")
+    
+    # Preparar URL base (quitar /0 o /{id} si está presente al final)
+    if url_servicio.endswith(f'/{id_capa}'):
+        url_base = url_servicio.rsplit('/', 1)[0]
+    else:
+        url_base = url_servicio
+    
+    print(f"🔗 URL base: {url_base}")
+    print(f"🎯 Capa ID: {id_capa}")
+    
+    # Método 1: ArcGIS Feature Server directo
+    print("\n1️⃣ Método 1: ArcGIS Feature Server")
+    
+    # Construir URI
+    if token:
+        uri = f"url={url_base}/{id_capa}&token={token}"
+    else:
+        uri = f"url={url_base}/{id_capa}"
+    
+    print(f"   🔧 URI: {uri[:80]}...")
+    
+    # Nombre temporal
+    nombre_temporal = f"ArcGIS_Capa_{id_capa}"
+    capa = QgsVectorLayer(uri, nombre_temporal, "arcgisfeatureserver")
+    
+    if capa.isValid():
+        print("   ✅ ¡Conexión exitosa!")
+        
+        # Establecer nombre final
+        if nombre_personalizado:
+            nombre_final = nombre_personalizado
+        else:
+            nombre_final = nombre_temporal
+        
+        capa.setName(nombre_final)
+        
+        # Añadir al proyecto
+        QgsProject.instance().addMapLayer(capa)
+        
+        # Mostrar información básica
+        mostrar_informacion_capa(capa, url_base, id_capa)
+        
+        # Aplicar estilo automático
+        aplicar_estilo_automatico(capa)
+        
+        # Zoom a la extensión
+        iface.mapCanvas().setExtent(capa.extent())
+        iface.mapCanvas().refresh()
+        
+        print("\n" + "=" * 70)
+        print(f"✅ CAPA CARGADA EXITOSAMENTE: {capa.name()}")
+        print("=" * 70)
+        
+        return capa
+    else:
+        print(f"   ❌ Error: {capa.error().message()}")
+    
+    # Método 2: Descargar como GeoJSON
+    print("\n2️⃣ Método 2: Descargar como GeoJSON")
+    
+    capa_geojson = descargar_como_geojson(url_base, id_capa, nombre_personalizado, token)
+    
+    if capa_geojson:
+        return capa_geojson
+    
+    # Método 3: Intentar como WFS
+    print("\n3️⃣ Método 3: Servicio WFS")
+    
+    capa_wfs = intentar_como_wfs(url_base, id_capa, nombre_personalizado)
+    
+    if capa_wfs:
+        return capa_wfs
+    
+    # Si todos los métodos fallaron
+    print("\n" + "=" * 70)
+    print("❌ NO SE PUDO CARGAR LA CAPA")
+    print("=" * 70)
+    
+    # Mostrar sugerencias
+    print("\n💡 SUGERENCIAS:")
+    print(f"1. Verifica que la capa {id_capa} exista en: {url_base}?f=json")
+    print(f"2. Prueba con diferentes IDs (0, 1, 2, etc.)")
+    print(f"3. Verifica si el servicio requiere autenticación")
+    print(f"4. Prueba la URL en tu navegador: {url_base}/{id_capa}/query?where=1=1&f=html")
+    
+    return None
+
+def descargar_como_geojson(url_base, id_capa, nombre_personalizado=None, token=None):
+    """Descarga una capa como GeoJSON y la carga en QGIS"""
+    
+    print("   🔍 Intentando descargar como GeoJSON...")
+    
+    # Diferentes formatos de consulta
+    consultas = [
+        f"{url_base}/{id_capa}/query?where=1=1&outFields=*&outSR=4326&f=geojson",
+        f"{url_base}/{id_capa}/query?outFields=*&outSR=4326&f=geojson",
+        f"{url_base}/{id_capa}/query?where=1=1&returnGeometry=true&outSR=4326&f=geojson",
+        f"{url_base}/{id_capa}/query?where=OBJECTID>0&outFields=*&outSR=4326&f=geojson",
+        f"{url_base}/{id_capa}/query?where=1=1&outFields=*&f=geojson"
+    ]
+    
+    if token:
+        # Añadir token a todas las consultas
+        consultas = [f"{q}&token={token}" for q in consultas]
+    
+    for i, consulta_url in enumerate(consultas, 1):
+        print(f"   🔧 Intento {i}: {consulta_url[:60]}...")
+        
+        try:
+            import urllib.request
+            import json
+            import tempfile
+            import os
+            
+            # Configurar headers
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (QGIS/3.x)',
+                'Accept': 'application/geo+json'
+            }
+            
+            req = urllib.request.Request(consulta_url, headers=headers)
+            respuesta = urllib.request.urlopen(req, timeout=20)
+            
+            if respuesta.status == 200:
+                datos_geojson = respuesta.read().decode('utf-8')
+                
+                # Verificar que sea GeoJSON válido
+                datos_json = json.loads(datos_geojson)
+                
+                if 'features' in datos_json and len(datos_json['features']) > 0:
+                    # Guardar en archivo temporal
+                    temp_dir = tempfile.gettempdir()
+                    archivo_temp = os.path.join(temp_dir, f"arcgis_capa_{id_capa}.geojson")
+                    
+                    with open(archivo_temp, 'w', encoding='utf-8') as f:
+                        f.write(datos_geojson)
+                    
+                    print(f"      💾 Guardado en: {archivo_temp}")
+                    
+                    # Nombre para la capa
+                    if nombre_personalizado:
+                        nombre_capa = f"{nombre_personalizado} (GeoJSON)"
+                    else:
+                        nombre_capa = f"Capa_{id_capa}_GeoJSON"
+                    
+                    # Cargar el archivo
+                    capa = QgsVectorLayer(archivo_temp, nombre_capa, "ogr")
+                    
+                    if capa.isValid():
+                        print(f"      ✅ ¡GeoJSON cargado exitosamente!")
+                        
+                        # Renombrar (quitar el sufijo GeoJSON)
+                        if nombre_personalizado:
+                            capa.setName(nombre_personalizado)
+                        
+                        # Añadir al proyecto
+                        QgsProject.instance().addMapLayer(capa)
+                        
+                        # Mostrar información
+                        mostrar_informacion_capa(capa, url_base, id_capa)
+                        
+                        # Aplicar estilo
+                        aplicar_estilo_automatico(capa)
+                        
+                        # Zoom
+                        iface.mapCanvas().setExtent(capa.extent())
+                        iface.mapCanvas().refresh()
+                        
+                        return capa
+                    else:
+                        print(f"      ❌ Error al cargar GeoJSON")
+                else:
+                    print(f"      ⚠️ GeoJSON sin features o inválido")
+            else:
+                print(f"      ⚠️ Error HTTP: {respuesta.status}")
+                
+        except urllib.error.HTTPError as e:
+            print(f"      ⚠️ HTTP Error {e.code}: {e.reason}")
+        except Exception as e:
+            print(f"      ⚠️ Error: {str(e)[:50]}")
+    
+    print("   ❌ Todos los intentos GeoJSON fallaron")
+    return None
+
+def intentar_como_wfs(url_base, id_capa, nombre_personalizado=None):
+    """Intentar cargar como servicio WFS"""
+    
+    wfs_urls = [
+        f"{url_base}/{id_capa}/WFSServer",
+        f"{url_base}/WFSServer",
+        f"{url_base}?service=WFS&request=GetCapabilities"
+    ]
+    
+    for wfs_url in wfs_urls:
+        print(f"   🔧 Probando WFS: {wfs_url[:60]}...")
+        
+        try:
+            uri = f"url={wfs_url}&service=WFS&version=1.1.0"
+            
+            if nombre_personalizado:
+                nombre_capa = f"{nombre_personalizado} (WFS)"
+            else:
+                nombre_capa = f"Capa_{id_capa}_WFS"
+            
+            capa = QgsVectorLayer(uri, nombre_capa, "WFS")
+            
+            if capa.isValid():
+                print(f"      ✅ ¡Funciona como WFS!")
+                
+                if nombre_personalizado:
+                    capa.setName(nombre_personalizado)
+                
+                QgsProject.instance().addMapLayer(capa)
+                
+                # Mostrar información
+                mostrar_informacion_capa(capa, url_base, id_capa)
+                
+                return capa
+                
+        except Exception as e:
+            print(f"      ⚠️ Error WFS: {str(e)[:50]}")
+    
+    print("   ❌ No funciona como WFS")
+    return None
+
+def mostrar_informacion_capa(capa, url_base, id_capa):
+    """Muestra información detallada de la capa"""
+    
+    print(f"\n📊 INFORMACIÓN DE LA CAPA:")
+    print(f"   Nombre: {capa.name()}")
+    print(f"   Features: {capa.featureCount()}")
+    
+    # CRS
+    crs = capa.crs()
+    if crs.isValid():
+        print(f"   CRS: {crs.authid()}")
+    else:
+        print(f"   CRS: No definido")
+    
+    # Campos
+    campos = capa.fields()
+    print(f"   Campos: {campos.count()}")
+    
+    if campos.count() > 0:
+        print("   Primeros 5 campos:")
+        for i in range(min(5, campos.count())):
+            campo = campos.field(i)
+            print(f"     {i+1:2d}. {campo.name():20} ({campo.typeName():10})")
+    
+    # Extensión
+    extension = capa.extent()
+    print(f"\n🗺️  EXTENSIÓN:")
+    print(f"   X min: {extension.xMinimum():.6f}")
+    print(f"   X max: {extension.xMaximum():.6f}")
+    print(f"   Y min: {extension.yMinimum():.6f}")
+    print(f"   Y max: {extension.yMaximum():.6f}")
+    
+    # Tipo de geometría
+    tipo_geo = capa.geometryType()
+    tipos = {0: "Puntos", 1: "Líneas", 2: "Polígonos"}
+    print(f"   Tipo: {tipos.get(tipo_geo, 'Desconocido')}")
+    
+    # Intentar obtener metadata
+    try:
+        import urllib.request
+        import json
+        
+        metadata_url = f"{url_base}/{id_capa}?f=json"
+        req = urllib.request.urlopen(metadata_url, timeout=5)
+        data = json.loads(req.read().decode())
+        
+        print(f"\n📋 METADATA:")
+        if 'name' in data:
+            print(f"   Nombre real: {data['name']}")
+        if 'description' in data and data['description']:
+            print(f"   Descripción: {data['description'][:100]}...")
+        if 'copyrightText' in data:
+            print(f"   Copyright: {data['copyrightText'][:80]}...")
+            
+    except Exception as e:
+        pass  # No mostrar error si no se puede obtener metadata
+
+def aplicar_estilo_automatico(capa):
+    """Aplica un estilo básico según el tipo de geometría"""
+    
+    try:
+        tipo_geo = capa.geometryType()
+        
+        if tipo_geo == 0:  # Puntos
+            print("   🎨 Aplicando estilo de puntos (rojo)...")
+            renderer = capa.renderer()
+            if renderer:
+                symbol = renderer.symbol()
+                if symbol:
+                    symbol.setColor(QColor(255, 0, 0))
+                    symbol.setSize(3)
+        
+        elif tipo_geo == 1:  # Líneas
+            print("   🎨 Aplicando estilo de líneas (azul)...")
+            renderer = capa.renderer()
+            if renderer:
+                symbol = renderer.symbol()
+                if symbol:
+                    symbol.setColor(QColor(0, 100, 255))
+                    symbol.setWidth(1.0)
+        
+        elif tipo_geo == 2:  # Polígonos
+            print("   🎨 Aplicando estilo de polígonos (verde transparente)...")
+            renderer = capa.renderer()
+            if renderer:
+                symbol = renderer.symbol()
+                if symbol:
+                    symbol.setColor(QColor(0, 150, 0, 100))
+                    symbol.setStrokeColor(QColor(0, 100, 0))
+                    symbol.setStrokeWidth(0.3)
+        
+        capa.triggerRepaint()
+        
+    except Exception as e:
+        print(f"   ⚠️ No se pudo aplicar estilo: {str(e)[:50]}")
+
+# ============================================================================
+# FUNCIONES ADICIONALES ÚTILES
+# ============================================================================
+
+def explorar_servicio_arcgis(url_servicio):
+    """
+    Explora un servicio ArcGIS y muestra las capas disponibles
+    """
+    
+    print("=" * 70)
+    print("🔍 EXPLORADOR DE SERVICIOS ARCGIS")
+    print("=" * 70)
+    
+    try:
+        import urllib.request
+        import json
+        
+        # Obtener información del servicio
+        metadata_url = f"{url_servicio}?f=json"
+        print(f"📡 Conectando a: {metadata_url}")
+        
+        req = urllib.request.Request(metadata_url)
+        respuesta = urllib.request.urlopen(req, timeout=10)
+        data = json.loads(respuesta.read().decode())
+        
+        print(f"✅ Servicio encontrado")
+        print(f"📝 Nombre: {data.get('serviceDescription', 'N/A')}")
+        
+        # Mostrar capas
+        layers = data.get('layers', [])
+        tables = data.get('tables', [])
+        
+        print(f"\n📋 CAPAS VECTORIALES: {len(layers)}")
+        for layer in layers:
+            print(f"   ID: {layer.get('id'):2} | {layer.get('name'):30} | {layer.get('geometryType', 'N/A'):15}")
+        
+        print(f"\n📊 TABLAS (sin geometría): {len(tables)}")
+        for table in tables:
+            print(f"   ID: {table.get('id'):2} | {table.get('name'):30}")
+        
+        print("\n🎯 Para cargar una capa, usa:")
+        print(f"   descargar_capa_arcgis('{url_servicio}', id_capa=X, nombre_personalizado='Mi Capa')")
+        
+        return data
+        
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        return None
+
+def cargar_desde_url_completa(url_completa, nombre_personalizado=None):
+    """
+    Carga una capa desde una URL completa de ArcGIS
+    Ejemplo: https://services6.arcgis.com/.../FeatureServer/0
+    """
+    
+    print("=" * 70)
+    print("🔗 CARGANDO DESDE URL COMPLETA")
+    print("=" * 70)
+    
+    # Extraer URL base y ID de capa
+    if '/FeatureServer/' in url_completa:
+        partes = url_completa.split('/FeatureServer/')
+        if len(partes) == 2:
+            url_base = partes[0] + '/FeatureServer'
+            try:
+                id_capa = int(partes[1].split('/')[0])
+                print(f"📦 URL base: {url_base}")
+                print(f"🎯 Capa ID: {id_capa}")
+                
+                return descargar_capa_arcgis(
+                    url_base, 
+                    id_capa, 
+                    nombre_personalizado
+                )
+            except:
+                pass
+    
+    # Si no se pudo parsear, usar la URL completa
+    print("⚠️ No se pudo parsear la URL, intentando con URL completa...")
+    
+    # Intentar extraer ID de otra forma
+    try:
+        # Buscar el último número en la URL
+        import re
+        numeros = re.findall(r'/(\d+)$', url_completa)
+        if numeros:
+            id_capa = int(numeros[0])
+            url_base = url_completa.rsplit('/', 1)[0]
+            
+            return descargar_capa_arcgis(
+                url_base, 
+                id_capa, 
+                nombre_personalizado
+            )
+    except:
+        pass
+    
+    # Último intento: usar como está
+    return descargar_capa_arcgis(
+        url_completa, 
+        id_capa=0, 
+        nombre_personalizado=nombre_personalizado
+    )
+
+
+
+
+# Probemos con tu URL de ejemplo
+descargar_capa_arcgis(
+    url_servicio = url1,
+    id_capa = capa,
+    nombre_personalizado = nombre
+)

@@ -6,17 +6,21 @@ region = 'Latin America & Caribbean'
 subregion = 'South America'
 cpais = ['MEX']
 codigos_uf = ['14'] #Jalisco 14
-codigos_muni = ['14120'] #Zapopan 14120
+codigos_muni = ['14120'] #Zapopan 14120, La Paz 03003
 
+#16 Jalisco
+#09 CDMX
+#02 Baja California
+#03 Baja California Sur
 
 
 # Lista de nombres de capas a procesar
 nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'pais', 'estados', 'estados_seleccionados', 'MunicipiosEsp2', 'muni_seleccionados', 'Municipios']
-oceano_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_ocean/ne_10m_ocean.shp'
-region_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp'
-pais_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp'
-UF_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/Mexico/Shapefile - Estados/u_territorial_estados_mgn_inegi_2013.shp'
-municipios_path = '/Volumes/Disco J/Mapas/Zonificacion Colombia/Mundo/Mexico/Shapefile - Municipios/inegi_refmunicip_2010.shp'
+oceano_path = '/Users/javier/pCloud Drive/Javier/Cartografia/Mapas/Zonificacion Colombia/Mundo/ne_10m_ocean/ne_10m_ocean.shp'
+region_path = '/Users/javier/pCloud Drive/Javier/Cartografia/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp'
+pais_path = '/Users/javier/pCloud Drive/Javier/Cartografia/Mapas/Zonificacion Colombia/Mundo/ne_10m_admin_0_countries/ne_10m_admin_0_countries.shp'
+UF_path = '/Users/javier/pCloud Drive/Javier/Cartografia/Mapas/Zonificacion Colombia/Mundo/Mexico/Shapefile - Estados/u_territorial_estados_mgn_inegi_2013.shp'
+municipios_path = '/Users/javier/pCloud Drive/Javier/Cartografia/Mapas/Zonificacion Colombia/Mundo/Mexico/Shapefile - Municipios/inegi_refmunicip_2010.shp'
 
 # Lista de nombres de capas a procesar pc Andrey
 #nombres_capas = ['OpenStreetMap', 'oceano', 'regiones_seleccionados', 'paises_seleccionados', 'departamentos', 'departamentos_seleccionados', 'MunicipiosDep2', 'municipios_seleccionados', 'Consejos2', 'veredas_en_consejos']

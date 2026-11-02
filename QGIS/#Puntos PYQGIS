@@ -1,0 +1,207 @@
+#PUNTOS PYQGIS
+
+
+
+
+# Coordenadas UTM 18N
+este = 641929.58
+norte = 964211.17
+
+# 1. Crear capa de puntos con CRS UTM 18N
+capa = QgsVectorLayer("Point?crs=EPSG:32618", "Punto UTM 18N", "memory")
+
+# 2. Configurar proveedor
+provider = capa.dataProvider()
+provider.addAttributes([
+    QgsField("id", QVariant.Int),
+    QgsField("nombre", QVariant.String),
+    QgsField("este", QVariant.Double),
+    QgsField("norte", QVariant.Double)
+])
+capa.updateFields()
+
+# 3. Crear feature
+feat = QgsFeature()
+# Crear geometría en UTM 18N
+feat.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(este, norte)))
+feat.setAttributes([1, "Mi Punto UTM", este, norte])
+
+# 4. Añadir a capa
+provider.addFeatures([feat])
+
+# 5. Añadir al proyecto
+QgsProject.instance().addMapLayer(capa)
+
+print(f"✅ Punto UTM creado: {este}, {norte}")
+print(f"   CRS: UTM 18N (EPSG:32618)")
+
+
+
+################
+
+from qgis.core import QgsVectorLayer, QgsFeature, QgsGeometry, QgsPointXY, QgsField, QgsProject, QgsMarkerSymbol
+from PyQt5.QtCore import QVariant
+from qgis.PyQt.QtGui import QColor
+
+# Crear capa
+layer = QgsVectorLayer("Point?crs=EPSG:4326", "Puntos Colombia", "memory")
+provider = layer.dataProvider()
+
+# Campos - AÑADIR Latitud y Longitud también
+provider.addAttributes([
+    QgsField("ID", QVariant.Int),
+    QgsField("Departamento", QVariant.String),
+    QgsField("Municipio", QVariant.String),
+    QgsField("Latitud", QVariant.Double),  # Nuevo campo
+    QgsField("Longitud", QVariant.Double), # Nuevo campo
+    QgsField("Zona", QVariant.Int)
+])
+layer.updateFields()
+
+# Datos CON encabezado - pero vamos a saltarlo
+datos = [
+    ["ID","Departamento","Municipio","Latitud","Longitud","Zona"],
+    [1,"Sucre","Majagual","8.598337","-74.727489","99"],
+    [3,"Sucre","Majagual","8.583775","-74.66635","2"],
+    [4,"Sucre","Majagual","8.597349","-74.719908","3"],
+    [5,"Sucre","Majagual","8.537168","-74.580126","1"],
+    [6,"Sucre","Majagual","8.60186","-74.697069","1"],
+    [7,"Sucre","Majagual","8.630331","-74.761228","3"],
+    [8,"Sucre","Majagual","8.630338","-74.761283","3"],
+    [9,"Sucre","Majagual","8.629254","-74.693657","5"],
+    [10,"Sucre","Majagual","8.673562","-74.698224","1"],
+    [11,"Sucre","Majagual","8.466165","-74.627783","5"],
+    [12,"Sucre","Majagual","8.60916","-74.72268","3"],
+    [13,"Sucre","Majagual","8.60751","-74.72366","3"],
+    [14,"Sucre","Majagual","8.60798","-74.72409","3"],
+    [15,"Sucre","Majagual","8.60839","-74.72444","3"],
+    [16,"Sucre","Majagual","8.60836","-74.72439","3"],
+    [17,"Sucre","Majagual","8.59846","-74.72737","3"],
+    [18,"Sucre","Majagual","8.61665","-74.77446","3"],
+    [19,"Sucre","Majagual","8.63038","-74.76121","3"],
+    [20,"Sucre","Majagual","8.62993","-74.76384","3"],
+    [21,"Sucre","Majagual","8.62993","-74.76383","3"],
+    [22,"Sucre","Majagual","8.61685","-74.75210","3"],
+    [23,"Sucre","Majagual","8.63567","-74.74573","3"],
+    [24,"Sucre","Majagual","8.67545","-74.70434","1"],
+    [25,"Sucre","Majagual","8.74196","-74.74233","1"],
+    [26,"Sucre","Majagual","8.66727","-74.70420","1"],
+    [27,"Sucre","Majagual","8.66736","-74.70415","1"],
+    [28,"Sucre","Majagual","8.66734","-74.70416","1"],
+    [29,"Sucre","Majagual","8.61749","-74.70148","1"],
+    [30,"Sucre","Majagual","8.61871","-74.70067","1"],
+    [31,"Sucre","Majagual","8.61849","-74.70103","1"],
+    [32,"Sucre","Majagual","8.61752","-74.70141","1"],
+    [33,"Sucre","Majagual","8.59924","-74.69344","1"],
+    [34,"Sucre","Majagual","8.59782","-74.69182","1"],
+    [35,"Sucre","Majagual","8.59367","-74.67802","1"],
+    [36,"Sucre","Majagual","8.62665","-74.68481","2"],
+    [37,"Sucre","Majagual","8.62649","-74.68520","2"],
+    [38,"Sucre","Majagual","8.58381","-74.66639","2"],
+    [39,"Sucre","Majagual","8.58112","-74.66434","2"],
+    [40,"Sucre","Majagual","8.55936","-74.71547","5"],
+    [41,"Sucre","Majagual","8.56085","-74.71549","5"],
+    [42,"Sucre","Majagual","8.56098","-74.71580","5"],
+    [43,"Sucre","Majagual","8.47886","-74.70084","5"],
+    [44,"Sucre","Majagual","8.48508","-74.70463","5"],
+    [45,"Sucre","Majagual","8.52233","-74.65107","4"],
+    [46,"Sucre","Majagual","8.52975","-74.57405","4"],
+    [47,"Sucre","Majagual","8.53081","-74.57420","4"],
+    [48,"Sucre","Majagual","8.52977","-74.57450","4"],
+    [49,"Sucre","Majagual","8.53561","-74.57283","4"],
+    [50,"Sucre","Majagual","8.629254","-74.693657","88"],
+    [51,"Sucre","Majagual","8.597349","-74.719908","3"],
+    [52,"Sucre","Majagual","8.630338","-74.761283","3"],
+    [53,"Sucre","Majagual","8.598337","-74.727489","99"],
+    [54,"Sucre","Majagual","8.673562","-74.698224","1"],
+    [55,"Sucre","Majagual","8.583775","-74.66635","1"],
+    [56,"Sucre","Majagual","8.57","-74.56","4"],
+    [57,"Sucre","Majagual","8.60186","-74.697069","1"],
+    [58,"Sucre","Majagual","8.617980","-74.701605","1"],
+    [59,"Sucre","Majagual","8.59846","-74.72737","1"],
+    [60,"Sucre","Majagual","8.61665","-74.7744","3"],
+    [61,"Sucre","Majagual","8.74196","-74.74233","1"],
+    [62,"Sucre","Majagual","8.59367","-74.67802","2"],
+    [63,"Sucre","Majagual","8.62665","-74.68481","2"],
+    [64,"Sucre","Majagual","8.58381","-74.66639","2"],
+    [65,"Sucre","Majagual","8.55936","-74.71547","5"],
+    [66,"Sucre","Majagual","8.47886","-74.70084","5"],
+    [67,"Sucre","Majagual","8.52975","-74.57405","4"],
+    [68,"Cordoda","Puerto Libertador","7.898735","-75.749680","10"],
+    [69,"Cordoba","Puerto Libertador","7.765","-75.6033","11"],
+    [70,"Cordoba","San Pelayo","9.033","-75.852","12"],
+    [71,"Tolima","Chaparral","3.756","-75.480","13"]
+]
+
+# Añadir puntos - ¡CORRECCIÓN AQUÍ!
+features = []
+
+# Empezar desde el índice 1 para saltar el encabezado
+for fila in datos[1:]:
+    # Convertir valores a los tipos correctos
+    id_punto = int(fila[0])
+    depto = str(fila[1])
+    muni = str(fila[2])
+    lat = float(fila[3])   # ¡CONVERTIR A FLOAT!
+    lon = float(fila[4])   # ¡CONVERTIR A FLOAT!
+    zona = int(fila[5])
+    
+    # Crear feature
+    feat = QgsFeature()
+    # QgsPointXY espera números, no strings
+    feat.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(lon, lat)))
+    # Incluir todos los campos, incluyendo lat/lon
+    feat.setAttributes([id_punto, depto, muni, lat, lon, zona])
+    features.append(feat)
+
+# Añadir todos los features de una vez
+provider.addFeatures(features)
+layer.updateExtents()
+
+print(f"✅ {len(features)} puntos añadidos correctamente")
+
+# Configurar estilo categorizado por zona
+from qgis.core import QgsCategorizedSymbolRenderer
+
+# Colores para más zonas (incluyendo las nuevas)
+colores_zonas = {
+    1: QColor("red"),
+    2: QColor("blue"),
+    3: QColor("green"),
+    4: QColor("purple"),
+    5: QColor("orange"),
+    10: QColor("darkred"),
+    11: QColor("darkblue"),
+    12: QColor("darkgreen"),
+    13: QColor("cadetblue"),
+    88: QColor("gray"),
+    99: QColor("black")
+}
+
+# Crear categorías
+categories = []
+for zona, color in colores_zonas.items():
+    # Crear símbolo para cada zona
+    symbol = QgsMarkerSymbol.createSimple({
+        'name': 'circle',
+        'color': color.name(),
+        'size': '5',
+        'outline_color': 'white',
+        'outline_width': '0.5'
+    })
+    categories.append(QgsRendererCategory(zona, symbol, f"Zona {zona}"))
+
+# Aplicar renderizador categorizado
+renderer = QgsCategorizedSymbolRenderer("Zona", categories)
+layer.setRenderer(renderer)
+
+# Añadir capa al proyecto
+QgsProject.instance().addMapLayer(layer)
+
+# Zoom automático a los puntos
+canvas = iface.mapCanvas()
+canvas.setExtent(layer.extent())
+canvas.refresh()
+
+print("✅ Mapa creado exitosamente!")
+print("📌 Consejo: Ve a Propiedades de la capa > Simbología para personalizar colores")
